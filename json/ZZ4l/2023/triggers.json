@@ -1,0 +1,8 @@
+{
+    "MonteCarlo" : "singleMuon || singleElectron || singleMuSingleEPass || doubleMuon || doubleElectron || tripleMuon || doubleESingleMuPass || doubleMuSingleEPass",
+    "EGamma0" : "singleElectron || doubleElectron",
+    "EGamma1" : "singleElectron || doubleElectron",
+    "Muon0" : "(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
+    "Muon1" : "(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
+    "MuonEG" : "crossEMu && !(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)"
+}

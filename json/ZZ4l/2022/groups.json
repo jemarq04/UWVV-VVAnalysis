@@ -1,0 +1,91 @@
+{
+  "qqZZ-powheg": {
+    "name": "q#bar{q} #rightarrow ZZ",
+    "style": "fill-lightblue",
+    "members": [
+      "qqZZ-powheg_preEE",
+      "qqZZ-powheg_postEE"
+    ]
+  },
+  "ggZZ": {
+    "name": "gg #rightarrow ZZ",
+    "style": "fill-blue",
+    "members": [
+      "ggZZ4e_preEE",
+      "ggZZ4m_preEE",
+      "ggZZ4t_preEE",
+      "ggZZ2e2mu_preEE",
+      "ggZZ2e2tau_preEE",
+      "ggZZ2mu2tau_preEE",
+      "ggZZ4e_postEE",
+      "ggZZ4m_postEE",
+      "ggZZ4t_postEE",
+      "ggZZ2e2mu_postEE",
+      "ggZZ2e2tau_postEE",
+      "ggZZ2mu2tau_postEE"
+    ]
+  },
+  "VVV": {
+    "name": "t#bar{t}Z,VVV",
+    "style": "fill-yellow",
+    "members": [
+      "ZZZ_preEE",
+      "WZZ_preEE",
+      "WWZ_preEE",
+      "ttZ_preEE",
+      "ZZZ_postEE",
+      "WZZ_postEE",
+      "WWZ_postEE",
+      "ttZ_postEE"
+    ]
+  },
+  "HZZ-signal": {
+    "name": "H #rightarrow ZZ",
+    "style": "fill-lightred",
+    "members": [
+      "ggHZZ_preEE",
+      "ggHZZ_postEE"
+    ]
+  },
+  "qqZZjj-ewk": {
+    "name": "ZZ + 2 jets EWK",
+    "style": "fill-darkblue",
+    "members": [
+      "zzjj4l-ewk_preEE",
+      "zzjj4l-ewk_postEE"
+    ]
+  },
+  "dy-jets": {
+    "name": "Drell-Yan",
+    "style": "fill-green",
+    "members": [
+      "DYm10to50-2j_preEE",
+      "DYm10to50-2j_postEE",
+      "DYm50-2j_preEE",
+      "DYm50-2j_postEE"
+    ]
+  },
+  "top": {
+    "name": "TT",
+    "style": "fill-red",
+    "members": [
+      "tt2l2nu-powheg_preEE",
+      "tt2l2nu-powheg_postEE"
+    ]
+  },
+  "wz3lnu-powheg": {
+    "name": "WZ",
+    "style": "fill-maroon",
+    "members": [
+      "wz3lnu-powheg_preEE",
+      "wz3lnu-powheg_postEE"
+    ]
+  },
+  "nonprompt": {
+    "name": "Z+X",
+    "style": "fill-green",
+    "members": [
+      "nonprompt"
+    ]
+  }
+}

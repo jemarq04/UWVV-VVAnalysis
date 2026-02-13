@@ -1,0 +1,15 @@
+target-version = "py39" # python3.9
+line-length = 120
+
+[lint]
+extend-select = [
+  "C4",   # comprehensions
+  "B",    # find bug-prone patterns
+  "ARG",  # unused arguments
+  "PL",   # Pylint codes
+]
+ignore = [
+  "PLR",      # design-related Pylint codes
+  "E402",     # ignore module imports not at the top
+  "PLC0415",  # ^ ^ ^
+]

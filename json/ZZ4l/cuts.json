@@ -1,0 +1,31 @@
+{
+  "Object": {
+    "e": [
+      "{}ZZLooseId > 0.5"
+    ],
+    "m": [
+      "{}ZZLooseId > 0.5"
+    ]
+  },
+  "ObjectPair": [
+    "{0}_{1}_DR >= 0.02",
+    "{0}_{1}_SS > 0.5 || {0}_{1}_MassNoFSR >= 4"
+  ],
+  "Channel": {
+    "eeee": [
+      "!(abs(ZaMass-91.1876) < abs(Z1Mass-91.1876) && ZbMass < 12)"
+    ],
+    "eemm": [
+    ],
+    "mmmm": [
+      "!(abs(ZaMass-91.1876) < abs(Z1Mass-91.1876) && ZbMass < 12)"
+    ]
+  },
+  "Event": [
+    "Z1Mass >= 4 && Z1Mass < 120 && Z1SS < 0.5",
+    "Z2Mass >= 4 && Z2Mass < 120 && Z2SS < 0.5",
+    "Mass > 70"
+  ],
+  "LeadingPt": 20,
+  "SubleadingPt": 10
+}
