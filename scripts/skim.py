@@ -7,7 +7,6 @@ import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
 # NOTE: Get it working hard-coded and then make it better later!
-# maybe get some sort of recipe/makefile that writes down the current directory for easy lookup in these scripts.
 
 
 def main():
