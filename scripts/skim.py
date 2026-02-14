@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# import ROOT
-# import argparse
+import ROOT
+import argparse
 import os
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
@@ -10,22 +10,43 @@ import UWVV.VVAnalysis.skimtools as skimtools
 
 
 def main():
-    if "CMSSW_BASE" not in os.environ:
-        print("error: CMSSW_BASE not set")
-        exit(1)
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
+    parser.add_argument("-y", "--year", default="2022", help="year for analysis")
+    parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
+    parser.add_argument("-o", "--outfile", default="output.root", help="output file")
+    parser.add_argument("infile", help="input file")
+    args = parser.parse_args()
 
-    dataset = "MonteCarlo"  # or Muon, EGamma, MuonEG, etc.
-    analysis = "ZZ4l"
-    year = "2022"
+    if not os.path.isfile(args.infile):
+        parser.error(f"invalid file: {args.infile}")
+    if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
+        parser.error(f"invalid analysis: {args.analysis}")
+    if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis, args.year)):
+        parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
 
-    cutinfo = helpers.load_json(analysis, year, "cuts.json")
-    aliases = helpers.load_json(analysis, year, "aliases.json")
-    triggers = helpers.load_json(analysis, year, "triggers.json")
+    cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json")
+    aliases = helpers.load_json(args.analysis, args.year, "aliases.json")
+    triggers = helpers.load_json(args.analysis, args.year, "triggers.json")
 
-    for channel in ["eeee", "eemm", "mmmm"]:
-        cutstring = skimtools.build_cutstring(cutinfo, channel)
-        cutstring += f" && ({triggers[dataset]})"
-        print(cutstring)
+    if args.trigger not in triggers:
+        parser.error(f"invalid trigger: {args.trigger}")
+
+    with ROOT.TFile.Open(args.infile) as infile:
+        with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
+            outfile.cd()
+            for channel in ["eeee", "eemm", "mmmm"]:
+                cutstring = skimtools.build_cutstring(cutinfo, channel)
+                cutstring += f" && ({triggers[args.trigger]})"
+                print("cutstring:", cutstring)
+
+                tree = infile.Get(f"{channel}/ntuple")
+                for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
+                    if val:
+                        tree.SetAlias(key, val)
+                skimmed_tree = tree.CopyTree(cutstring)
+                skimmed_tree.Process(ROOT.BestZZCandSelector())
+                skimmed_tree.Write(f"{channel}/ntuple")
 
 
 if __name__ == "__main__":
