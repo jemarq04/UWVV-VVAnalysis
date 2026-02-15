@@ -15,6 +15,7 @@ def main():
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
     parser.add_argument("-o", "--outfile", default="output.root", help="output file")
+    parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("infile", help="input file")
     args = parser.parse_args()
 
@@ -38,17 +39,22 @@ def main():
             for channel in ["eeee", "eemm", "mmmm"]:
                 cutstring = skimtools.build_cutstring(cutinfo, channel)
                 cutstring += f" && ({triggers[args.trigger]})"
-                print("cutstring:", cutstring)
+                if args.verbose:
+                    print(f"{channel}:\n  {cutstring}")
 
                 tree = infile.Get(f"{channel}/ntuple")
                 for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
                     if val:
                         tree.SetAlias(key, val)
+                        if args.verbose:
+                            print(f"  Set alias: {key} -> {val}")
                 skimmed_tree = tree.CopyTree(cutstring)
                 selector = skimtools.get_selector(args.analysis, channel)
                 skimmed_tree.Process(selector)
                 entry_list = selector.GetOutputList().FindObject("bestCandidates")
                 skimmed_tree.SetEntryList(entry_list)
+                if args.verbose:
+                    print("  selector status:", selector.GetStatus())
                 subdir = outfile.mkdir(channel)
                 subdir.cd()
                 skimmed_tree.Write()
