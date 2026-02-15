@@ -1,0 +1,8 @@
+{
+    "MonteCarlo" : "singleElectronPass || doubleElectronPass || singleMuonPass || doubleMuonPass || tripleMuonPass || crossEMuPass",
+    "EGamma" : "singleElectronPass || doubleElectronPass",
+    "DoubleMuon" : "(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "SingleMuon" : "(singleMuonPass) && !(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "Muon" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
+}

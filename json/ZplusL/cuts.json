@@ -1,0 +1,33 @@
+{
+  "Object": {
+    "e": [
+      "{}ZZLooseID > 0.5"
+    ],
+    "m": [
+      "{}ZZLooseID > 0.5"
+    ]
+  },
+  "ObjectPair": [
+    "{0}_{1}_DR >= 0.02",
+    "{0}_{1}_SS > 0.5 || {0}_{1}_Mass >= 4"
+  ],
+  "Channel": {
+    "eee": [
+      "nZZLooseElec == 3 && nZZLooseMu == 0"
+    ],
+    "eem": [
+      "nZZLooseElec == 2 && nZZLooseMu == 1"
+    ],
+    "emm": [
+      "nZZLooseElec == 1 && nZZLooseMu == 2"
+    ],
+    "mmm": [
+      "nZZLooseElec == 0 && nZZLooseMu == 3"
+    ]
+  },
+  "Event": [
+    "Z1Mass >= 4 && Z1Mass < 120 && Z1SS < 0.5"
+  ],
+  "LeadingPt": 20,
+  "SubleadingPt": 10
+}
