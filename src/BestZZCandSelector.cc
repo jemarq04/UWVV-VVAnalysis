@@ -96,10 +96,6 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
   b_l3Iso->GetEntry(entry);
   b_l4Iso->GetEntry(entry);
 
-  std::vector<Long64_t> fTightEntries, fLooseEntries;
-  std::vector<float> fTightDiscriminants, fLooseDiscriminants;
-  std::vector<float> fTightZ2PtSums, fLooseZ2PtSums;
-
   float discriminant, z2PtSum;
   float discriminant_Z1 = fabs(Z1Mass - 91.1876);
   float discriminant_Z2 = fabs(Z2Mass - 91.1876);
