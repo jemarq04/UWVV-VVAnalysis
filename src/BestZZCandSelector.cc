@@ -1,5 +1,4 @@
 #include "UWVV/VVAnalysis/interface/BestZZCandSelector.h"
-#include <iostream>
 
 void BestZZCandSelector::SlaveBegin(TTree *tree) {
   fEntryList = new TEntryList("bestCandidates",
