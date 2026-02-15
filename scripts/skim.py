@@ -15,6 +15,7 @@ def main():
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
     parser.add_argument("-o", "--outfile", default="output.root", help="output file")
+    parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("infile", help="input file")
     args = parser.parse_args()
@@ -64,6 +65,19 @@ def main():
                 subdir = outfile.mkdir(channel)
                 subdir.cd()
                 skimmed_tree.Write()
+
+                if args.save_gen:
+                    tree = infile.Get(f"{channel}Gen/ntuple")
+                    subdir = outfile.mkdir(f"{channel}Gen")
+                    subdir.cd()
+                    tree_copy = tree.CopyTree("")
+                    tree_copy.Write()
+
+            tree = infile.Get("metaInfo/metaInfo")
+            subdir = outfile.mkdir("metaInfo")
+            subdir.cd()
+            tree_copy = tree.CopyTree("")
+            tree_copy.Write()
 
     if args.verbose:
         print(f"Written to {args.outfile}")
