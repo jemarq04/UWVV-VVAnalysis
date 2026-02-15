@@ -1,8 +1,8 @@
 {
-    "MonteCarlo" : "singleMuon || singleElectron || singleMuSingleEPass || doubleMuon || doubleElectron || tripleMuon || doubleESingleMuPass || doubleMuSingleEPass",
-    "EGamma0" : "singleElectron || doubleElectron",
-    "EGamma1" : "singleElectron || doubleElectron",
-    "Muon0" : "(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
-    "Muon1" : "(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
-    "MuonEG" : "crossEMu && !(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)"
+    "MonteCarlo" : "singleElectronPass || doubleElectronPass || singleMuonPass || doubleMuonPass || tripleMuonPass || crossEMuPass",
+    "EGamma0" : "singleElectronPass || doubleElectronPass",
+    "EGamma1" : "singleElectronPass || doubleElectronPass",
+    "Muon0" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "Muon1" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
 }

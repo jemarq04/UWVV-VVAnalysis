@@ -1,8 +1,8 @@
 {
-    "MonteCarlo" : "singleElectron || doubleElectron || singleMuon || doubleMuon || tripleMuon || crossEMu",
-    "EGamma" : "singleElectron || doubleElectron",
-    "DoubleMuon" : "(doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
-    "SingleMuon" : "(singleMuon) && !(doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
-    "Muon" : "(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)",
-    "MuonEG" : "crossEMu && !(singleMuon || doubleMuon || tripleMuon) && !(singleElectron || doubleElectron)"
+    "MonteCarlo" : "singleElectronPass || doubleElectronPass || singleMuonPass || doubleMuonPass || tripleMuonPass || crossEMuPass",
+    "EGamma" : "singleElectronPass || doubleElectronPass",
+    "DoubleMuon" : "(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "SingleMuon" : "(singleMuonPass) && !(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "Muon" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
 }
