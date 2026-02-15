@@ -2,7 +2,7 @@ RUFF      := $(shell which ruff 2>/dev/null || echo uvx ruff)
 PRECOMMIT := $(shell which pre-commit 2>/dev/null || echo uvx pre-commit)
 
 build:
-	scram b -j 12 UWVV
+	scram b -j 12 UWVV/VVAnalysis
 
 lint:
 	$(PRECOMMIT) run -a
