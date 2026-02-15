@@ -5,6 +5,13 @@ import json
 JSON_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis/json"
 
 
+def get_channels(analysis: str) -> list:
+    channels = []
+    if analysis == "ZZ4l":
+        channels = ["eeee", "eemm", "mmmm"]
+    return channels
+
+
 def load_json(analysis: str, year: str, basename: str) -> dict:
     filenames = [
         os.path.join(JSON_DIR, basename),
