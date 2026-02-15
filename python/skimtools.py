@@ -1,3 +1,5 @@
+import ROOT
+from typing import Optional
 import itertools
 
 
@@ -38,3 +40,42 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
             cuts.append(" || ".join(f"{obj1}Pt >= {cutinfo['LeadingPt']}"))
 
     return " && ".join(f"({cut})" for cut in cuts)
+
+
+def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
+    # if "ROOT" not in sys.modules:
+    #        import ROOT
+    selector = None
+
+    object_counts = {}
+    object_names = []
+    for obj in channel:
+        if obj in object_counts:
+            object_counts[obj] += 1
+        else:
+            object_counts[obj] = 1
+    for obj, count in object_counts.items():
+        object_names += [f"{obj}{i}" if count != 1 else obj for i in range(1, count + 1)]
+
+    if analysis == "ZZ4l":
+        selector = ROOT.BestZZCandSelector()
+        inputs = ROOT.TList()
+        inputs.Add(ROOT.TNamed("run", "run"))
+        inputs.Add(ROOT.TNamed("evt", "evt"))
+        inputs.Add(ROOT.TNamed("Z1Mass", f"{object_names[0]}_{object_names[1]}_Mass"))
+        inputs.Add(ROOT.TNamed("Z2Mass", f"{object_names[2]}_{object_names[3]}_Mass"))
+        inputs.Add(ROOT.TNamed("l1Pt", f"{object_names[0]}Pt"))
+        inputs.Add(ROOT.TNamed("l2Pt", f"{object_names[1]}Pt"))
+        inputs.Add(ROOT.TNamed("l3Pt", f"{object_names[2]}Pt"))
+        inputs.Add(ROOT.TNamed("l4Pt", f"{object_names[3]}Pt"))
+        inputs.Add(ROOT.TNamed("l1Tight", f"{object_names[0]}ZZTightID"))
+        inputs.Add(ROOT.TNamed("l2Tight", f"{object_names[1]}ZZTightID"))
+        inputs.Add(ROOT.TNamed("l3Tight", f"{object_names[2]}ZZTightID"))
+        inputs.Add(ROOT.TNamed("l4Tight", f"{object_names[3]}ZZTightID"))
+        inputs.Add(ROOT.TNamed("l1Iso", f"{object_names[0]}ZZIsoPass"))
+        inputs.Add(ROOT.TNamed("l2Iso", f"{object_names[1]}ZZIsoPass"))
+        inputs.Add(ROOT.TNamed("l3Iso", f"{object_names[2]}ZZIsoPass"))
+        inputs.Add(ROOT.TNamed("l4Iso", f"{object_names[3]}ZZIsoPass"))
+        selector.SetInputList(inputs)
+
+    return selector

@@ -45,8 +45,13 @@ def main():
                     if val:
                         tree.SetAlias(key, val)
                 skimmed_tree = tree.CopyTree(cutstring)
-                skimmed_tree.Process(ROOT.BestZZCandSelector())
-                skimmed_tree.Write(f"{channel}/ntuple")
+                selector = skimtools.get_selector(args.analysis, channel)
+                skimmed_tree.Process(selector)
+                entry_list = selector.GetOutputList().FindObject("bestCandidates")
+                skimmed_tree.SetEntryList(entry_list)
+                subdir = outfile.mkdir(channel)
+                subdir.cd()
+                skimmed_tree.Write()
 
 
 if __name__ == "__main__":
