@@ -6,8 +6,6 @@ import os
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
-# NOTE: Get it working hard-coded and then make it better later!
-
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
