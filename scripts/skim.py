@@ -43,21 +43,29 @@ def main():
                     print(f"{channel}:\n  {cutstring}")
 
                 tree = infile.Get(f"{channel}/ntuple")
+                if args.verbose:
+                    print(f"  Entries pre-skim: {tree.GetEntries()}")
                 for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
                     if val:
                         tree.SetAlias(key, val)
                         if args.verbose:
                             print(f"  Set alias: {key} -> {val}")
                 skimmed_tree = tree.CopyTree(cutstring)
-                selector = skimtools.get_selector(args.analysis, channel)
-                skimmed_tree.Process(selector)
-                entry_list = selector.GetOutputList().FindObject("bestCandidates")
-                skimmed_tree.SetEntryList(entry_list)
                 if args.verbose:
-                    print("  selector status:", selector.GetStatus())
+                    print(f"  Entries post-skim: {skimmed_tree.GetEntries()}")
+                selector = skimtools.get_selector(args.analysis, channel)
+                if selector is not None:
+                    skimmed_tree.Process(selector)
+                    entry_list = selector.GetOutputList().FindObject("bestCandidates")
+                    skimmed_tree.SetEntryList(entry_list)
+                    if args.verbose:
+                        print("  Selector status:", selector.GetStatus())
+                        print(f"  Entries saved to entry_list: {entry_list.GetN()}")
                 subdir = outfile.mkdir(channel)
                 subdir.cd()
                 skimmed_tree.Write()
+    if args.verbose:
+        print(f"Written to {args.outfile}")
 
 
 if __name__ == "__main__":
