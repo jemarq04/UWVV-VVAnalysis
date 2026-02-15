@@ -14,7 +14,7 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
-    parser.add_argument("-o", "--outfile", default="output.root", help="output file")
+    parser.add_argument("-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: output<YEAR>.root)")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("infile", help="input file")
@@ -33,6 +33,9 @@ def main():
 
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
+
+    if "outfile" not in args:
+        args.outfile = f"output{args.year}.root"
 
     with ROOT.TFile.Open(args.infile) as infile:
         with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
