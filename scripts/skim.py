@@ -34,12 +34,10 @@ def main():
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
 
-    channels = helpers.get_channels(args.analysis)
-
     with ROOT.TFile.Open(args.infile) as infile:
         with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
             outfile.cd()
-            for channel in channels:
+            for channel in helpers.get_channels(args.analysis):
                 cutstring = skimtools.build_cutstring(cutinfo, channel)
                 cutstring += f" && ({triggers[args.trigger]})"
 
