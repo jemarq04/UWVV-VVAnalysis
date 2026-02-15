@@ -46,8 +46,7 @@ def main():
 
                 tree = infile.Get(f"{channel}/ntuple")
                 for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
-                    if val:
-                        tree.SetAlias(key, val)
+                    tree.SetAlias(key, val)
                 skimmed_tree = tree.CopyTree(cutstring)
                 selector = skimtools.get_selector(args.analysis, channel)
                 if selector is not None:
@@ -58,8 +57,7 @@ def main():
                     print(f"{channel}:")
                     print(f"  {cutstring}")
                     for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
-                        if val:
-                            print(f"  Set alias: {key} -> {val}")
+                        print(f"  Set alias: {key} -> {val}")
                     print(f"  Entries pre-skim: {tree.GetEntries()}")
                     print(f"  Entries post-skim: {skimmed_tree.GetEntries()}")
                     if selector is not None:

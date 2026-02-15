@@ -22,7 +22,6 @@
   "Event" : {
     "singleElectronPass": "HLT_Ele32_WPTight_GsfPass || HLT_Ele30_WPTight_GsfPass",
     "doubleElectronPass": "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVLPass || HLT_DoubleEle25_CaloIdL_MWPass",
-    "tripleElectronPass": "",
     "singleMuonPass": "HLT_IsoMu24Pass",
     "doubleMuonPass": "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8Pass",
     "tripleMuonPass": "HLT_TripleMu_12_10_5Pass || HLT_TripleMu_10_5_5_DZPass",
