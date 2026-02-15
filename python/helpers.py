@@ -9,6 +9,8 @@ def get_channels(analysis: str) -> list:
     channels = []
     if analysis == "ZZ4l":
         channels = ["eeee", "eemm", "mmmm"]
+    elif analysis == "ZplusL":
+        channels = ["eee", "eem", "emm", "mmm"]
     else:
         raise ValueError(f"no channels found for analysis {analysis}")
     return channels

@@ -77,5 +77,14 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
         inputs.Add(ROOT.TNamed("l3Iso", f"{object_names[2]}ZZIsoPass"))
         inputs.Add(ROOT.TNamed("l4Iso", f"{object_names[3]}ZZIsoPass"))
         selector.SetInputList(inputs)
+    elif analysis == "ZplusL":
+        selector = ROOT.BestZplusLCandSelector()
+        inputs = ROOT.TList()
+        inputs.Add(ROOT.TNamed("run", "run"))
+        inputs.Add(ROOT.TNamed("evt", "evt"))
+        for obj, count in object_counts.items():
+            if count >= 2:
+                inputs.Add(ROOT.TNamed("Z1Mass", f"{obj}1_{obj}2_Mass"))
+        selector.SetInputList(inputs)
 
     return selector
