@@ -15,7 +15,7 @@ void BestZZCandSelector::Init(TTree *tree) {
   nEntries = fChain->GetEntries();
 
   if (!GetInputList())
-    throw std::invalid_argument("missing any inputs");
+    throw std::invalid_argument("input list is empty");
 
   for (std::string branchname :
        {"run", "evt", "Z1Mass", "Z2Mass", "l1Pt", "l2Pt", "l3Pt", "l4Pt",
