@@ -14,8 +14,11 @@ void BestZZCandSelector::Init(TTree *tree) {
   fChain = tree;
   nEntries = fChain->GetEntries();
 
+  if (!GetInputList())
+    throw std::invalid_argument("missing any inputs");
+
   for (std::string branchname :
-       {"evt", "run", "Z1Mass", "Z2Mass", "l1Pt", "l2Pt", "l3Pt", "l4Pt",
+       {"run", "evt", "Z1Mass", "Z2Mass", "l1Pt", "l2Pt", "l3Pt", "l4Pt",
         "l1Tight", "l2Tight", "l3Tight", "l4Tight", "l1Iso", "l2Iso", "l3Iso",
         "l4Iso"}) {
     if (GetInputList()->FindObject(branchname.c_str()) == nullptr)
@@ -23,9 +26,9 @@ void BestZZCandSelector::Init(TTree *tree) {
   }
 
   fChain->SetBranchAddress(
-      ((TNamed *)GetInputList()->FindObject("evt"))->GetTitle(), &evt, &b_evt);
-  fChain->SetBranchAddress(
       ((TNamed *)GetInputList()->FindObject("run"))->GetTitle(), &run, &b_run);
+  fChain->SetBranchAddress(
+      ((TNamed *)GetInputList()->FindObject("evt"))->GetTitle(), &evt, &b_evt);
   fChain->SetBranchAddress(
       ((TNamed *)GetInputList()->FindObject("Z1Mass"))->GetTitle(), &Z1Mass,
       &b_Z1Mass);
@@ -71,7 +74,6 @@ void BestZZCandSelector::Init(TTree *tree) {
 }
 
 Bool_t BestZZCandSelector::Process(Long64_t entry) {
-  std::cout << "working" << std::endl;
   b_evt->GetEntry(entry);
   b_run->GetEntry(entry);
   if (run != fCurrentRun || evt != fCurrentEvt)
