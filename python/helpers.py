@@ -2,7 +2,8 @@ import os
 import json
 
 # NOTE: maybe get some sort of recipe/makefile that writes down the current directory for easy lookup in these scripts.
-JSON_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis/json"
+BASE_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis"
+JSON_DIR = os.path.join(BASE_DIR, "json")
 
 
 def get_channels(analysis: str) -> list:
