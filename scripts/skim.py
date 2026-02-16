@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import ROOT
-import argparse
 import os
+import argparse
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
@@ -34,6 +34,9 @@ def main():
 
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
+
+    if args.verbose:
+        print(f"Writing to {args.outfile}")
 
     with ROOT.TFile.Open(args.infile) as infile:
         with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
