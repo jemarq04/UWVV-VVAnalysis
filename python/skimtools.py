@@ -1,6 +1,6 @@
 import ROOT
-from typing import Optional
 import itertools
+from typing import Optional
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
