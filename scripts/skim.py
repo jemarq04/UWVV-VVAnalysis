@@ -18,6 +18,9 @@ def main():
     parser.add_argument("infile", help="input file")
     args = parser.parse_args()
 
+    if "outfile" not in args:
+        args.outfile = f"output{args.year}.root"
+
     if not os.path.isfile(args.infile):
         parser.error(f"invalid file: {args.infile}")
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
@@ -31,9 +34,6 @@ def main():
 
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
-
-    if "outfile" not in args:
-        args.outfile = f"output{args.year}.root"
 
     with ROOT.TFile.Open(args.infile) as infile:
         with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
