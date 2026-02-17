@@ -34,7 +34,6 @@ def main():
         help="output directory (default: /hdfs/store/user/<CERN_USERNAME>/<ANALYSIS><YEAR>AnalysisJobs_<DATE>/)",
     )
     parser.add_argument("--opsys", default="AlmaLinux9", help="operating system for jobs to run")
-    parser.add_argument("--use-hdfs", action="store_true", help="use /hdfs rather than xrootd for input files")
     parser.add_argument("--test", action="store_true", help="create submission directory but do not execute")
     args = parser.parse_args()
 
@@ -94,9 +93,7 @@ def main():
         farmout_path = os.path.join(job_dir, "farmout.sh")
         with open(farmout_path, "w") as outfile:
             outfile.write(f"job_dir={job_dir}\n\n")
-            outfile.write(
-                skimtools.build_farmout_command(ntuples[sample], args.use_hdfs).format(job_name=sample, **vars(args))
-            )
+            outfile.write(skimtools.build_farmout_command(ntuples[sample]).format(job_name=sample, **vars(args)))
 
         with open(os.path.join(job_dir, "skim.sh"), "w") as outfile:
             outfile.write(

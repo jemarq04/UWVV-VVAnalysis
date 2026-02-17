@@ -97,18 +97,14 @@ def get_trigger(triggers: list, sample: str) -> str:
     return "MonteCarlo"
 
 
-def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
+def build_farmout_command(paths: list) -> str:
     command = "set -e\n"
     command += "# make input file list\n"
     command += "if [ ! -f ${{job_dir}}/inputs.txt ]; then\n"
     command += "  touch ${{job_dir}}/inputs.txt\n"
     for path in paths:
-        if use_hdfs:
-            command += f"  ls /hdfs{path}"
-            command += " >> ${{job_dir}}/inputs.txt\n"
-        else:
-            command += f"  hdfs dfs -ls {path.replace('/hdfs', '')}"
-            command += " | awk '{{print $8}}' >> ${{job_dir}}/inputs.txt\n"
+        command += f"  hdfs dfs -ls {path.replace('/hdfs', '')}"
+        command += " | awk '{{print $8}}' >> ${{job_dir}}/inputs.txt\n"
     command += "fi\n\n"
 
     command += "# farmout command\n"
@@ -119,10 +115,7 @@ def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
     farmout_command.append("--output-dir={output_dir}/{job_name}")
     farmout_command.append("--input-file-list=${{job_dir}}/inputs.txt")
     farmout_command.append("--input-files-per-job=1")
-    if use_hdfs:
-        farmout_command.append("--use-hdfs --input-dir=/")
-    else:
-        farmout_command.append("--input-dir=root://cmsxrootd.hep.wisc.edu/")
+    farmout_command.append("--input-dir=root://cmsxrootd.hep.wisc.edu/")
     farmout_command.append("{job_name} $CMSSW_BASE ${{job_dir}}/skim.sh")
 
     return command + " \\\n\t\t".join(farmout_command) + "\n"
