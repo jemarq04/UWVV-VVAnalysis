@@ -99,16 +99,16 @@ def main():
             outfile.write(f"-t {skimtools.get_trigger(triggers, sample)} --json-dir {helpers.JSON_DIR}\n")
 
         # Call farmout.sh file and pipe output to file
-        log_path = os.path.join(job_dir, "log.txt")
-        with open(log_path, "w") as outfile:
-            if not args.test:
+        if not args.test:
+            log_path = os.path.join(job_dir, "log.txt")
+            with open(log_path, "w") as outfile:
                 status = subprocess.call(["bash", farmout_path], stdout=outfile, stderr=outfile)
                 if status != 0:
                     print(f"ERROR: Jobs for {sample} unsubmitted. Check log file: {log_path}")
                 else:
                     print(f"Jobs submitted to condor for {sample}")
-            else:
-                print(f"Submission directory created for {sample}")
+        else:
+            print(f"Submission directory created for {sample}")
 
 
 if __name__ == "__main__":
