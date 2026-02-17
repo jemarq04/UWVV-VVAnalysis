@@ -1,7 +1,6 @@
 import ROOT
 import itertools
 from typing import Optional
-import UWVV.VVAnalysis.helpers as helpers
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
@@ -126,12 +125,3 @@ def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
     farmout_command.append("{job_name} $CMSSW_BASE ${{job_dir}}/skim.sh")
 
     return command + " \\\n\t\t".join(farmout_command) + "\n"
-
-
-def build_skim_command() -> str:
-    command = "set -e\n"
-    command += "# skim.py command\n"
-    command += (
-        f"skim.py -v -a {{analysis}} -y {{year}} -t {{trigger}} --json-dir {helpers.JSON_DIR} -I $INPUT -o $OUTPUT\n"
-    )
-    return command

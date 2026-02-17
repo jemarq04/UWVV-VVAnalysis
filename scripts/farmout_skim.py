@@ -100,7 +100,8 @@ def main():
 
         with open(os.path.join(job_dir, "skim.sh"), "w") as outfile:
             outfile.write(
-                skimtools.build_skim_command().format(trigger=skimtools.get_trigger(triggers, sample), **vars(args))
+                f"skim.py -v -a {args.analysis} -y {args.year} "
+                f"-t {skimtools.get_trigger(triggers, sample)} --json-dir {helpers.JSON_DIR} -I $INPUT -o $OUTPUT\n"
             )
 
         log_path = os.path.join(job_dir, "log.txt")
