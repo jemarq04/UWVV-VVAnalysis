@@ -23,15 +23,18 @@ def main():
     group.add_argument("-I", "--input-file-list", help="file that lists input files, one per line")
     args = parser.parse_args()
 
+    # Handle defaults
     if "outfile" not in args:
         args.outfile = f"output{args.year}.root"
 
+    # Read input file list, if given
     if args.input_file_list is not None:
         if not os.path.isfile(args.input_file_list):
             parser.error(f"invalid file: {args.input_file_list}")
         with open(args.input_file_list) as infile:
             args.infiles = [line.strip() for line in infile if not line.isspace() and not line.startswith("#")]
 
+    # Error checking
     for infile in args.infiles:
         if infile.startswith("root:"):
             status = subprocess.call(
@@ -48,33 +51,46 @@ def main():
     if not os.path.isdir(os.path.join(args.json_dir, args.analysis, args.year)):
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
 
+    # Load JSON information
     cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json", json_dir=args.json_dir)
     aliases = helpers.load_json(args.analysis, args.year, "aliases.json", json_dir=args.json_dir)
     triggers = helpers.load_json(args.analysis, args.year, "triggers.json", json_dir=args.json_dir)
 
+    # Error check provided trigger
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
 
-    if args.verbose:
-        print(f"Writing to {args.outfile}")
-
+    # Create output ROOT file
     with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
+        if args.verbose:
+            print(f"Writing to {args.outfile}")
         outfile.cd()
+
+        # Skim tree for each channel
         for channel in helpers.get_channels(args.analysis):
             cutstring = skimtools.build_cutstring(cutinfo, channel)
             cutstring += f" && ({triggers[args.trigger]})"
 
+            # Initialize tree
             tree = ROOT.TChain(f"{channel}/ntuple")
             for infile in args.infiles:
                 tree.Add(infile)
+
+            # Set aliases
             for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
                 tree.SetAlias(key, val)
+
+            # Apply cuts
             skimmed_tree = tree.CopyTree(cutstring)
+
+            # Apply additional selector, if needed for analysis
             selector = skimtools.get_selector(args.analysis, channel)
             if selector is not None:
                 skimmed_tree.Process(selector)
                 entry_list = selector.GetOutputList().FindObject("bestCandidates")
                 skimmed_tree.SetEntryList(entry_list)
+
+            # Print out information regarding skim
             if args.verbose:
                 print(f"{channel}:")
                 print(f"  {cutstring}")
@@ -85,10 +101,13 @@ def main():
                 if selector is not None:
                     print(f"  Entries saved to entry_list: {entry_list.GetN()}")
                     print("  Selector status:", selector.GetStatus())
+
+            # Save skimmed tree
             subdir = outfile.mkdir(channel)
             subdir.cd()
             skimmed_tree.Write()
 
+            # Save gen tree, if specified
             if args.save_gen:
                 tree = ROOT.TChain(f"{channel}Gen/ntuple")
                 for infile in args.infiles:
@@ -98,6 +117,7 @@ def main():
                 tree_copy = tree.CopyTree("")
                 tree_copy.Write()
 
+        # Save metaInfo tree
         tree = ROOT.TChain("metaInfo/metaInfo")
         for infile in args.infiles:
             tree.Add(infile)
