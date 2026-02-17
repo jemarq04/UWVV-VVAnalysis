@@ -73,17 +73,14 @@ def main():
     else:
         ntuples = helpers.load_json(args.analysis, args.year, "ntuples.json")
 
-    # Determine submission directory name (avoids overwriting) and create it
-    count = 1
-    base_submission_dir = args.submission_dir
-    while os.path.isdir(args.submission_dir):
-        count += 1
-        args.submission_dir = f"{base_submission_dir}_{count}"
-    os.mkdir(args.submission_dir)
+    # Determine unique directory names (to avoid overwriting)
+    args.submission_dir = helpers.get_unique_dirname(args.submission_dir)
+    args.output_dir = helpers.get_unique_dirname(args.output_dir)
 
     # Submit skimming jobs for each sample
     if args.verbose:
         print(f"Setting up jobs for {list(ntuples.keys())}\n")
+    os.mkdir(args.submission_dir)
     for sample in ntuples:
         job_dir = os.path.join(args.submission_dir, sample)
         os.mkdir(job_dir)

@@ -30,6 +30,15 @@ def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR)
     return result
 
 
+def get_unique_dirname(dirname: str) -> str:
+    count = 1
+    basedir = dirname
+    while os.path.exists(dirname):
+        count += 1
+        dirname = f"{basedir}_{count}"
+    return dirname
+
+
 def merge_dicts(dict1: dict, dict2: dict):
     for key, val in dict1.items():
         if key in dict2:
