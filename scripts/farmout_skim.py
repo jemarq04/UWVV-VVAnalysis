@@ -37,18 +37,6 @@ def main():
     parser.add_argument("--test", action="store_true", help="create submission directory but do not execute")
     args = parser.parse_args()
 
-    # jobName = sample name (e.g. qqZZ-powheg_preEE)
-    # mkdir(submission_dir)
-    # mkdir(submission_dir/jobName)
-    #
-    # farmout call:
-    #   tar files
-    #   make input file list
-    #   run farmout command
-    # skim call:
-    #   untar files
-    #   run skim.py
-
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
         parser.error(f"invalid analysis: {args.analysis}")
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis, args.year)):
