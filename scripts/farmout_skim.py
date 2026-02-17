@@ -81,9 +81,13 @@ def main():
     os.mkdir(args.submission_dir)
 
     # Submit skimming jobs for each sample
+    if args.verbose:
+        print(f"Setting up jobs for {list(ntuples.keys())}\n")
     for sample in ntuples:
         job_dir = os.path.join(args.submission_dir, sample)
         os.mkdir(job_dir)
+        if args.verbose:
+            print(f"Created directory {job_dir}")
 
         # Create farmout.sh file
         farmout_path = os.path.join(job_dir, "farmout.sh")
@@ -100,6 +104,8 @@ def main():
 
         # Call farmout.sh file and pipe output to file
         if not args.test:
+            if args.verbose:
+                print("Calling farmout.sh...")
             log_path = os.path.join(job_dir, "log.txt")
             with open(log_path, "w") as outfile:
                 status = subprocess.call(["bash", farmout_path], stdout=outfile, stderr=outfile)
@@ -109,6 +115,9 @@ def main():
                     print(f"Jobs submitted to condor for {sample}")
         else:
             print(f"Submission directory created for {sample}")
+
+    if args.verbose:
+        print("\nDone.")
 
 
 if __name__ == "__main__":
