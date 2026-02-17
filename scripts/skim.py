@@ -3,6 +3,7 @@
 import ROOT
 import os
 import argparse
+import subprocess
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
@@ -21,7 +22,10 @@ def main():
     if "outfile" not in args:
         args.outfile = f"output{args.year}.root"
 
-    if not os.path.isfile(args.infile):
+    if args.infile.startswith("root:"):
+        if subprocess.call(f"hdfs dfs -ls {args.infile[args.infile.find('/store'):]}".split()) != 0:
+            parser.error(f"invalid file: {args.infile}")
+    elif not os.path.isfile(args.infile):
         parser.error(f"invalid file: {args.infile}")
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
         parser.error(f"invalid analysis: {args.analysis}")
