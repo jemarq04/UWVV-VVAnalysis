@@ -20,7 +20,7 @@ cmsenv
 If you already have an environment prepared, make sure it's activated (with `cmsenv`) and run the following:
 ```bash
 cd $CMSSW_BASE/src
-git clone git@github.com:<USERNAME>/UWVV-VVAnalysis UWVV/VVAnalysis
+git clone git@github.com:jemarq04/UWVV-VVAnalysis UWVV/VVAnalysis
 cd UWVV/VVAnalysis
 make build
 ```
