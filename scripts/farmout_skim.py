@@ -84,10 +84,10 @@ def main():
             outfile.write(skimtools.build_farmout_command(ntuples[sample]).format(job_name=sample, **vars(args)))
 
         with open(os.path.join(job_dir, "skim.sh"), "w") as outfile:
-            outfile.write(
-                f"skim.py -v -a {args.analysis} -y {args.year} "
-                f"-t {skimtools.get_trigger(triggers, sample)} --json-dir {helpers.JSON_DIR} -I $INPUT -o $OUTPUT\n"
-            )
+            outfile.write(f"skim.py -v -a {args.analysis} -y {args.year} -I $INPUT -o $OUTPUT ")
+            if args.save_gen:
+                outfile.write("--save-gen ")
+            outfile.write(f"-t {skimtools.get_trigger(triggers, sample)} --json-dir {helpers.JSON_DIR}\n")
 
         log_path = os.path.join(job_dir, "log.txt")
         with open(log_path, "w") as outfile:
