@@ -104,7 +104,8 @@ def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
     command += "  touch ${{job_dir}}/inputs.txt\n"
     for path in paths:
         if use_hdfs:
-            command += f"  ls {path} >> ${{job_dir}}/inputs.txt\n"
+            command += f"  ls {path}"
+            command += " >> ${{job_dir}}/inputs.txt\n"
         else:
             command += f"  hdfs dfs -ls {path.replace('/hdfs', '')}"
             command += " | awk '{{print $8}}' >> ${{job_dir}}/inputs.txt\n"
