@@ -115,7 +115,7 @@ def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
     farmout_command.append("farmoutAnalysisJobs --fwklite --input-basenames-not-unique --assume-input-files-exist")
     farmout_command.append("--opsys {opsys}")
     farmout_command.append("--submit-dir=${{job_dir}}/submit")
-    farmout_command.append("--output-dir={output_dir}")
+    farmout_command.append("--output-dir={output_dir}/{job_name}")
     farmout_command.append("--input-file-list=${{job_dir}}/inputs.txt")
     farmout_command.append("--input-files-per-job=1")
     if use_hdfs:
