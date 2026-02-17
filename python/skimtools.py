@@ -1,6 +1,7 @@
 import ROOT
 import itertools
 from typing import Optional
+import UWVV.VVAnalysis.helpers as helpers
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
@@ -88,3 +89,50 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
         selector.SetInputList(inputs)
 
     return selector
+
+
+def get_trigger(triggers: list, sample: str) -> str:
+    for trigger in triggers:
+        if f"_{trigger}_" in sample:
+            return trigger
+    return "MonteCarlo"
+
+
+def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
+    command = "set -e\n"
+    command += "# make input file list\n"
+    command += "if [ ! -f ${{job_dir}}/inputs.txt ]; then\n"
+    command += "  touch ${{job_dir}}/inputs.txt\n"
+    for path in paths:
+        if use_hdfs:
+            command += f"  ls {path} >> ${{job_dir}}/inputs.txt\n"
+        else:
+            command += f"  hdfs dfs -ls {path.replace('/hdfs', '')}"
+            command += " | awk '{{print $8}}' >> ${{job_dir}}/inputs.txt\n"
+    command += "fi\n\n"
+
+    command += "# farmout command\n"
+    farmout_command = []
+    farmout_command.append("farmoutAnalysisJobs --fwklite --input-basenames-not-unique --assume-input-files-exist")
+    farmout_command.append("--opsys {opsys}")
+    farmout_command.append("--submit-dir=${{job_dir}}/submit")
+    farmout_command.append("--output-dir={output_dir}")
+    farmout_command.append("--input-file-list=${{job_dir}}/inputs.txt")
+    farmout_command.append("--input-files-per-job=1")
+    if use_hdfs:
+        farmout_command.append("--use-hdfs --input-dir=/")
+    else:
+        farmout_command.append("--input-dir=root://cmsxrootd.hep.wisc.edu/")
+    farmout_command.append("{job_name} $CMSSW_BASE ${{job_dir}}/skim.sh")
+
+    return command + " \\\n\t\t".join(farmout_command) + "\n"
+
+
+def build_skim_command() -> str:
+    command = "set -e\n"
+    command += "# skim.py command\n"
+    # TODO: update skim.py to be able to skim multiple files at once
+    command += "for f in $(cat $INPUT); do\n"
+    command += f"  skim.py -v -a {{analysis}} -y {{year}} -t {{trigger}} --json-dir {helpers.JSON_DIR} -o $OUTPUT $f\n"
+    command += "done\n"
+    return command

@@ -16,11 +16,11 @@ def get_channels(analysis: str) -> list:
     return channels
 
 
-def load_json(analysis: str, year: str, basename: str) -> dict:
+def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR) -> dict:
     filenames = [
-        os.path.join(JSON_DIR, basename),
-        os.path.join(JSON_DIR, analysis, basename),
-        os.path.join(JSON_DIR, analysis, year, basename),
+        os.path.join(json_dir, basename),
+        os.path.join(json_dir, analysis, basename),
+        os.path.join(json_dir, analysis, year, basename),
     ]
     result = {}
     for filename in filenames:

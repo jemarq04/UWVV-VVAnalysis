@@ -7,6 +7,8 @@ import subprocess
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
+# TODO: update to allow multiple files to be skimmed at once
+
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -16,6 +18,7 @@ def main():
     parser.add_argument("-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: output<YEAR>.root)")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
+    parser.add_argument("--json-dir", default=helpers.JSON_DIR, help="directory for JSON files")
     parser.add_argument("infile", help="input file")
     args = parser.parse_args()
 
@@ -27,14 +30,14 @@ def main():
             parser.error(f"invalid file: {args.infile}")
     elif not os.path.isfile(args.infile):
         parser.error(f"invalid file: {args.infile}")
-    if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
+    if not os.path.isdir(os.path.join(args.json_dir, args.analysis)):
         parser.error(f"invalid analysis: {args.analysis}")
-    if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis, args.year)):
+    if not os.path.isdir(os.path.join(args.json_dir, args.analysis, args.year)):
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
 
-    cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json")
-    aliases = helpers.load_json(args.analysis, args.year, "aliases.json")
-    triggers = helpers.load_json(args.analysis, args.year, "triggers.json")
+    cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json", json_dir=args.json_dir)
+    aliases = helpers.load_json(args.analysis, args.year, "aliases.json", json_dir=args.json_dir)
+    triggers = helpers.load_json(args.analysis, args.year, "triggers.json", json_dir=args.json_dir)
 
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
