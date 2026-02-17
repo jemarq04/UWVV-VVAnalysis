@@ -36,7 +36,7 @@ def main():
         if infile.startswith("root:"):
             if subprocess.call(f"hdfs dfs -ls {infile[infile.find('/store'):]}".split()) != 0:
                 parser.error(f"invalid file: {infile}")
-        elif not os.path.isfile(infile):
+        elif not os.path.isfile(infile.replace("file:", "")):
             parser.error(f"invalid file: {infile}")
     if not os.path.isdir(os.path.join(args.json_dir, args.analysis)):
         parser.error(f"invalid analysis: {args.analysis}")
