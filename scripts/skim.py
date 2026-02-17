@@ -34,7 +34,12 @@ def main():
 
     for infile in args.infiles:
         if infile.startswith("root:"):
-            if subprocess.call(f"hdfs dfs -ls {infile[infile.find('/store'):]}".split()) != 0:
+            status = subprocess.call(
+                f"hdfs dfs -ls {infile[infile.find('/store'):]}".split(),
+                stdout=subprocess.DEVULL,
+                stderr=subprocess.DEVNULL,
+            )
+            if status != 0:
                 parser.error(f"invalid file: {infile}")
         elif not os.path.isfile(infile.replace("file:", "")):
             parser.error(f"invalid file: {infile}")
