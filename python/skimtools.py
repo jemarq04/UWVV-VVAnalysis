@@ -131,8 +131,7 @@ def build_farmout_command(paths: list, use_hdfs: bool = False) -> str:
 def build_skim_command() -> str:
     command = "set -e\n"
     command += "# skim.py command\n"
-    # TODO: update skim.py to be able to skim multiple files at once
-    command += "for f in $(cat $INPUT); do\n"
-    command += f"  skim.py -v -a {{analysis}} -y {{year}} -t {{trigger}} --json-dir {helpers.JSON_DIR} -o $OUTPUT $f\n"
-    command += "done\n"
+    command += (
+        f"skim.py -v -a {{analysis}} -y {{year}} -t {{trigger}} --json-dir {helpers.JSON_DIR} -I $INPUT -o $OUTPUT\n"
+    )
     return command

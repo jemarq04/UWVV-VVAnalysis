@@ -17,11 +17,20 @@ def main():
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("--json-dir", default=helpers.JSON_DIR, help="directory for JSON files")
-    parser.add_argument("infiles", nargs="+", help="input file")
+
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("-i", "--infiles", nargs="+", help="input file")
+    group.add_argument("-I", "--input-file-list", help="file that lists input files, one per line")
     args = parser.parse_args()
 
     if "outfile" not in args:
         args.outfile = f"output{args.year}.root"
+
+    if args.input_file_list is not None:
+        if not os.path.isfile(args.input_file_list):
+            parser.error(f"invalid file: {args.input_file_list}")
+        with open(args.input_file_list) as infile:
+            args.infiles = [line.strip() for line in infile if not line.isspace() and not line.startswith("#")]
 
     for infile in args.infiles:
         if infile.startswith("root:"):
