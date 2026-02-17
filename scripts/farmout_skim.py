@@ -9,8 +9,6 @@ import configparser
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
-# TODO: add more verbose statements to use with args.verbose (maybe even a quiet flag)
-
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -18,6 +16,7 @@ def main():
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
+    parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument(
         "--ntuples", default=argparse.SUPPRESS, help="ntuple JSON (default: json/<ANALYSIS>/<YEAR>/ntuples.json)"
     )
@@ -63,6 +62,8 @@ def main():
         )
     if "ntuples" not in args:
         args.ntuples = None
+    if args.quiet:
+        args.verbose = False
 
     # Load JSON information
     triggers = list(helpers.load_json(args.analysis, args.year, "triggers.json").keys())
@@ -111,9 +112,9 @@ def main():
                 status = subprocess.call(["bash", farmout_path], stdout=outfile, stderr=outfile)
                 if status != 0:
                     print(f"ERROR: Jobs for {sample} unsubmitted. Check log file: {log_path}")
-                else:
+                elif not args.quiet:
                     print(f"Jobs submitted to condor for {sample}")
-        else:
+        elif not args.quiet:
             print(f"Submission directory created for {sample}")
 
     if args.verbose:
