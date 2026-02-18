@@ -78,7 +78,7 @@ def main():
     args.output_dir = helpers.get_unique_dirname(args.output_dir)
 
     # Submit skimming jobs for each sample
-    if args.verbose:
+    if not args.quiet:
         print(f"Setting up jobs for {list(ntuples.keys())}\n")
     os.mkdir(args.submission_dir)
     for sample in ntuples:
