@@ -27,7 +27,7 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
                 tree.SetAlias(key, val)
 
             # Apply cuts
-            skimmed_tree = tree.CopyTree(cutstring)
+            skimmed_tree = tree.CopyTree(cutstring) if tree.GetEntries() > 0 else tree
 
             # Apply additional selector, if needed for analysis
             selector = get_selector(args.analysis, channel)
