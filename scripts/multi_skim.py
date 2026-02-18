@@ -20,6 +20,8 @@ def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, alia
     infiles = [infile for path in paths for infile in glob.iglob(path)]
     if not args.quiet:
         print(f"Processing {sample} with {len(infiles)} files")
+    if not infiles:
+        return
 
     # Create output directory as needed
     output_dir = os.path.join(args.output_dir, sample)
