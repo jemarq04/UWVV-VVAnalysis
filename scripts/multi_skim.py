@@ -59,7 +59,7 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
-    parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
+    parser.add_argument("-v", "--verbose", action="store_true", help="print more updates while skimming")
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument("-j", "--num-cores", type=int, required=True, help="number of cores to use")
     parser.add_argument(
