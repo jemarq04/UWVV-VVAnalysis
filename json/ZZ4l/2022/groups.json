@@ -1,10 +1,10 @@
 {
-  "qqZZ-powheg": {
+  "qqZZ": {
     "name": "q#bar{q} #rightarrow ZZ",
     "style": "fill-lightblue",
     "members": [
-      "qqZZ-powheg_preEE",
-      "qqZZ-powheg_postEE"
+      "qqZZ_preEE",
+      "qqZZ_postEE"
     ]
   },
   "ggZZ": {
