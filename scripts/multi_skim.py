@@ -17,7 +17,7 @@ def call_skim(args: tuple):
 
 def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, aliases: dict, triggers: dict):
     # Get list of files to process
-    infiles = [infile for path in paths for infile in glob.glob(path)]
+    infiles = [infile for path in paths for infile in glob.iglob(path)]
     if not args.quiet:
         print(f"Processing {sample} with {len(infiles)} files")
 
