@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import ROOT
 import os
 import argparse
 import subprocess
@@ -60,74 +59,8 @@ def main():
     if args.trigger not in triggers:
         parser.error(f"invalid trigger: {args.trigger}")
 
-    # Create output ROOT file
-    with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
-        if args.verbose:
-            print(f"Writing to {args.outfile}")
-        outfile.cd()
-
-        # Skim tree for each channel
-        for channel in helpers.get_channels(args.analysis):
-            cutstring = skimtools.build_cutstring(cutinfo, channel)
-            cutstring += f" && ({triggers[args.trigger]})"
-
-            # Initialize tree
-            tree = ROOT.TChain(f"{channel}/ntuple")
-            for infile in args.infiles:
-                tree.Add(infile)
-
-            # Set aliases
-            for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
-                tree.SetAlias(key, val)
-
-            # Apply cuts
-            skimmed_tree = tree.CopyTree(cutstring)
-
-            # Apply additional selector, if needed for analysis
-            selector = skimtools.get_selector(args.analysis, channel)
-            if selector is not None:
-                skimmed_tree.Process(selector)
-                entry_list = selector.GetOutputList().FindObject("bestCandidates")
-                skimmed_tree.SetEntryList(entry_list)
-
-            # Print out information regarding skim
-            if args.verbose:
-                print(f"{channel}:")
-                print(f"  {cutstring}")
-                for key, val in (aliases["Event"] | aliases["Channel"][channel]).items():
-                    print(f"  Set alias: {key} -> {val}")
-                print(f"  Entries pre-skim: {tree.GetEntries()}")
-                print(f"  Entries post-skim: {skimmed_tree.GetEntries()}")
-                if selector is not None:
-                    print(f"  Entries saved to entry_list: {entry_list.GetN()}")
-                    print("  Selector status:", selector.GetStatus())
-
-            # Save skimmed tree
-            subdir = outfile.mkdir(channel)
-            subdir.cd()
-            skimmed_tree.Write()
-
-            # Save gen tree, if specified
-            if args.save_gen:
-                tree = ROOT.TChain(f"{channel}Gen/ntuple")
-                for infile in args.infiles:
-                    tree.Add(infile)
-                subdir = outfile.mkdir(f"{channel}Gen")
-                subdir.cd()
-                tree_copy = tree.CopyTree("")
-                tree_copy.Write()
-
-        # Save metaInfo tree
-        tree = ROOT.TChain("metaInfo/metaInfo")
-        for infile in args.infiles:
-            tree.Add(infile)
-        subdir = outfile.mkdir("metaInfo")
-        subdir.cd()
-        tree_copy = tree.CopyTree("")
-        tree_copy.Write()
-
-    if args.verbose:
-        print(f"Written to {args.outfile}")
+    # Call skimming function
+    skimtools.skim(args, cutinfo, aliases, triggers)
 
 
 if __name__ == "__main__":
