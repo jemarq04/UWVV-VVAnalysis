@@ -29,7 +29,7 @@ def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, alia
     skim_args = argparse.Namespace(
         analysis=args.analysis,
         year=args.year,
-        trigger=args.trigger,
+        trigger=skimtools.get_trigger(list(triggers.keys()), sample),
         save_gen=args.save_gen,
         verbose=False,
     )
@@ -58,7 +58,6 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
-    parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
