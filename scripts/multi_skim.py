@@ -15,18 +15,21 @@ def call_skim(args: tuple):
     skim(*args)
 
 
-def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, aliases: dict, triggers: dict):
-    # Get list of files to process and determine the trigger
-    infiles = [infile for path in paths for infile in glob.iglob(path)]
-    trigger = skimtools.get_trigger(list(triggers.keys()), sample)
-    if not args.quiet:
-        print(f"Processing {sample} ({trigger}) with {len(infiles)} files")
-    if not infiles:
-        return
-
-    # Create output directory as needed
-    output_dir = os.path.join(args.output_dir, sample)
-    os.makedirs(output_dir, exist_ok=True)
+def skim(
+    args: argparse.Namespace,
+    sample: str,
+    infile: str,
+    output_dir: str,
+    cutinfo: dict,
+    aliases: dict,
+    triggers: dict,
+    trigger: str,
+):
+    # Determine output file path
+    # (Temporary file needed for saving in /hdfs/store/...)
+    basename = os.path.basename(infile)
+    temp_file = f"temp_{sample}_{basename}"
+    outfile = os.path.join(output_dir, basename)
 
     # Initialize arguments to pass to skimmer
     skim_args = argparse.Namespace(
@@ -35,26 +38,15 @@ def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, alia
         trigger=trigger,
         save_gen=args.save_gen,
         verbose=False,
+        infiles=[infile],
+        outfile=temp_file,
     )
 
-    # Skim each file in the sample
-    for infile in infiles:
-        # Determine output file path
-        # (Temporary file needed for saving in /hdfs/store/...)
-        basename = os.path.basename(infile)
-        temp_file = f"temp_{sample}_{basename}"
-        outfile = os.path.join(output_dir, basename)
-
-        # Add input and output to skimmer arguments
-        skim_args_copy = argparse.Namespace(**vars(skim_args))
-        skim_args_copy.infiles = [infile]
-        skim_args_copy.outfile = temp_file
-
-        # Skim file and move to target directory
-        if args.verbose:
-            print(f"Writing to {sample}/{basename}...")
-        skimtools.skim(skim_args_copy, cutinfo, aliases, triggers)
-        shutil.move(temp_file, outfile)
+    # Skim file and move to target directory
+    if args.verbose:
+        print(f"Writing to {sample}/{basename}...")
+    skimtools.skim(skim_args, cutinfo, aliases, triggers)
+    shutil.move(temp_file, outfile)
 
 
 def main():
@@ -105,9 +97,29 @@ def main():
     # Determine unique directory names (to avoid overwriting)
     args.output_dir = helpers.get_unique_dirname(args.output_dir)
 
-    # Use multiple cores to call skim.py
-    with multiprocessing.Pool(processes=args.num_cores) as pool:
-        pool.map(call_skim, [(args, sample, ntuples[sample], cutinfo, aliases, triggers) for sample in ntuples])
+    # Process each dataset
+    num_samples = len(ntuples)
+    for i, sample in enumerate(ntuples):
+        # Get list of files to process and determine the trigger
+        infiles = [infile for path in ntuples[sample] for infile in glob.iglob(path)]
+        trigger = skimtools.get_trigger(list(triggers.keys()), sample)
+        if not args.quiet:
+            print(f"{i}/{num_samples} Processing {sample} ({trigger}) with {len(infiles)} files")
+
+        # Skip any skim calls if there are no input files
+        if not infiles:
+            continue
+
+        # Create output directory as needed
+        output_dir = os.path.join(args.output_dir, sample)
+        os.makedirs(output_dir, exist_ok=True)
+
+        # Use multiple cores to call skim.py for each dataset
+        with multiprocessing.Pool(processes=args.num_cores) as pool:
+            pool.map(
+                call_skim,
+                [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
+            )
 
 
 if __name__ == "__main__":
