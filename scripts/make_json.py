@@ -87,6 +87,7 @@ def main():
     # Write out desired output file
     with open(args.outfile, "w") as outfile:
         json.dump(result, outfile, indent=2)
+        outfile.write("\n")
 
 
 if __name__ == "__main__":
