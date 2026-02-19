@@ -12,7 +12,7 @@ def get_channels(analysis: str) -> list:
     elif analysis == "ZplusL":
         channels = ["eee", "eem", "emm", "mmm"]
     else:
-        raise ValueError(f"no channels found for analysis {analysis}")
+        raise NotImplementedError(f"no channels found for analysis {analysis}")
     return channels
 
 
