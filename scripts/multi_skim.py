@@ -2,6 +2,7 @@
 
 import os
 import glob
+import json
 import tqdm
 import shutil
 import argparse
@@ -56,6 +57,9 @@ def main():
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument("-j", "--num-cores", type=int, required=True, help="number of cores to use")
     parser.add_argument(
+        "--ntuples", default=argparse.SUPPRESS, help="ntuple JSON (default: json/<ANALYSIS>/<YEAR>/ntuples.json)"
+    )
+    parser.add_argument(
         "-o",
         "--output-dir",
         default=argparse.SUPPRESS,
@@ -70,6 +74,8 @@ def main():
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
     if args.num_cores <= 0:
         parser.error(f"invalid number of cores: {args.num_cores}")
+    if "ntuples" in args and not os.path.isfile(args.ntuples):
+        parser.error(f"invalid ntuples JSON: {args.ntuples}")
 
     config_path = os.path.join(helpers.BASE_DIR, "config", f"{os.getlogin()}.cfg")
     if not os.path.isfile(config_path):
@@ -81,6 +87,8 @@ def main():
 
     # Handle defaults
     date = f"{datetime.date.today():%Y-%m-%d}"
+    if "ntuples" not in args:
+        args.ntuples = None
     if "output_dir" not in args:
         args.output_dir = (
             f"/hdfs/store/user/{settings['farmout']['cern_username']}/{args.analysis}{args.year}AnalysisJobs_{date}"
@@ -90,7 +98,11 @@ def main():
     cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json")
     aliases = helpers.load_json(args.analysis, args.year, "aliases.json")
     triggers = helpers.load_json(args.analysis, args.year, "triggers.json")
-    ntuples = helpers.load_json(args.analysis, args.year, "ntuples.json")
+    if args.ntuples is not None:
+        with open(args.ntuples) as infile:
+            ntuples = json.load(infile)
+    else:
+        ntuples = helpers.load_json(args.analysis, args.year, "ntuples.json")
 
     # Determine unique directory names (to avoid overwriting)
     args.output_dir = helpers.get_unique_dirname(args.output_dir)
