@@ -64,16 +64,6 @@
     "k_factor": 1.0,
     "dataset": "ZZto4L-2Jets*"
   },
-  "DYm10to50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
-    "dataset": "DYto2L-2Jets_MLL-10to50*"
-  },
-  "DYm50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
-    "dataset": "DYto2L-2Jets_MLL-50*"
-  },
   "tt2l2nu": {
     "cross_section": 1.0,
     "k_factor": 1.0,
