@@ -79,8 +79,11 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
+    # Begin cutstring with event cuts and channel-dependent cuts
     cuts = cutinfo["Event"] + cutinfo["Channel"][channel]
 
+    # Build counts of objects and object names
+    # i.e. eemm: {"e": 2, "m": 2} -> {"e": ["e1", "e2"], "m": ["m1", "m2"]}
     object_counts = {}
     for obj in channel:
         if obj in object_counts:
@@ -92,15 +95,18 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
     for obj, count in object_counts.items():
         object_names[obj] = [f"{obj}{i}" if count != 1 else obj for i in range(1, count + 1)]
 
+    # Add cuts on each object in the event (e.g. on e1, e2, m1, m2)
     for obj, obj_cuts in cutinfo["Object"].items():
         if obj in object_names:
             cuts += [cut.format(name) for cut in obj_cuts for name in object_names[obj]]
 
+    # Add cuts on each object pair in the event (e.g. e1_e2, e1_m1, e1_m2, ...)
     all_object_names = [name for names in object_names.values() for name in names]
     for cut in cutinfo["ObjectPair"]:
         for obj1, obj2 in itertools.combinations(all_object_names, 2):
             cuts.append(cut.format(obj1, obj2))
 
+    # Add cuts on leading (+ subleading) pt leptons
     if cutinfo["LeadingPt"] > 0:
         if cutinfo["SubleadingPt"] > 0:
             ptcuts = []
@@ -118,21 +124,25 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
 
 
 def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
-    # if "ROOT" not in sys.modules:
-    #        import ROOT
     selector = None
 
+    # Build counts of objects and the list of object names
+    # i.e. {"e": 2, "m": 2} -> ["e1", "e2", "m1", "m2"]
+    # (These are built slightly differently than in build_cutstring())
     object_counts = {}
-    object_names = []
     for obj in channel:
         if obj in object_counts:
             object_counts[obj] += 1
         else:
             object_counts[obj] = 1
+
+    object_names = []
     for obj, count in object_counts.items():
         object_names += [f"{obj}{i}" if count != 1 else obj for i in range(1, count + 1)]
 
+    # Build selector depending on analysis
     if analysis == "ZZ4l":
+        # For a given event, choose the best ZZ candidate
         selector = ROOT.BestZZCandSelector()
         inputs = ROOT.TList()
         inputs.Add(ROOT.TNamed("run", "run"))
@@ -153,6 +163,7 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
         inputs.Add(ROOT.TNamed("l4Iso", f"{object_names[3]}ZZIsoPass"))
         selector.SetInputList(inputs)
     elif analysis == "ZplusL":
+        # For a given event, choose the best Z candidate
         selector = ROOT.BestZplusLCandSelector()
         inputs = ROOT.TList()
         inputs.Add(ROOT.TNamed("run", "run"))
@@ -161,11 +172,14 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
             if count >= 2:
                 inputs.Add(ROOT.TNamed("Z1Mass", f"{obj}1_{obj}2_Mass"))
         selector.SetInputList(inputs)
+    else:
+        pass  # No selector is built, will return None
 
     return selector
 
 
 def get_trigger(triggers: list, sample: str) -> str:
+    # Determine trigger (i.e. Primary Dataset for data) for given sample
     for trigger in triggers:
         if f"_{trigger}_" in sample:
             return trigger
@@ -173,8 +187,12 @@ def get_trigger(triggers: list, sample: str) -> str:
 
 
 def build_farmout_command(paths: list) -> str:
-    command = "set -e\n"
-    command += "# make input file list\n"
+    # Set script to exit on error
+    command = "# Set script to exit on error\n"
+    command += "set -e\n"
+
+    # Create input file list
+    command += "# Create input file list\n"
     command += "if [ ! -f ${{job_dir}}/inputs.txt ]; then\n"
     command += "  touch ${{job_dir}}/inputs.txt\n"
     for path in paths:
@@ -182,7 +200,8 @@ def build_farmout_command(paths: list) -> str:
         command += " | awk '{{print $8}}' >> ${{job_dir}}/inputs.txt\n"
     command += "fi\n\n"
 
-    command += "# farmout command\n"
+    # Farmout command
+    command += "# Farmout command\n"
     farmout_command = []
     farmout_command.append("farmoutAnalysisJobs --fwklite --input-basenames-not-unique --assume-input-files-exist")
     farmout_command.append("--opsys {opsys}")
