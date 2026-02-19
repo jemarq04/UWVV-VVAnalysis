@@ -87,5 +87,12 @@
     "members": [
       "nonprompt"
     ]
+  },
+  "data": {
+    "name": "Data",
+    "style": "data",
+    "members": [
+      "all_data"
+    ]
   }
 }
