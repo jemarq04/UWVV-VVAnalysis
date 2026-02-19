@@ -44,8 +44,6 @@ def skim(
     )
 
     # Skim file and move to target directory
-    if args.verbose:
-        print(f"Writing to {sample}/{basename}...")
     skimtools.skim(skim_args, cutinfo, aliases, triggers)
     shutil.move(temp_file, outfile)
 
@@ -55,7 +53,6 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
-    parser.add_argument("-v", "--verbose", action="store_true", help="print more updates while skimming")
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument("-j", "--num-cores", type=int, required=True, help="number of cores to use")
     parser.add_argument(
@@ -118,15 +115,24 @@ def main():
 
         # Use multiple cores to call skim.py for each dataset
         with multiprocessing.Pool(processes=args.num_cores) as pool:
-            list(
-                tqdm.tqdm(
-                    pool.imap(
-                        call_skim,
-                        [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
-                    ),
-                    total=len(infiles),
+            if not args.quiet:
+                list(
+                    tqdm.tqdm(
+                        pool.imap(
+                            call_skim,
+                            [
+                                (args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger)
+                                for infile in infiles
+                            ],
+                        ),
+                        total=len(infiles),
+                    )
                 )
-            )
+            else:
+                pool.map(
+                    call_skim,
+                    [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
+                )
 
 
 if __name__ == "__main__":
