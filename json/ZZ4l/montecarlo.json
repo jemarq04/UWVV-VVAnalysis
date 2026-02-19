@@ -1,0 +1,87 @@
+{
+  "qqZZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "ZZto4L_*"
+  },
+  "ggZZ4e": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto4E*"
+  },
+  "ggZZ4mu": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto4Mu*"
+  },
+  "ggZZ4tau": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto4Tau*"
+  },
+  "ggZZ2e2mu": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto2E2Mu*"
+  },
+  "ggZZ2e2tau": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto2E2Tau*"
+  },
+  "ggZZ2mu2tau": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGlu*2Zto2Mu2Tau*"
+  },
+  "ttZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "TTLL*"
+  },
+  "WWZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "WWZ*"
+  },
+  "WZZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "WZZ*"
+  },
+  "ZZZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "ZZZ*"
+  },
+  "ggHZZ": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "GluGluHtoZZ*"
+  },
+  "qqZZjj-ewk": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "ZZto4L-2Jets*"
+  },
+  "DYm10to50-2j": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "DYto2L-2Jets_MLL-10to50*"
+  },
+  "DYm50-2j": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "DYto2L-2Jets_MLL-50*"
+  },
+  "tt2l2nu": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "TT*2L2Nu*"
+  },
+  "wz3lnu-powheg": {
+    "cross_section": 1.0,
+    "k_factor": 1.0,
+    "dataset": "WZto3LNu*"
+  }
+}

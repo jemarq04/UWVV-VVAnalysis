@@ -1,0 +1,49 @@
+{
+  "years": {
+    "2022": {
+      "eras": {
+        "preEE": {
+          "lumi": 7.980315199,
+          "campaign": "Run3Summer22MiniAOD*"
+        },
+        "postEE": {
+          "lumi": 26.671326001,
+          "campaign": "Run3Summer22EEMiniAOD*"
+        }
+      },
+      "campaign": "",
+      "lumi": -1,
+      "lumi_unc": 1.014
+    },
+    "2023": {
+      "eras": {
+        "preBPix": {
+          "lumi": 18.062658998,
+          "campaign": "Run3Summer23MiniAOD*"
+        },
+        "postBPix": {
+          "lumi": 9.693130030,
+          "campaign": "Run3Summer23BPixMiniAOD*"
+        }
+      },
+      "campaign": "",
+      "lumi": -1,
+      "lumi_unc": 1.013
+    },
+    "2024": {
+      "eras": {},
+      "campaign": "RunIII2024Summer24MiniAOD*",
+      "lumi": 108.95,
+      "lumi_unc": 0.0
+    },
+    "2025": {
+      "eras": {},
+      "campaign": "RunIII2024Summer24MiniAOD*",
+      "lumi": 108.988028446,
+      "lumi_unc": 0.0
+    }
+  },
+  "combined": {
+    "Run3Combined": ["2022", "2023", "2024"]
+  }
+}
