@@ -6,8 +6,6 @@ import json
 import argparse
 import UWVV.VVAnalysis.helpers as helpers
 
-# TODO: verbose statement mentions skipped datasets?
-
 
 def main():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -59,18 +57,26 @@ def main():
                     check_era_path = os.path.join(check_path, era_info["campaign"])
                     if len(glob.glob(check_era_path)) > 0:
                         result[f"{mc_sample}_{era}"] = [f"{check_era_path}/*/*/*.root"]
+                    elif args.verbose:
+                        print(f"Skipped {mc_sample}_{era}")
             else:
                 if len(glob.glob(check_path)) > 0:
                     result[mc_sample] = [f"{check_path}/*/*/*.root"]
+                elif args.verbose:
+                    print(f"Skipped {mc_sample}")
         elif data["years"][args.year]["eras"]:
             for era in data["years"][args.year]["eras"]:
                 check_path = os.path.join(args.skimmed, f"{mc_sample}_{era}")
                 if os.path.isdir(check_path):
                     result[f"{mc_sample}_{era}"] = [f"{check_path}/*.root"]
+                elif args.verbose:
+                    print(f"Skipped {mc_sample}_{era}")
         else:
             check_path = os.path.join(args.skimmed, mc_sample)
             if os.path.isdir(check_path):
                 result[mc_sample] = [f"{check_path}/*.root"]
+            elif args.verbose:
+                print(f"Skipped {mc_sample}")
 
     # Find files matching data information
     if args.ntuples is not None:
