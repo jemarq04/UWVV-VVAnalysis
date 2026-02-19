@@ -16,10 +16,11 @@ def call_skim(args: tuple):
 
 
 def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, aliases: dict, triggers: dict):
-    # Get list of files to process
+    # Get list of files to process and determine the trigger
     infiles = [infile for path in paths for infile in glob.iglob(path)]
+    trigger = skimtools.get_trigger(list(triggers.keys()), sample)
     if not args.quiet:
-        print(f"Processing {sample} with {len(infiles)} files")
+        print(f"Processing {sample} ({trigger}) with {len(infiles)} files")
     if not infiles:
         return
 
@@ -31,7 +32,7 @@ def skim(args: argparse.Namespace, sample: str, paths: list, cutinfo: dict, alia
     skim_args = argparse.Namespace(
         analysis=args.analysis,
         year=args.year,
-        trigger=skimtools.get_trigger(list(triggers.keys()), sample),
+        trigger=trigger,
         save_gen=args.save_gen,
         verbose=False,
     )
