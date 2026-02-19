@@ -77,18 +77,6 @@
   "qqZZjj-ewk_postBPix": [
     "/hdfs/store/user/marquez/ZplusL2023-ntuples/ZZto4L-2Jets*/Run3Summer23BPixMiniAOD*/*/*/*.root"
   ],
-  "DYm10to50-2j_preBPix": [
-    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer23MiniAOD*/*/*/*.root"
-  ],
-  "DYm10to50-2j_postBPix": [
-    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer23BPixMiniAOD*/*/*/*.root"
-  ],
-  "DYm50-2j_preBPix": [
-    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer23MiniAOD*/*/*/*.root"
-  ],
-  "DYm50-2j_postBPix": [
-    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer23BPixMiniAOD*/*/*/*.root"
-  ],
   "tt2l2nu_preBPix": [
     "/hdfs/store/user/marquez/ZplusL2023-ntuples/TT*2L2Nu*/Run3Summer23MiniAOD*/*/*/*.root"
   ],
@@ -100,6 +88,18 @@
   ],
   "wz3lnu-powheg_postBPix": [
     "/hdfs/store/user/marquez/ZplusL2023-ntuples/WZto3LNu*/Run3Summer23BPixMiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer23MiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer23BPixMiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer23MiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer23BPixMiniAOD*/*/*/*.root"
   ],
   "data_EGamma0_Run2023C-22Sep2023_v1-v1": [
     "/hdfs/store/user/marquez/ZplusL2023-ntuples/EGamma0/Run2023C-22Sep2023_v1-v1/*/*/*.root"

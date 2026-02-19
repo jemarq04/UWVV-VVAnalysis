@@ -77,18 +77,6 @@
   "qqZZjj-ewk_postEE": [
     "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZto4L-2Jets*/Run3Summer22EEMiniAOD*/*/*/*.root"
   ],
-  "DYm10to50-2j_preEE": [
-    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22MiniAOD*/*/*/*.root"
-  ],
-  "DYm10to50-2j_postEE": [
-    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22EEMiniAOD*/*/*/*.root"
-  ],
-  "DYm50-2j_preEE": [
-    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22MiniAOD*/*/*/*.root"
-  ],
-  "DYm50-2j_postEE": [
-    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22EEMiniAOD*/*/*/*.root"
-  ],
   "tt2l2nu_preEE": [
     "/hdfs/store/user/marquez/ZplusL2022-ntuples/TT*2L2Nu*/Run3Summer22MiniAOD*/*/*/*.root"
   ],
@@ -100,6 +88,18 @@
   ],
   "wz3lnu-powheg_postEE": [
     "/hdfs/store/user/marquez/ZplusL2022-ntuples/WZto3LNu*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22EEMiniAOD*/*/*/*.root"
   ],
   "data_EGamma_Run2022C-22Sep2023-v1": [
     "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022C-22Sep2023-v1/*/*/*.root"

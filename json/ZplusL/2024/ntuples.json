@@ -32,11 +32,35 @@
   "ZZZ": [
     "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZZ*/*/*/*.root"
   ],
+  "ggHZZ": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGluH-Hto2Zto4L*/*/*/*.root"
+  ],
+  "qqZZjj-ewk": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZJJto4L*/*/*/*.root"
+  ],
   "tt2l2nu": [
     "/hdfs/store/user/marquez/ZplusL2024-ntuples/TT*2L2Nu*/*/*/*.root"
   ],
   "wz3lnu-powheg": [
     "/hdfs/store/user/marquez/ZplusL2024-ntuples/WZto3LNu*/*/*/*.root"
+  ],
+  "DY2e-m10to50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-10to50*/*/*/*.root"
+  ],
+  "DY2mu-m10to50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-10to50*/*/*/*.root"
+  ],
+  "DY2tau-m10to50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-10to50*/*/*/*.root"
+  ],
+  "DY2e-m50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-50*/*/*/*.root"
+  ],
+  "DY2mu-m50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-50*/*/*/*.root"
+  ],
+  "DY2tau-m50-2j": [
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-50*/*/*/*.root"
   ],
   "data_EGamma0_Run2024C-MINIv6NANOv15-v1": [
     "/hdfs/store/user/marquez/ZplusL2024-ntuples/EGamma0/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
