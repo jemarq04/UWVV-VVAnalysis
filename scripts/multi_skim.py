@@ -2,6 +2,7 @@
 
 import os
 import glob
+import tqdm
 import shutil
 import argparse
 import datetime
@@ -103,8 +104,9 @@ def main():
         # Get list of files to process and determine the trigger
         infiles = [infile for path in ntuples[sample] for infile in glob.iglob(path)]
         trigger = skimtools.get_trigger(list(triggers.keys()), sample)
+
         if not args.quiet:
-            print(f"{i}/{num_samples} Processing {sample} ({trigger}) with {len(infiles)} files")
+            print(f"\n{i+1}/{num_samples} Processing {sample} ({trigger})")
 
         # Skip any skim calls if there are no input files
         if not infiles:
@@ -116,9 +118,14 @@ def main():
 
         # Use multiple cores to call skim.py for each dataset
         with multiprocessing.Pool(processes=args.num_cores) as pool:
-            pool.map(
-                call_skim,
-                [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
+            list(
+                tqdm.tqdm(
+                    pool.imap(
+                        call_skim,
+                        [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
+                    ),
+                    total=len(infiles),
+                )
             )
 
 
