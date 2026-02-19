@@ -44,7 +44,9 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
                     print(f"  Set alias: {key} -> {val}")
                 print(f"  Entries pre-skim: {tree.GetEntries()}")
                 print(f"  Entries post-skim: {skimmed_tree.GetEntries()}")
-                if selector is not None:
+                if selector is None:
+                    print(f"  No selector available for {args.analysis}")
+                else:
                     print(f"  Entries saved to entry_list: {entry_list.GetN()}")
                     print("  Selector status:", selector.GetStatus())
 
