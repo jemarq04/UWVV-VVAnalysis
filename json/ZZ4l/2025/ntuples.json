@@ -1,2 +1,188 @@
 {
+  "qqZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/ZZto4L_*/*/*/*.root"
+  ],
+  "ggZZ4e": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto4E*/*/*/*.root"
+  ],
+  "ggZZ4mu": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto4Mu*/*/*/*.root"
+  ],
+  "ggZZ4tau": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto4Tau*/*/*/*.root"
+  ],
+  "ggZZ2e2mu": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto2E2Mu*/*/*/*.root"
+  ],
+  "ggZZ2e2tau": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto2E2Tau*/*/*/*.root"
+  ],
+  "ggZZ2mu2tau": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/GluGlu*2Zto2Mu2Tau*/*/*/*.root"
+  ],
+  "ttZ": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/TTLL*/*/*/*.root"
+  ],
+  "WWZ": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/WWZ*/*/*/*.root"
+  ],
+  "WZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/WZZ*/*/*/*.root"
+  ],
+  "ZZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/ZZZ*/*/*/*.root"
+  ],
+  "tt2l2nu": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/TT*2L2Nu*/*/*/*.root"
+  ],
+  "wz3lnu-powheg": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/WZto3LNu*/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma0_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma0/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma1_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma1/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma2_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma2/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_EGamma3_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/EGamma3/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_Muon0_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_Muon0_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon0/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_Muon1_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_Muon1_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/Muon1/Run2025G-PromptReco-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025C-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025C-PromptReco-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025C-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025C-PromptReco-v2/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025D-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025D-PromptReco-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025E-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025E-PromptReco-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025F-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025F-PromptReco-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025F-PromptReco-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025F-PromptReco-v2/*/*/*.root"
+  ],
+  "data_MuonEG_Run2025G-PromptReco-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2025-ntuples/MuonEG/Run2025G-PromptReco-v1/*/*/*.root"
+  ]
 }

@@ -1,2 +1,161 @@
 {
+  "qqZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/ZZto4L_*/*/*/*.root"
+  ],
+  "ggZZ4e": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto4E*/*/*/*.root"
+  ],
+  "ggZZ4mu": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto4Mu*/*/*/*.root"
+  ],
+  "ggZZ4tau": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto4Tau*/*/*/*.root"
+  ],
+  "ggZZ2e2mu": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto2E2Mu*/*/*/*.root"
+  ],
+  "ggZZ2e2tau": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto2E2Tau*/*/*/*.root"
+  ],
+  "ggZZ2mu2tau": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/GluGlu*2Zto2Mu2Tau*/*/*/*.root"
+  ],
+  "ttZ": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/TTLL*/*/*/*.root"
+  ],
+  "WWZ": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/WWZ*/*/*/*.root"
+  ],
+  "WZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/WZZ*/*/*/*.root"
+  ],
+  "ZZZ": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/ZZZ*/*/*/*.root"
+  ],
+  "tt2l2nu": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/TT*2L2Nu*/*/*/*.root"
+  ],
+  "wz3lnu-powheg": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/WZto3LNu*/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024C-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024D-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024D-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024E-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024E-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024F-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024F-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024G-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024G-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024H-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024H-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024I-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024I-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma0_Run2024I-MINIv6NANOv15_v2-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma0/Run2024I-MINIv6NANOv15_v2-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024C-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024D-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024D-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024E-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024E-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024F-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024F-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024G-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024G-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024H-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024H-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024I-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024I-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_EGamma1_Run2024I-MINIv6NANOv15_v2-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/EGamma1/Run2024I-MINIv6NANOv15_v2-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024C-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024D-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024D-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024E-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024E-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024F-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024F-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024G-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024G-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024H-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024H-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024I-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024I-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon0_Run2024I-MINIv6NANOv15_v2-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon0/Run2024I-MINIv6NANOv15_v2-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024C-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024D-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024D-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024E-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024E-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024F-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024F-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024G-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024G-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_Muon1_Run2024H-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024H-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_Muon1_Run2024I-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024I-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_Muon1_Run2024I-MINIv6NANOv15_v2-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/Muon1/Run2024I-MINIv6NANOv15_v2-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024C-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024D-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024D-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024E-MINIv6NANOv15-v1": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024E-MINIv6NANOv15-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024F-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024F-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024G-MINIv6NANOv15-v3": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024G-MINIv6NANOv15-v3/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024H-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024H-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024I-MINIv6NANOv15-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024I-MINIv6NANOv15-v2/*/*/*.root"
+  ],
+  "data_MuonEG_Run2024I-MINIv6NANOv15_v2-v2": [
+    "/hdfs/store/user/marquez/ZZ4l2024-ntuples/MuonEG/Run2024I-MINIv6NANOv15_v2-v2/*/*/*.root"
+  ]
 }

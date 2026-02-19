@@ -1,2 +1,155 @@
 {
+  "qqZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZto4L_*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "qqZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZto4L_*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4e_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4E*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4e_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4E*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4mu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4Mu*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4mu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4Mu*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4Tau*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ4tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto4Tau*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2e2mu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2E2Mu*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2e2mu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2E2Mu*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2e2tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2E2Tau*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2e2tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2E2Tau*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2mu2tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2Mu2Tau*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggZZ2mu2tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGlu*2Zto2Mu2Tau*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ttZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/TTLL*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ttZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/TTLL*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "WWZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WWZ*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "WWZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WWZ*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "WZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WZZ*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "WZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WZZ*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ZZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZZ*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ZZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZZ*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "ggHZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGluHtoZZ*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "ggHZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/GluGluHtoZZ*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "qqZZjj-ewk_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZto4L-2Jets*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "qqZZjj-ewk_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/ZZto4L-2Jets*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "DYm10to50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-10to50*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "DYm50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DYto2L-2Jets_MLL-50*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "tt2l2nu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/TT*2L2Nu*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "tt2l2nu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/TT*2L2Nu*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "wz3lnu-powheg_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WZto3LNu*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "wz3lnu-powheg_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/WZto3LNu*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ],
+  "data_EGamma_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022C-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_EGamma_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022D-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_EGamma_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022E-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_EGamma_Run2022F-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022F-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_EGamma_Run2022G-22Sep2023-v2": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/EGamma/Run2022G-22Sep2023-v2/*/*/*.root"
+  ],
+  "data_DoubleMuon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/DoubleMuon/Run2022C-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_SingleMuon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/SingleMuon/Run2022C-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_Muon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/Muon/Run2022C-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_Muon_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/Muon/Run2022D-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_Muon_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/Muon/Run2022E-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_Muon_Run2022F-22Sep2023-v2": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/Muon/Run2022F-22Sep2023-v2/*/*/*.root"
+  ],
+  "data_Muon_Run2022G-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/Muon/Run2022G-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/MuonEG/Run2022C-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/MuonEG/Run2022D-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/MuonEG/Run2022E-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2022F-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/MuonEG/Run2022F-22Sep2023-v1/*/*/*.root"
+  ],
+  "data_MuonEG_Run2022G-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-ntuples/MuonEG/Run2022G-22Sep2023-v1/*/*/*.root"
+  ]
 }
