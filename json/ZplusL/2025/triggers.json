@@ -1,10 +1,1 @@
-{
-    "MonteCarlo" : "singleElectronPass || doubleElectronPass || singleMuonPass || doubleMuonPass || tripleMuonPass || crossEMuPass",
-    "EGamma0" : "singleElectronPass || doubleElectronPass",
-    "EGamma1" : "singleElectronPass || doubleElectronPass",
-    "EGamma2" : "singleElectronPass || doubleElectronPass",
-    "EGamma3" : "singleElectronPass || doubleElectronPass",
-    "Muon0" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
-    "Muon1" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
-    "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
-}
+../../ZZ4l/2025/triggers.json
