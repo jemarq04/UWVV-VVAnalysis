@@ -35,6 +35,8 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
                 skimmed_tree.Process(selector)
                 entry_list = selector.GetOutputList().FindObject("bestCandidates")
                 skimmed_tree.SetEntryList(entry_list)
+                # To create a tree with only the entries in the list above, copy
+                skimmed_tree = skimmed_tree.CopyTree("")
 
             # Print out information regarding skim
             if args.verbose:

@@ -50,12 +50,6 @@ Bool_t BestZplusLCandSelector::Process(Long64_t entry) {
 }
 
 void BestZplusLCandSelector::SlaveTerminate() {
-  bool isBest;
-  TBranch *b_isBest = fChain->Branch("isBestCand", &isBest, "isBest/O");
-  for (Long64_t i = 0; i < nEntries; i++) {
-    isBest = fEntryList->Contains(i);
-    b_isBest->Fill();
-  }
   fEntryList->OptimizeStorage();
   fEntryList = nullptr;
 }
