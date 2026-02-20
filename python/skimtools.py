@@ -141,13 +141,12 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
     # Add cuts on leading (+ subleading) pt leptons
     if cutinfo["LeadingPt"] > 0:
         if cutinfo["SubleadingPt"] > 0:
-            ptcuts = []
-            for obj1 in all_object_names:
-                ptcuts.append(
-                    f"{obj1}Pt >= {cutinfo['LeadingPt']} && ("
-                    + " || ".join(f"{obj2}Pt >= {cutinfo['SubleadingPt']}" for obj2 in all_object_names if obj2 != obj1)
-                    + ")"
-                )
+            ptcuts = [
+                f"{obj1}Pt >= {cutinfo['LeadingPt']} && ("
+                + " || ".join(f"{obj2}Pt >= {cutinfo['SubleadingPt']}" for obj2 in all_object_names if obj2 != obj1)
+                + ")"
+                for obj1 in all_object_names
+            ]
             cuts.append(" || ".join(f"({cut})" for cut in ptcuts))
         else:
             cuts.append(" || ".join(f"{obj1}Pt >= {cutinfo['LeadingPt']}"))

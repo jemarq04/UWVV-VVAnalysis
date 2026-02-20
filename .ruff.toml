@@ -7,7 +7,8 @@ extend-select = [
   "B",    # find bug-prone patterns
   "ARG",  # unused arguments
   "PL",   # Pylint codes
-  "I",    # Sort imports
+  "I",    # sort imports
+  "PERF", # performance checks
 ]
 ignore = [
   "PLR",  # design-related Pylint codes
