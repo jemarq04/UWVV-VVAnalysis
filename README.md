@@ -6,6 +6,15 @@ available to skim ntuples, merge files, and plot distributions.
 
 Note that this repository is still in-progress.
 
+## Table of Contents
+
+- [Setup](#setup)
+- [Usage](#usage)
+   * [Skimming](#skimming)
+      + [Making the input files](#making-the-input-files)
+   * [Merging](#merging)
+   * [Plotting](#plotting)
+
 ## Setup
 
 Eventually, this will be set up automatically by UWVV. Until then, run the following commands.

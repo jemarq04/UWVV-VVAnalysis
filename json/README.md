@@ -16,6 +16,25 @@ json
 
 This is a work in progress.
 
+## Table of Contents
+
+- [Setup](#setup)
+- [JSON File Formats](#json-file-formats)
+   * [`data.json`](#datajson)
+      + [Example](#example)
+   * [`montecarlo.json`](#montecarlojson)
+      + [Example](#example-1)
+   * [`ntuples.json`](#ntuplesjson)
+      + [Example](#example-2)
+   * [`skimmed.json`](#skimmedjson)
+      + [Example](#example-3)
+   * [`aliases.json`](#aliasesjson)
+      + [Example](#example-4)
+   * [`cuts.json`](#cutsjson)
+      + [Example](#example-5)
+   * [`triggers.json`](#triggersjson)
+      + [Example](#example-6)
+
 ## Setup
 
 When JSON files are loaded for jobs, they are loaded by searching each directory in order. For example, let's say we want to load `montecarlo.json`
