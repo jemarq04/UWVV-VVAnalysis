@@ -74,7 +74,7 @@ an entry to the "combined" dictionary. This entry will simply be a list of strin
 
 #### Example
 
-For examples of each of the cases described above, look at the snippet of [`json/data.json`](json/data.json) below.
+For examples of each of the cases described above, look at the snippet of [`json/data.json`](data.json) below.
 
 ```json
 {
