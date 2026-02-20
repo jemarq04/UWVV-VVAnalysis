@@ -8,7 +8,8 @@ import UWVV.VVAnalysis.skimtools as skimtools
 
 
 def main():
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    """A script to apply cuts/triggers and additional selections to an input file."""
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")

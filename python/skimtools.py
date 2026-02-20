@@ -6,6 +6,21 @@ import UWVV.VVAnalysis.helpers as helpers
 
 
 def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict):
+    """Apply cuts and optional selector to input file.
+
+    Parameters
+    ----------
+    args : argparse.Namespace
+        A dict-like object parsed from the command-line containing information about
+        the job. Contains analysis, year, trigger, outfile, etc. Check skim.py to see
+        full list.
+    cutinfo : dict
+        A dict containing all the relevant cuts to be applied.
+    aliases : dict
+        A dict containing all the aliases to be set for the input trees.
+    triggers : dict
+        A dict containing the trigger selections for MonteCarlo and each data stream.
+    """
     # Create output ROOT file
     with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
         if args.verbose:
@@ -80,6 +95,21 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
+    """Build a cutstring to apply to a tree to skim unwanted events.
+
+    Parameters
+    ----------
+    cutinfo : dict
+        A dict containing all the relevant cuts to be applied.
+    channel : str
+        The channel where the skimming is applied (e.g. eeee or eemm).
+
+    Returns
+    -------
+    str
+        The cutstring built from the given cut information depending on
+        the channel provided.
+    """
     # Begin cutstring with event cuts and channel-dependent cuts
     cuts = cutinfo["Event"] + cutinfo["Channel"][channel]
 
@@ -125,6 +155,22 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
 
 
 def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
+    """Get selector appropriate for the given analysis.
+
+    Parameters
+    ----------
+    analysis : str
+        The analysis to check for a selector (e.g. ZZ4l).
+    channel : str
+        The channel where the skimming is applied (e.g. eeee or eemm).
+
+    Returns
+    -------
+    ROOT.TSelector or None
+        A TSelector object loaded with the appropriate inputs depending on
+        the given analysis and channel. If no selector is specified for
+        an analysis, returns None.
+    """
     selector = None
 
     # Build counts of objects and the list of object names
@@ -180,6 +226,25 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
 
 
 def get_trigger(triggers: list, sample: str) -> str:
+    """Returns appropriate trigger to use for given sample.
+
+    This function searches the sample name for '_TRIGGER_' for
+    each trigger in the provided list. Data samples follow this
+    convention so that the triggers can be determined on-the-fly.
+    If no match is found, 'MonteCarlo' is chosen.
+
+    Parameters
+    ----------
+    triggers : list of str
+        A list of trigger names to check.
+    sample: str
+        The name of a sample to check.
+
+    Returns
+    -------
+    str
+        The trigger name to apply.
+    """
     # Determine trigger (i.e. Primary Dataset for data) for given sample
     for trigger in triggers:
         if f"_{trigger}_" in sample:
@@ -188,6 +253,19 @@ def get_trigger(triggers: list, sample: str) -> str:
 
 
 def build_farmout_command(paths: list) -> str:
+    """Build script to execute skimming jobs through HTCondor.
+
+    Parameters
+    ----------
+    paths: list of str
+        List of file paths (may be globbable) to make the input
+        file list.
+
+    Returns
+    -------
+    str
+        The full contents of the farmout.sh file to be created.
+    """
     # Set script to exit on error
     command = "# Set script to exit on error\n"
     command += "set -e\n"
