@@ -72,11 +72,10 @@ def main():
                         result[f"{mc_sample}_{era}"] = [f"{check_era_path}/*/*/*.root"]
                     elif args.verbose:
                         print(f"Skipped {mc_sample}_{era}")
-            else:
-                if len(glob.glob(check_path)) > 0:
-                    result[mc_sample] = [f"{check_path}/*/*/*.root"]
-                elif args.verbose:
-                    print(f"Skipped {mc_sample}")
+            elif len(glob.glob(check_path)) > 0:
+                result[mc_sample] = [f"{check_path}/*/*/*.root"]
+            elif args.verbose:
+                print(f"Skipped {mc_sample}")
         elif data["years"][args.year]["eras"]:
             for era in data["years"][args.year]["eras"]:
                 check_path = os.path.join(args.skimmed, f"{mc_sample}_{era}")
