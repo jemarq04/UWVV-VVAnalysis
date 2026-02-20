@@ -21,6 +21,7 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
         A dict containing all the aliases to be set for the input trees.
     triggers : dict
         A dict containing the trigger selections for MonteCarlo and each data stream.
+
     """
     # Create output ROOT file
     with ROOT.TFile.Open(args.outfile, "RECREATE") as outfile:
@@ -110,6 +111,7 @@ def build_cutstring(cutinfo: dict, channel: str) -> str:
     str
         The cutstring built from the given cut information depending on
         the channel provided.
+
     """
     # Begin cutstring with event cuts and channel-dependent cuts
     cuts = cutinfo["Event"] + cutinfo["Channel"][channel]
@@ -170,6 +172,7 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
         A TSelector object loaded with the appropriate inputs depending on
         the given analysis and channel. If no selector is specified for
         an analysis, returns None.
+
     """
     selector = None
 
@@ -244,6 +247,7 @@ def get_trigger(triggers: list, sample: str) -> str:
     -------
     str
         The trigger name to apply.
+
     """
     # Determine trigger (i.e. Primary Dataset for data) for given sample
     for trigger in triggers:
@@ -265,6 +269,7 @@ def build_farmout_command(paths: list) -> str:
     -------
     str
         The full contents of the farmout.sh file to be created.
+
     """
     # Set script to exit on error
     command = "# Set script to exit on error\n"

@@ -18,6 +18,7 @@ def get_channels(analysis: str) -> list:
     -------
     list of str
         The list of channels for a given analysis.
+
     """
     channels = []
     if analysis == "ZZ4l":
@@ -63,6 +64,7 @@ def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR)
     -------
     dict
         The merged JSON dictionary.
+
     """
     filenames = [
         os.path.join(json_dir, basename),
@@ -90,6 +92,7 @@ def get_unique_dirname(dirname: str) -> str:
     -------
     str
         A unique directory name derived from the one provided.
+
     """
     count = 1
     basedir = dirname
@@ -112,6 +115,7 @@ def merge_dicts(dict1: dict, dict2: dict):
         The dictionary to merge into. This will be overwritten.
     dict2 : dict
         The dictionary to merge from.
+
     """
     for key, val in dict1.items():
         if key in dict2:
