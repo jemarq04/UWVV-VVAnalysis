@@ -13,44 +13,6 @@ import tqdm
 from UWVV.VVAnalysis import helpers, skimtools
 
 
-def call_skim(args: tuple):
-    """Unpack tuple of arguments and call skim()."""
-    skim(*args)
-
-
-def skim(
-    args: argparse.Namespace,
-    sample: str,
-    infile: str,
-    output_dir: str,
-    cutinfo: dict,
-    aliases: dict,
-    triggers: dict,
-    trigger: str,
-):
-    """Skim file one at a time with the given inputs."""
-    # Determine output file path
-    # (Temporary file needed for saving in /hdfs/store/...)
-    basename = os.path.basename(infile)
-    temp_file = f"temp_{sample}_{basename}"
-    outfile = os.path.join(output_dir, basename)
-
-    # Initialize arguments to pass to skimmer
-    skim_args = argparse.Namespace(
-        analysis=args.analysis,
-        year=args.year,
-        trigger=trigger,
-        save_gen=args.save_gen,
-        verbose=False,
-        infiles=[infile],
-        outfile=temp_file,
-    )
-
-    # Skim file and move to target directory
-    skimtools.skim(skim_args, cutinfo, aliases, triggers)
-    shutil.move(temp_file, outfile)
-
-
 def main():
     """Process skim.py jobs in parallel using multiple cores."""
     parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
@@ -98,24 +60,24 @@ def main():
         )
 
     # Load JSON information
-    cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json")
-    aliases = helpers.load_json(args.analysis, args.year, "aliases.json")
-    triggers = helpers.load_json(args.analysis, args.year, "triggers.json")
+    args.cutinfo = helpers.load_json(args.analysis, args.year, "cuts.json")
+    args.aliases = helpers.load_json(args.analysis, args.year, "aliases.json")
+    args.triggers = helpers.load_json(args.analysis, args.year, "triggers.json")
     if args.ntuples is not None:
         with open(args.ntuples) as infile:
-            ntuples = json.load(infile)
+            args.ntuples = json.load(infile)
     else:
-        ntuples = helpers.load_json(args.analysis, args.year, "ntuples.json")
+        args.ntuples = helpers.load_json(args.analysis, args.year, "ntuples.json")
 
     # Determine unique directory names (to avoid overwriting)
     args.output_dir = helpers.get_unique_dirname(args.output_dir)
 
     # Process each dataset
-    num_samples = len(ntuples)
-    for i, sample in enumerate(ntuples):
+    num_samples = len(args.ntuples)
+    for i, sample in enumerate(args.ntuples):
         # Get list of files to process and determine the trigger
-        infiles = [infile for path in ntuples[sample] for infile in glob.iglob(path)]
-        trigger = skimtools.get_trigger(list(triggers.keys()), sample)
+        infiles = [infile for path in args.ntuples[sample] for infile in glob.iglob(path)]
+        trigger = skimtools.get_trigger(list(args.triggers.keys()), sample)
 
         if not args.quiet:
             print(f"\n{i+1}/{num_samples} Processing {sample} ({trigger})")
@@ -135,10 +97,7 @@ def main():
                     tqdm.tqdm(
                         pool.imap(
                             call_skim,
-                            [
-                                (args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger)
-                                for infile in infiles
-                            ],
+                            [(args, sample, infile, output_dir, trigger) for infile in infiles],
                         ),
                         total=len(infiles),
                     )
@@ -146,8 +105,43 @@ def main():
             else:
                 pool.map(
                     call_skim,
-                    [(args, sample, infile, output_dir, cutinfo, aliases, triggers, trigger) for infile in infiles],
+                    [(args, sample, infile, output_dir, trigger) for infile in infiles],
                 )
+
+
+def call_skim(args: tuple):
+    """Unpack tuple of arguments and call skim()."""
+    skim(*args)
+
+
+def skim(
+    args: argparse.Namespace,
+    sample: str,
+    infile: str,
+    output_dir: str,
+    trigger: str,
+):
+    """Skim file one at a time with the given inputs."""
+    # Determine output file path
+    # (Temporary file needed for saving in /hdfs/store/...)
+    basename = os.path.basename(infile)
+    temp_file = f"temp_{sample}_{basename}"
+    outfile = os.path.join(output_dir, basename)
+
+    # Initialize arguments to pass to skimmer
+    skim_args = argparse.Namespace(
+        analysis=args.analysis,
+        year=args.year,
+        trigger=trigger,
+        save_gen=args.save_gen,
+        verbose=False,
+        infiles=[infile],
+        outfile=temp_file,
+    )
+
+    # Skim file and move to target directory
+    skimtools.skim(skim_args, args.cutinfo, args.aliases, args.triggers)
+    shutil.move(temp_file, outfile)
 
 
 if __name__ == "__main__":
