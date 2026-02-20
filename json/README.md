@@ -193,7 +193,7 @@ The trigger-flow is described within the "Event" dictionary.
 ### `cuts.json`
 
 The `cuts.json` file stores information needed to build a "custring" (i.e. a formula string that is parsed by a `TTree` to skim events). This file is
-used by `skim.py` (and other scripts that skim) to apply cuts on input `TTree` objects. Note that [aliases](#aliases.json) are set before these are
+used by `skim.py` (and other scripts that skim) to apply cuts on input `TTree` objects. Note that [aliases](#aliasesjson) are set before these are
 applied.
 
 The root directory contains six keys:
@@ -246,7 +246,7 @@ The root directory contains six keys:
 ### `triggers.json`
 
 The `triggers.json` file stores information on the trigger selections for MC and data samples. This file is used by `skim.py` (and other scripts that
-skim) to apply trigger selections on input `TTree` objects. Note that [aliases](#aliases.json) are set before these are applied.
+skim) to apply trigger selections on input `TTree` objects. Note that [aliases](#aliasesjson) are set before these are applied.
 
 The root dictionary contains a list of string to string mappings. The key is the primary dataset name (e.g. EGamma0 or MuonEG) or "MonteCarlo" and the
 value is the formula to be applied for the trigger selection.
