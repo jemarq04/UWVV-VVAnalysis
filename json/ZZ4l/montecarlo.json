@@ -1,76 +1,76 @@
 {
   "qqZZ": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 1.39,
+    "k_factor": 1.08,
     "dataset": "ZZto4L_*"
   },
   "ggZZ4e": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00305851,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto4E*"
   },
   "ggZZ4mu": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00303575,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto4Mu*"
   },
   "ggZZ4tau": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00303575,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto4Tau*"
   },
   "ggZZ2e2mu": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00624157,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto2E2Mu*"
   },
   "ggZZ2e2tau": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00624157,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto2E2Tau*"
   },
   "ggZZ2mu2tau": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 0.00624157,
+    "k_factor": 1.7,
     "dataset": "GluGlu*2Zto2Mu2Tau*"
   },
   "ttZ": {
-    "cross_section": 1.0,
+    "cross_section": 0.08646,
     "k_factor": 1.0,
     "dataset": "TTLL*"
   },
   "WWZ": {
-    "cross_section": 1.0,
+    "cross_section": 0.1851,
     "k_factor": 1.0,
     "dataset": "WWZ*"
   },
   "WZZ": {
-    "cross_section": 1.0,
+    "cross_section": 0.06206,
     "k_factor": 1.0,
     "dataset": "WZZ*"
   },
   "ZZZ": {
-    "cross_section": 1.0,
+    "cross_section": 0.01591,
     "k_factor": 1.0,
     "dataset": "ZZZ*"
   },
   "ggHZZ": {
-    "cross_section": 1.0,
+    "cross_section": 0.02316,
     "k_factor": 1.0,
     "dataset": "GluGluHtoZZ*"
   },
   "qqZZjj-ewk": {
-    "cross_section": 1.0,
+    "cross_section": 0.001142,
     "k_factor": 1.0,
     "dataset": "ZZto4L-2Jets*"
   },
   "tt2l2nu": {
-    "cross_section": 1.0,
+    "cross_section": 76.21,
     "k_factor": 1.0,
     "dataset": "TT*2L2Nu*"
   },
   "wz3lnu-powheg": {
-    "cross_section": 1.0,
+    "cross_section": 4.924,
     "k_factor": 1.0,
     "dataset": "WZto3LNu*"
   }

@@ -6,33 +6,33 @@
     "dataset": "ZZJJto4L*"
   },
   "DY2e-m10to50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 21140.0,
+    "k_factor": 0.333,
     "dataset": "DYto2E-2Jets_Bin-MLL-10to50*"
   },
   "DY2mu-m10to50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 21140.0,
+    "k_factor": 0.333,
     "dataset": "DYto2Mu-2Jets_Bin-MLL-10to50*"
   },
   "DY2tau-m10to50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 21140.0,
+    "k_factor": 0.333,
     "dataset": "DYto2Tau-2Jets_Bin-MLL-10to50*"
   },
   "DY2e-m50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 6639.0,
+    "k_factor": 0.333,
     "dataset": "DYto2E-2Jets_Bin-MLL-50*"
   },
   "DY2mu-m50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 6639.0,
+    "k_factor": 0.333,
     "dataset": "DYto2Mu-2Jets_Bin-MLL-50*"
   },
   "DY2tau-m50-2j": {
-    "cross_section": 1.0,
-    "k_factor": 1.0,
+    "cross_section": 6639.0,
+    "k_factor": 0.333,
     "dataset": "DYto2Tau-2Jets_Bin-MLL-50*"
   }
 }
