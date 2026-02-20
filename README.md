@@ -40,8 +40,8 @@ Make sure to edit this file with your settings.
 ### Skimming
 
 There are a few scripts within [`scripts/`](scripts/) that help skim UWVV ntuples. The most important is [`scripts/skim.py`](scripts/skim.py). This
-script will use the information stored in `json/` to determine cuts, triggers, and aliases and apply these cuts to the input file(s). To see available
-options, run `skim.py --help`, which is pasted below.
+script will use the information stored in [`json/`](json/) to determine cuts, triggers, and aliases and apply these cuts to the input file(s). To see
+available options, run `skim.py --help`, which is pasted below.
 
 ```bash
 usage: skim.py [-h] [-a ANALYSIS] [-y YEAR] [-t TRIGGER] [-o OUTFILE] [-g] [-v] [--json-dir JSON_DIR] (-i INFILES [INFILES ...] | -I INPUT_FILE_LIST)
@@ -79,13 +79,14 @@ to submit one job per file through HTCondor. These can be monitored with `condor
 using multiple cores. This will often be faster, but will require keeping a terminal open (or using `tmux`).
 
 Both scripts will read the information from the relevant `ntuples.json` file, depending on the analysis and year given as input. To see what format
-this JSON file needs to be in, look at `json/README.md`.
+this JSON file needs to be in, look at [`json/README.md`](json/README.md).
 
 #### Making the input files
 
 If you used CRAB to submit UWVV jobs, you likely have many output files for many output datasets. To help with listing all the files for skimming,
 there is [`scripts/make_json.py`](scripts/make_json.py). By providing the root directory with the ntuples, the relevant `ntuples.json` file will be
-created depending on the given analysis and year. This requires the `data.json` and `montecarlo.json` files, which are explained in `json/README.md`.
+created depending on the given analysis and year. This requires the `data.json` and `montecarlo.json` files, which are explained in
+[`json/README.md`](json/README.md).
 
 ### Merging
 
