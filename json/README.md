@@ -1,7 +1,7 @@
 # UWVV/VVAnalysis JSON files
 ----------------------------
 
-This directory stores all the relevant information for skimming, merging, and plotting UWVV ntuples. The general structure is the following:
+This directory stores all the relevant information for skimming, merging, and plotting UWVV ntuples. An example directory structure is the following:
 
 ```
 json
@@ -13,6 +13,8 @@ json
 |   `-- montecarlo.json
 `-- data.json
 ```
+
+This is a work in progress.
 
 ## Setup
 
@@ -115,20 +117,153 @@ to create a "qqZZ\_preEE" and "qqZZ\_postEE" entry for ntuples or skimmed listin
 
 ### `ntuples.json`
 
-Work in progress.
+The `ntuples.json` file stores lists of paths to UWVV ntuples per MC sample for a given analysis and year. This file is used by `farmout_skim.py` and
+`multi_skim.py` as input to determine the files needed to be skimmed. This file can be created automatically using `make_json.py`.
+
+Each MC sample is added to the root dictionary and should contain a list of file paths. (The glob `*` operator is suppported.)
+
+#### Example
+
+```json
+{
+  "qqZZ_preEE": [
+    "/hdfs/store/user/marquez/ZZ4l2022-ntuples/ZZto4L_*/Run3Summer22MiniAOD*/*/*/*.root"
+  ],
+  "qqZZ_postEE": [
+    "/hdfs/store/user/marquez/ZZ4l2022-ntuples/ZZto4L_*/Run3Summer22EEMiniAOD*/*/*/*.root"
+  ]
+}
+```
 
 ### `skimmed.json`
 
-Work in progress.
+The `skimmed.json` file stores lists of paths to skimmed UWVV ntuples per MC sample for a given analysis and year. This file can be created
+automatically using `make_json.py`.
+
+Each MC sample is added to the root dictionary and should contain a list of file paths. (The glob `*` operator is suppported.)
+
+#### Example
+
+```json
+{
+  "zz4l-powheg_preEE": [
+    "/hdfs/store/user/marquez/ZZ4l2022-skimmed/qqZZ_preEE/*.root"
+  ],
+  "zz4l-powheg_postEE": [
+    "/hdfs/store/user/marquez/ZZ4l2022-skimmed/qqZZ_postEE/*.root"
+  ]
+}
+```
 
 ### `aliases.json`
 
-Work in progress.
+The `aliases.json` file stores information needed to set aliases in a `TTree` before applying any cuts. This file is used by `skim.py` (and other
+scripts that skim) to determine the appropriate aliases to set.
+
+The file contains two dictionaries: "Channel" and "Event". The "Event" dictionary contains string to string mappings that define the alias. The key is
+the new name and the value is the formula that the new name points to. The "Channel" dictionary contains one dictionary for each channel, and those
+channel dictionaries are formatted like in "Event".
+
+The trigger-flow is described within the "Event" dictionary.
+
+#### Example
+
+```json
+{
+  "Channel" : {
+    "eeee" : {
+      "Z1Mass": "e1_e2_Mass",
+      "Z2Mass": "e3_e4_Mass"
+    },
+    "eemm" : {
+      "Z1Mass": "e1_e2_Mass",
+      "Z2Mass": "m1_m2_Mass"
+    },
+    "mmmm" : {
+      "Z1Mass": "m1_m2_Mass",
+      "Z2Mass": "m3_m4_Mass"
+    }
+  },
+  "Event" : {
+    "singleElectronPass": "HLT_Ele32_WPTight_GsfPass || HLT_Ele30_WPTight_GsfPass"
+  }
+}
+```
 
 ### `cuts.json`
 
-Work in progress.
+The `cuts.json` file stores information needed to build a "custring" (i.e. a formula string that is parsed by a `TTree` to skim events). This file is
+used by `skim.py` (and other scripts that skim) to apply cuts on input `TTree` objects. Note that [aliases](#aliases.json) are set before these are
+applied.
+
+The root directory contains six keys:
+
+- Object: This is a dictionary containing string to list mappings. Each key is an object in the event and the value is a list of cuts to be applied to
+  each of the specified objects (e.g. the key "e" lists the cuts to apply to each electron).
+    - **Note**: All objects must be specified, even if it is an empty list.
+- ObjectPair: This is a list of cuts to be applied to every pair of leptons (regardless of charge or flavor).
+- Channel: This is a dictionary containing string to list mappings. Each key is a channel and the value is a list of cuts to be applied to events in
+  this channel.
+    - **Note**: All channels must be specified, even if it is an empty list.
+- Event: This is a list of cuts to be applied to every event, regardless of channel.
+- LeadingPt: A float which sets the pt cut on the leading lepton pt. To disable, set to `null`, but note that doing so will disable the subleading
+  lepton pt cut below.
+- SubleadingPt: A float which sets the pt cut on the subleading lepton pt. To disable, set to `null`.
+
+#### Example
+
+```json
+{
+  "Object": {
+    "e": [
+      "{}ZZLooseID > 0.5"
+    ],
+    "m": [
+      "{}ZZLooseID > 0.5"
+    ]
+  },
+  "ObjectPair": [
+    "{0}_{1}_DR >= 0.02"
+  ],
+  "Channel": {
+    "eeee": [
+      "!(abs(ZaMass-91.1876) < abs(Z1Mass-91.1876) && ZbMass < 12)"
+    ],
+    "eemm": [
+    ],
+    "mmmm": [
+      "!(abs(ZaMass-91.1876) < abs(Z1Mass-91.1876) && ZbMass < 12)"
+    ]
+  },
+  "Event": [
+    "Mass > 70"
+  ],
+  "LeadingPt": 20,
+  "SubleadingPt": 10
+}
+```
 
 ### `triggers.json`
 
-Work in progress.
+The `triggers.json` file stores information on the trigger selections for MC and data samples. This file is used by `skim.py` (and other scripts that
+skim) to apply trigger selections on input `TTree` objects. Note that [aliases](#aliases.json) are set before these are applied.
+
+The root dictionary contains a list of string to string mappings. The key is the primary dataset name (e.g. EGamma0 or MuonEG) or "MonteCarlo" and the
+value is the formula to be applied for the trigger selection.
+
+To avoid duplicate data events, it is important that there is a proper ordering (or "trigger flow") to how the cuts are applied. For example, if the
+EGamma dataset applies `singleElectronPass || doubleElectronPass`, then all other data triggers should check that those fail as well. The files in the
+repository currently follow these rules.
+
+#### Example
+
+```json
+{
+    "MonteCarlo" : "singleElectronPass || doubleElectronPass || singleMuonPass || doubleMuonPass || tripleMuonPass || crossEMuPass",
+    "EGamma" : "singleElectronPass || doubleElectronPass",
+    "DoubleMuon" : "(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "SingleMuon" : "(singleMuonPass) && !(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "Muon" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
+    "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
+}
+```
