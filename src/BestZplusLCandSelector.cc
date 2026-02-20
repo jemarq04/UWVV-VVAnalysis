@@ -21,13 +21,9 @@ void BestZplusLCandSelector::Init(TTree *tree) {
       throw std::invalid_argument("missing input " + branchname);
   }
 
-  fChain->SetBranchAddress(
-      ((TNamed *)GetInputList()->FindObject("run"))->GetTitle(), &run, &b_run);
-  fChain->SetBranchAddress(
-      ((TNamed *)GetInputList()->FindObject("evt"))->GetTitle(), &evt, &b_evt);
-  fChain->SetBranchAddress(
-      ((TNamed *)GetInputList()->FindObject("Z1Mass"))->GetTitle(), &Z1Mass,
-      &b_Z1Mass);
+  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("run"))->GetTitle(), &run, &b_run);
+  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("evt"))->GetTitle(), &evt, &b_evt);
+  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("Z1Mass"))->GetTitle(), &Z1Mass, &b_Z1Mass);
 }
 
 Bool_t BestZplusLCandSelector::Process(Long64_t entry) {
