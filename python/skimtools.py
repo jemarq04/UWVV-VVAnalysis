@@ -3,7 +3,7 @@ import itertools
 from typing import Optional
 
 import ROOT
-import UWVV.VVAnalysis.helpers as helpers
+from UWVV.VVAnalysis import helpers
 
 
 def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict):

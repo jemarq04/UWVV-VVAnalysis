@@ -5,7 +5,7 @@ import glob
 import json
 import os
 
-import UWVV.VVAnalysis.helpers as helpers
+from UWVV.VVAnalysis import helpers
 
 
 def main():

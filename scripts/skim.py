@@ -4,8 +4,7 @@ import argparse
 import os
 import subprocess
 
-import UWVV.VVAnalysis.helpers as helpers
-import UWVV.VVAnalysis.skimtools as skimtools
+from UWVV.VVAnalysis import helpers, skimtools
 
 
 def main():

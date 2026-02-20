@@ -10,8 +10,7 @@ import os
 import shutil
 
 import tqdm
-import UWVV.VVAnalysis.helpers as helpers
-import UWVV.VVAnalysis.skimtools as skimtools
+from UWVV.VVAnalysis import helpers, skimtools
 
 
 def call_skim(args: tuple):
