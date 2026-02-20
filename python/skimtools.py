@@ -1,7 +1,8 @@
-import ROOT
 import argparse
 import itertools
 from typing import Optional
+
+import ROOT
 import UWVV.VVAnalysis.helpers as helpers
 
 

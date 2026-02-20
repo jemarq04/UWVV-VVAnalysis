@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
-import os
+import argparse
+import configparser
+import datetime
 import glob
 import json
-import tqdm
-import shutil
-import argparse
-import datetime
-import configparser
 import multiprocessing
+import os
+import shutil
+
+import tqdm
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 

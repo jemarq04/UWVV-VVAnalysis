@@ -1,6 +1,6 @@
-import os
-import json
 import argparse
+import json
+import os
 
 BASE_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis"
 JSON_DIR = os.path.join(BASE_DIR, "json")

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
-import os
+import argparse
 import glob
 import json
-import argparse
+import os
+
 import UWVV.VVAnalysis.helpers as helpers
 
 

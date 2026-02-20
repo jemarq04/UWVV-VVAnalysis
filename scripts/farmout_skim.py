@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
-import os
-import json
 import argparse
-import datetime
-import subprocess
 import configparser
+import datetime
+import json
+import os
+import subprocess
+
 import UWVV.VVAnalysis.helpers as helpers
 import UWVV.VVAnalysis.skimtools as skimtools
 
