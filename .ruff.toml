@@ -9,7 +9,14 @@ extend-select = [
   "PL",   # Pylint codes
   "I",    # sort imports
   "PERF", # performance checks
+  "D",    # docstring formatting
 ]
 ignore = [
   "PLR",  # design-related Pylint codes
+  "D100", # missing docstrings in module
+  "D203", # blank line before class docstring
+  "D213", # multi-line docstring on second line
 ]
+
+[lint.pydocstyle]
+convention = "numpy"

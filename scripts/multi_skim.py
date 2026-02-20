@@ -14,6 +14,7 @@ from UWVV.VVAnalysis import helpers, skimtools
 
 
 def call_skim(args: tuple):
+    """Unpack tuple of arguments and call skim()."""
     skim(*args)
 
 
@@ -27,6 +28,7 @@ def skim(
     triggers: dict,
     trigger: str,
 ):
+    """Skim file one at a time with the given inputs."""
     # Determine output file path
     # (Temporary file needed for saving in /hdfs/store/...)
     basename = os.path.basename(infile)
