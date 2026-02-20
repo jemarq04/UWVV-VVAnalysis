@@ -57,7 +57,7 @@ shared as needed for readability and maintaining the information in the long-ter
 
 The `data.json` file stores information about each year and era, such as luminosities and MC campaigns. This will likely be shared by all analyses,
 but can be moved around following the loading order described in [the previous section](#setup). This file is used by
-[`farmout_skim.py`](scripts/farmout_skim.py) and [`multi_skim.py`](scripts/multi_skim.py) to determine the MC campaigns needed.
+[`farmout_skim.py`](../scripts/farmout_skim.py) and [`multi_skim.py`](../scripts/multi_skim.py) to determine the MC campaigns needed.
 
 Each year is added to the "years" dictionary and should contain the following keys:
 
@@ -109,7 +109,7 @@ For examples of each of the cases described above, look at the snippet of [`json
 
 ### `montecarlo.json`
 
-The `montecarlo.json` file stores information for each MC sample in the analysis. This file is used by [`make_json.py`](scripts/make_json.py) to
+The `montecarlo.json` file stores information for each MC sample in the analysis. This file is used by [`make_json.py`](../scripts/make_json.py) to
 determine the MC samples needed. Each MC sample is added to the root dictionary and should contain the following keys:
 
 - cross\_section: The cross-section of the MC sample. This will often be retrieved from [XSDB](https://xsecdb-xsdb-official.app.cern.ch/).
@@ -119,8 +119,9 @@ determine the MC samples needed. Each MC sample is added to the root dictionary 
   CRAB jobs to make the UWVV ntuples, but can also be retrieved from [DAS](https://cmsweb.cern.ch/das/).
 
 Note that even if your analysis contains years that are split (i.e. 2022/2022EE), you do not need to create one entry for each era! The separate
-entries that are needed for the analysis will be created as needed by [`make_json.py`](scripts/make_json.py). For example, an entry for "qqZZ" would
-be used by [`make_json.py`](scripts/make_json.py) to create a "qqZZ\_preEE" and "qqZZ\_postEE" entry for ntuples or skimmed listings automatically.
+entries that are needed for the analysis will be created as needed by [`make_json.py`](../scripts/make_json.py). For example, an entry for "qqZZ"
+would be used by [`make_json.py`](../scripts/make_json.py) to create a "qqZZ\_preEE" and "qqZZ\_postEE" entry for ntuples or skimmed listings
+automatically.
 
 #### Example
 
@@ -137,8 +138,8 @@ be used by [`make_json.py`](scripts/make_json.py) to create a "qqZZ\_preEE" and 
 ### `ntuples.json`
 
 The `ntuples.json` file stores lists of paths to UWVV ntuples per MC sample for a given analysis and year. This file is used by
-[`farmout_skim.py`](scripts/farmout_skim.py) and [`multi_skim.py`](scripts/multi_skim.py) as input to determine the files needed to be skimmed. This
-file can be created automatically using [`make_json.py`](scripts/make_json.py).
+[`farmout_skim.py`](../scripts/farmout_skim.py) and [`multi_skim.py`](../scripts/multi_skim.py) as input to determine the files needed to be skimmed.
+This file can be created automatically using [`make_json.py`](../scripts/make_json.py).
 
 Each MC sample is added to the root dictionary and should contain a list of file paths. (The glob `*` operator is suppported.)
 
@@ -158,7 +159,7 @@ Each MC sample is added to the root dictionary and should contain a list of file
 ### `skimmed.json`
 
 The `skimmed.json` file stores lists of paths to skimmed UWVV ntuples per MC sample for a given analysis and year. This file can be created
-automatically using [`make_json.py`](scripts/make_json.py).
+automatically using [`make_json.py`](../scripts/make_json.py).
 
 Each MC sample is added to the root dictionary and should contain a list of file paths. (The glob `*` operator is suppported.)
 
@@ -178,7 +179,7 @@ Each MC sample is added to the root dictionary and should contain a list of file
 ### `aliases.json`
 
 The `aliases.json` file stores information needed to set aliases in a `TTree` before applying any cuts. This file is used by
-[`skim.py`](scripts/skim.py) (and other scripts that skim) to determine the appropriate aliases to set.
+[`skim.py`](../scripts/skim.py) (and other scripts that skim) to determine the appropriate aliases to set.
 
 The file contains two dictionaries: "Channel" and "Event". The "Event" dictionary contains string to string mappings that define the alias. The key is
 the new name and the value is the formula that the new name points to. The "Channel" dictionary contains one dictionary for each channel, and those
@@ -213,8 +214,8 @@ The trigger-flow is described within the "Event" dictionary.
 ### `cuts.json`
 
 The `cuts.json` file stores information needed to build a "custring" (i.e. a formula string that is parsed by a `TTree` to skim events). This file is
-used by [`skim.py`](scripts/skim.py) (and other scripts that skim) to apply cuts on input `TTree` objects. Note that [aliases](#aliasesjson) are set
-before these are applied.
+used by [`skim.py`](../scripts/skim.py) (and other scripts that skim) to apply cuts on input `TTree` objects. Note that [aliases](#aliasesjson) are
+set before these are applied.
 
 The root directory contains six keys:
 
@@ -265,8 +266,9 @@ The root directory contains six keys:
 
 ### `triggers.json`
 
-The `triggers.json` file stores information on the trigger selections for MC and data samples. This file is used by [`skim.py`](scripts/skim.py) (and
-other scripts that skim) to apply trigger selections on input `TTree` objects. Note that [aliases](#aliasesjson) are set before these are applied.
+The `triggers.json` file stores information on the trigger selections for MC and data samples. This file is used by [`skim.py`](../scripts/skim.py)
+(and other scripts that skim) to apply trigger selections on input `TTree` objects. Note that [aliases](#aliasesjson) are set before these are
+applied.
 
 The root dictionary contains a list of string to string mappings. The key is the primary dataset name (e.g. EGamma0 or MuonEG) or "MonteCarlo" and the
 value is the formula to be applied for the trigger selection.
