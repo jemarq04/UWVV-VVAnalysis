@@ -10,5 +10,5 @@ extend-select = [
   "I",    # Sort imports
 ]
 ignore = [
-  "PLR",      # design-related Pylint codes
+  "PLR",  # design-related Pylint codes
 ]
