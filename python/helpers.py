@@ -1,5 +1,6 @@
 import os
 import json
+import argparse
 
 BASE_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis"
 JSON_DIR = os.path.join(BASE_DIR, "json")
@@ -26,6 +27,12 @@ def get_channels(analysis: str) -> list:
     else:
         raise NotImplementedError(f"no channels found for analysis {analysis}")
     return channels
+
+
+class CustomHelpFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
+    """Inherits properties from two formatter classes for desired help strings."""
+
+    pass
 
 
 def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR) -> dict:

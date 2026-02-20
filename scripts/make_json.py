@@ -8,7 +8,19 @@ import UWVV.VVAnalysis.helpers as helpers
 
 
 def main():
-    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    """Creates JSON files to be used with skimming and merging jobs.
+
+    This script has two modes: ntuples and skimmed.
+
+    In ntuples mode, the base directory containing output files from a CRAB job
+    submitted through UWVV can be provided to create the relevant ntuples.json file
+    to use for skimming.
+
+    In skimmed mode, the base directory containing output files from skimming all
+    the above-mentioned UWVV ntuples can be provided to create the relevant
+    skimmed.json file to use for merging/plotting.
+    """
+    parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-v", "--verbose", action="store_true", help="more print statements")
