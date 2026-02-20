@@ -43,7 +43,7 @@ There are a few scripts within [`scripts/`](scripts/) that help skim UWVV ntuple
 script will use the information stored in [`json/`](json/) to determine cuts, triggers, and aliases and apply these cuts to the input file(s). To see
 available options, run `skim.py --help`, which is pasted below.
 
-```bash
+```
 usage: skim.py [-h] [-a ANALYSIS] [-y YEAR] [-t TRIGGER] [-o OUTFILE] [-g] [-v] [--json-dir JSON_DIR] (-i INFILES [INFILES ...] | -I INPUT_FILE_LIST)
 
 optional arguments:
