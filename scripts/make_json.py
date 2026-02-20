@@ -9,7 +9,7 @@ from UWVV.VVAnalysis import helpers
 
 
 def main():
-    """Creates JSON files to be used with skimming and merging jobs.
+    """Create JSON files to be used with skimming and merging jobs.
 
     This script has two modes: ntuples and skimmed.
 

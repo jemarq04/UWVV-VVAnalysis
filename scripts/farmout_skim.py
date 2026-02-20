@@ -11,7 +11,7 @@ from UWVV.VVAnalysis import helpers, skimtools
 
 
 def main():
-    """Submits skim.py jobs for each file specified for a given analysis/year to HTCondor."""
+    """Submit skim.py jobs for each file specified for a given analysis/year to HTCondor."""
     parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")

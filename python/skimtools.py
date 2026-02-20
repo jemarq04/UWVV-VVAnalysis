@@ -226,7 +226,7 @@ def get_selector(analysis: str, channel: str) -> Optional[ROOT.TSelector]:
 
 
 def get_trigger(triggers: list, sample: str) -> str:
-    """Returns appropriate trigger to use for given sample.
+    """Return appropriate trigger to use for given sample.
 
     This function searches the sample name for '_TRIGGER_' for
     each trigger in the provided list. Data samples follow this
