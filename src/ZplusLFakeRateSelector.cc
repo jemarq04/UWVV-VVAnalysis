@@ -11,56 +11,56 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
     return;
   fChain = tree;
 
-  fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass_, &b_Z1Mass_);
+  fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
 
-  fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight_, &b_l1Tight_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l2Tight")->GetTitle(), &l2Tight_, &b_l2Tight_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l3Tight")->GetTitle(), &l3Tight_, &b_l3Tight_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l1Iso")->GetTitle(), &l1Iso_, &b_l1Iso_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l2Iso")->GetTitle(), &l2Iso_, &b_l2Iso_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l3Iso")->GetTitle(), &l3Iso_, &b_l3Iso_);
+  fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight, &b_l1Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l2Tight")->GetTitle(), &l2Tight, &b_l2Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Tight")->GetTitle(), &l3Tight, &b_l3Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l1Iso")->GetTitle(), &l1Iso, &b_l1Iso);
+  fChain->SetBranchAddress(GetInput<TNamed>("l2Iso")->GetTitle(), &l2Iso, &b_l2Iso);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Iso")->GetTitle(), &l3Iso, &b_l3Iso);
 
-  fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt_, &b_l3Pt_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l3Eta")->GetTitle(), &l3Eta_, &b_l3Eta_);
-  fChain->SetBranchAddress(GetInput<TNamed>("l3MtToMET_")->GetTitle(), &l3MtToMET_, &b_l3MtToMET_);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt, &b_l3Pt);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Eta")->GetTitle(), &l3Eta, &b_l3Eta);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3MtToMET")->GetTitle(), &l3MtToMET, &b_l3MtToMET);
 
-  fChain->SetBranchAddress("type1_pfMETEt", &type1_pfMETEt_, &b_type1_pfMETEt_);
+  fChain->SetBranchAddress("type1_pfMETEt", &type1_pfMETEt, &b_type1_pfMETEt);
   if (isMC_)
-    fChain->SetBranchAddress("genWeight", &genWeight_, &b_genWeight_);
+    fChain->SetBranchAddress("genWeight", &genWeight, &b_genWeight);
 }
 
 Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   // Load branches
   weight_ = 1;
-  b_Z1Mass_->GetEntry(entry);
+  b_Z1Mass->GetEntry(entry);
 
-  b_l1Tight_->GetEntry(entry);
-  b_l1Iso_->GetEntry(entry);
-  b_l2Tight_->GetEntry(entry);
-  b_l2Iso_->GetEntry(entry);
+  b_l1Tight->GetEntry(entry);
+  b_l1Iso->GetEntry(entry);
+  b_l2Tight->GetEntry(entry);
+  b_l2Iso->GetEntry(entry);
 
-  b_l3Pt_->GetEntry(entry);
-  b_l3Eta_->GetEntry(entry);
-  b_l3MtToMET_->GetEntry(entry);
+  b_l3Pt->GetEntry(entry);
+  b_l3Eta->GetEntry(entry);
+  b_l3MtToMET->GetEntry(entry);
 
-  b_type1_pfMETEt_->GetEntry(entry);
+  b_type1_pfMETEt->GetEntry(entry);
   if (isMC_) {
-    b_genWeight_->GetEntry(entry);
-    weight_ = genWeight_;
+    b_genWeight->GetEntry(entry);
+    weight_ = genWeight;
   }
 
   // Apply cuts
-  if (Z1Mass_ > 98.1876 || Z1Mass_ < 84.1876)
+  if (Z1Mass > 98.1876 || Z1Mass < 84.1876)
     return true;
-  if (type1_pfMETEt_ > 25)
+  if (type1_pfMETEt > 25)
     return true;
-  if (l3MtToMET_ > 30)
+  if (l3MtToMET > 30)
     return true;
-  if (!l1Tight_ || !l1Iso_ || !l2Tight_ || !l2Iso_)
+  if (!l1Tight || !l1Iso || !l2Tight || !l2Iso)
     return true;
 
   // Set variables
-  float l3AbsEta = std::abs(l3Eta_);
+  float l3AbsEta = std::abs(l3Eta);
 
   // Fill loose histograms
   if (channel_ == "eee" || channel_ == "emm") {
@@ -82,7 +82,7 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   }
 
   // Fill tight histograms
-  if (l3Tight_ && l3Iso_) {
+  if (l3Tight && l3Iso) {
     if (channel_ == "eee" || channel_ == "emm") {
       //Electron barrel up to |eta| = 1.479
       if (l3AbsEta < 1.479) {
