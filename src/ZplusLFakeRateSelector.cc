@@ -1,15 +1,20 @@
 #include "UWVV/VVAnalysis/interface/ZplusLFakeRateSelector.h"
 
 void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
+  // Set base variables
   SelectorBase::SlaveBegin(tree);
+
+  // Check for valid channel
   if (channel_ != "eee" && channel_ != "eem" && channel_ != "emm" && channel_ != "mmm")
     throw std::invalid_argument("invalid channel provided for ZplusL fake rate: " + channel_);
 
+  // Create output file
   std::string outpath = GetInput<TNamed>("output")->GetTitle();
   outfile_ = new TFile(outpath.c_str(), "recreate");
   if (outfile_ == nullptr)
     throw std::invalid_argument("error creating file: " + outpath);
 
+  // Set variable binning for pt/eta histograms
   const int numPtBins = 6;
   double ptBins[numPtBins + 1] = {5, 10, 20, 30, 40, 50, 80};
 
@@ -51,6 +56,7 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
     return;
   fChain = tree;
 
+  // Set branches
   fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
 
   fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight, &b_l1Tight);
@@ -150,6 +156,7 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
 }
 
 void ZplusLFakeRateSelector::SlaveTerminate() {
+  // Write and close file
   outfile_->Write();
   outfile_->Close();
 }
