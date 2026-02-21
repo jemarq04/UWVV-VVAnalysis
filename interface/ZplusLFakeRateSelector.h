@@ -3,6 +3,8 @@
 
 #include "TChain.h"
 #include "TFile.h"
+#include "TH1.h"
+#include "TH2.h"
 
 #include "UWVV/VVAnalysis/interface/SelectorBase.h"
 
@@ -30,6 +32,13 @@ public:
   ClassDefOverride(ZplusLFakeRateSelector, 0);
 
 private:
+  TFile *outfile;
+  TH1D *looseElePt_barrel_, *looseElePt_endcap_, *looseEleEta_;
+  TH1D *looseMuPt_barrel_, *looseMuPt_endcap_, *looseMuEta_;
+  TH2D *looseElePtEta_, *looseMuPtEta_;
+  TH1D *tightElePt_barrel_, *tightElePt_endcap_, *tightEleEta_;
+  TH1D *tightMuPt_barrel_, *tightMuPt_endcap_, *tightMuEta_;
+  TH2D *tightElePtEta_, *tightMuPtEta_;
 };
 
 #endif

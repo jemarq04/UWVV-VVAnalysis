@@ -4,6 +4,46 @@ void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
   SelectorBase::SlaveBegin(tree);
   if (channel_ != "eee" && channel_ != "eem" && channel_ != "emm" && channel_ != "mmm")
     throw std::invalid_argument("invalid channel provided for ZplusL fake rate: " + channel_);
+
+  std::string outpath = GetInput<TNamed>("output")->GetTitle();
+  outfile = new TFile(outpath.c_str(), "recreate");
+  if (outfile == nullptr)
+    throw std::invalid_argument("error creating file: " + outpath);
+
+  const int numPtBins = 6;
+  double ptBins[numPtBins + 1] = {5, 10, 20, 30, 40, 50, 80};
+
+  const int numEleEtaBins = 4;
+  double eleEtaBins[numEleEtaBins + 1] = {0.0, 0.7395, 1.479, 2.0, 2.5};
+
+  const int numMuEtaBins = 2;
+  double muEtaBins[numMuEtaBins + 1] = {0.0, 1.2, 2.4};
+
+  looseElePt_barrel_ = new TH1D(("looseElePt_barrel_" + channel_).c_str(), "Electron Pt (Barrel)", numPtBins, ptBins);
+  looseElePt_endcap_ = new TH1D(("looseElePt_endcap_" + channel_).c_str(), "Electron Pt (Endcap)", numPtBins, ptBins);
+  looseMuPt_barrel_ = new TH1D(("looseMuPt_barrel_" + channel_).c_str(), "Muon Pt (Barrel)", numPtBins, ptBins);
+  looseMuPt_endcap_ = new TH1D(("looseMuPt_endcap_" + channel_).c_str(), "Muon Pt (Endcap)", numPtBins, ptBins);
+
+  looseEleEta_ = new TH1D(("looseEleEta_" + channel_).c_str(), "Electron Eta", numEleEtaBins, eleEtaBins);
+  looseMuEta_ = new TH1D(("looseMuEta_" + channel_).c_str(), "Muon Eta", numMuEtaBins, muEtaBins);
+
+  looseElePtEta_ = new TH2D(
+      ("looseElePtEta_" + channel_).c_str(), "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
+  looseMuPtEta_ =
+      new TH2D(("looseMuPtEta_" + channel_).c_str(), "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
+
+  tightElePt_barrel_ = new TH1D(("tightElePt_barrel_" + channel_).c_str(), "Electron Pt (Barrel)", numPtBins, ptBins);
+  tightElePt_endcap_ = new TH1D(("tightElePt_endcap_" + channel_).c_str(), "Electron Pt (Endcap)", numPtBins, ptBins);
+  tightMuPt_barrel_ = new TH1D(("tightMuPt_barrel_" + channel_).c_str(), "Muon Pt (Barrel)", numPtBins, ptBins);
+  tightMuPt_endcap_ = new TH1D(("tightMuPt_endcap_" + channel_).c_str(), "Muon Pt (Endcap)", numPtBins, ptBins);
+
+  tightEleEta_ = new TH1D(("tightEleEta_" + channel_).c_str(), "Electron Eta", numEleEtaBins, eleEtaBins);
+  tightMuEta_ = new TH1D(("tightMuEta_" + channel_).c_str(), "Muon Eta", numMuEtaBins, muEtaBins);
+
+  tightElePtEta_ = new TH2D(
+      ("tightElePtEta_" + channel_).c_str(), "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
+  tightMuPtEta_ =
+      new TH2D(("tightMuPtEta_" + channel_).c_str(), "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
 }
 
 void ZplusLFakeRateSelector::Init(TTree *tree) {
@@ -66,19 +106,21 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   if (channel_ == "eee" || channel_ == "emm") {
     //Electron barrel up to |eta| = 1.479
     if (l3AbsEta < 1.479) {
-      // fill 1D electron pt barrel
+      looseElePt_barrel_->Fill(l3Pt, weight_);
     } else {
-      // fill 1D electron pt endcap
+      looseElePt_endcap_->Fill(l3Pt, weight_);
     }
-    // fill electron 2D and 1D eta
+    looseEleEta_->Fill(l3AbsEta, weight_);
+    looseElePtEta_->Fill(l3Pt, l3AbsEta, weight_);
   } else {
     //Muon barrel up to |eta| = 1.2
     if (l3AbsEta < 1.2) {
-      // fill 1D muon pt barrel
+      looseMuPt_barrel_->Fill(l3Pt, weight_);
     } else {
-      // fill 1D muon pt endcap
+      looseMuPt_endcap_->Fill(l3Pt, weight_);
     }
-    // fill muon 2D and 1D eta
+    looseMuEta_->Fill(l3AbsEta, weight_);
+    looseMuPtEta_->Fill(l3Pt, l3AbsEta, weight_);
   }
 
   // Fill tight histograms
@@ -86,23 +128,28 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
     if (channel_ == "eee" || channel_ == "emm") {
       //Electron barrel up to |eta| = 1.479
       if (l3AbsEta < 1.479) {
-        // fill 1D electron pt barrel
+        tightElePt_barrel_->Fill(l3Pt, weight_);
       } else {
-        // fill 1D electron pt endcap
+        tightElePt_endcap_->Fill(l3Pt, weight_);
       }
-      // fill electron 2D and 1D eta
+      tightEleEta_->Fill(l3AbsEta, weight_);
+      tightElePtEta_->Fill(l3Pt, l3AbsEta, weight_);
     } else {
       //Muon barrel up to |eta| = 1.2
       if (l3AbsEta < 1.2) {
-        // fill 1D muon pt barrel
+        tightMuPt_barrel_->Fill(l3Pt, weight_);
       } else {
-        // fill 1D muon pt endcap
+        tightMuPt_endcap_->Fill(l3Pt, weight_);
       }
-      // fill muon 2D and 1D eta
+      tightMuEta_->Fill(l3AbsEta, weight_);
+      tightMuPtEta_->Fill(l3Pt, l3AbsEta, weight_);
     }
   }
 
   return true;
 }
 
-void ZplusLFakeRateSelector::SlaveTerminate() {}
+void ZplusLFakeRateSelector::SlaveTerminate() {
+  outfile->Write();
+  outfile->Close();
+}
