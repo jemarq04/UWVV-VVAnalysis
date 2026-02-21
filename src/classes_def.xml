@@ -1,4 +1,6 @@
 <lcgdict>
   <class name="BestZZCandSelector"/>
   <class name="BestZplusLCandSelector"/>
+  <class name="SelectorBase"/>
+  <class name="ZplusLFakeRateSelector"/>
 </lcgdict>
