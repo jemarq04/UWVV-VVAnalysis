@@ -32,7 +32,7 @@ public:
   ClassDefOverride(ZplusLFakeRateSelector, 0);
 
 private:
-  TFile *outfile;
+  TFile *outfile_;
   TH1D *looseElePt_barrel_, *looseElePt_endcap_, *looseEleEta_;
   TH1D *looseMuPt_barrel_, *looseMuPt_endcap_, *looseMuEta_;
   TH2D *looseElePtEta_, *looseMuPtEta_;

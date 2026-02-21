@@ -6,8 +6,8 @@ void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
     throw std::invalid_argument("invalid channel provided for ZplusL fake rate: " + channel_);
 
   std::string outpath = GetInput<TNamed>("output")->GetTitle();
-  outfile = new TFile(outpath.c_str(), "recreate");
-  if (outfile == nullptr)
+  outfile_ = new TFile(outpath.c_str(), "recreate");
+  if (outfile_ == nullptr)
     throw std::invalid_argument("error creating file: " + outpath);
 
   const int numPtBins = 6;
@@ -150,6 +150,6 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
 }
 
 void ZplusLFakeRateSelector::SlaveTerminate() {
-  outfile->Write();
-  outfile->Close();
+  outfile_->Write();
+  outfile_->Close();
 }
