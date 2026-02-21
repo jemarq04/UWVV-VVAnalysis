@@ -13,6 +13,8 @@ void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
   outfile_ = new TFile(outpath.c_str(), "recreate");
   if (outfile_ == nullptr)
     throw std::invalid_argument("error creating file: " + outpath);
+  auto *subdir = outfile_->mkdir(name_.c_str())->mkdir(channel_.c_str());
+  subdir->cd();
 
   // Set variable binning for pt/eta histograms
   const int numPtBins = 6;
@@ -24,31 +26,28 @@ void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
   const int numMuEtaBins = 2;
   double muEtaBins[numMuEtaBins + 1] = {0.0, 1.2, 2.4};
 
-  looseElePt_barrel_ = new TH1D(("looseElePt_barrel_" + channel_).c_str(), "Electron Pt (Barrel)", numPtBins, ptBins);
-  looseElePt_endcap_ = new TH1D(("looseElePt_endcap_" + channel_).c_str(), "Electron Pt (Endcap)", numPtBins, ptBins);
-  looseMuPt_barrel_ = new TH1D(("looseMuPt_barrel_" + channel_).c_str(), "Muon Pt (Barrel)", numPtBins, ptBins);
-  looseMuPt_endcap_ = new TH1D(("looseMuPt_endcap_" + channel_).c_str(), "Muon Pt (Endcap)", numPtBins, ptBins);
+  // Define histograms
+  looseElePt_barrel_ = new TH1D("looseElePt_barrel", "Electron Pt (Barrel)", numPtBins, ptBins);
+  looseElePt_endcap_ = new TH1D("looseElePt_endcap", "Electron Pt (Endcap)", numPtBins, ptBins);
+  looseMuPt_barrel_ = new TH1D("looseMuPt_barrel", "Muon Pt (Barrel)", numPtBins, ptBins);
+  looseMuPt_endcap_ = new TH1D("looseMuPt_endcap", "Muon Pt (Endcap)", numPtBins, ptBins);
 
-  looseEleEta_ = new TH1D(("looseEleEta_" + channel_).c_str(), "Electron Eta", numEleEtaBins, eleEtaBins);
-  looseMuEta_ = new TH1D(("looseMuEta_" + channel_).c_str(), "Muon Eta", numMuEtaBins, muEtaBins);
+  looseEleEta_ = new TH1D("looseEleEta", "Electron Eta", numEleEtaBins, eleEtaBins);
+  looseMuEta_ = new TH1D("looseMuEta", "Muon Eta", numMuEtaBins, muEtaBins);
 
-  looseElePtEta_ = new TH2D(
-      ("looseElePtEta_" + channel_).c_str(), "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
-  looseMuPtEta_ =
-      new TH2D(("looseMuPtEta_" + channel_).c_str(), "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
+  looseElePtEta_ = new TH2D("looseElePtEta", "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
+  looseMuPtEta_ = new TH2D("looseMuPtEta", "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
 
-  tightElePt_barrel_ = new TH1D(("tightElePt_barrel_" + channel_).c_str(), "Electron Pt (Barrel)", numPtBins, ptBins);
-  tightElePt_endcap_ = new TH1D(("tightElePt_endcap_" + channel_).c_str(), "Electron Pt (Endcap)", numPtBins, ptBins);
-  tightMuPt_barrel_ = new TH1D(("tightMuPt_barrel_" + channel_).c_str(), "Muon Pt (Barrel)", numPtBins, ptBins);
-  tightMuPt_endcap_ = new TH1D(("tightMuPt_endcap_" + channel_).c_str(), "Muon Pt (Endcap)", numPtBins, ptBins);
+  tightElePt_barrel_ = new TH1D("tightElePt_barrel", "Electron Pt (Barrel)", numPtBins, ptBins);
+  tightElePt_endcap_ = new TH1D("tightElePt_endcap", "Electron Pt (Endcap)", numPtBins, ptBins);
+  tightMuPt_barrel_ = new TH1D("tightMuPt_barrel", "Muon Pt (Barrel)", numPtBins, ptBins);
+  tightMuPt_endcap_ = new TH1D("tightMuPt_endcap", "Muon Pt (Endcap)", numPtBins, ptBins);
 
-  tightEleEta_ = new TH1D(("tightEleEta_" + channel_).c_str(), "Electron Eta", numEleEtaBins, eleEtaBins);
-  tightMuEta_ = new TH1D(("tightMuEta_" + channel_).c_str(), "Muon Eta", numMuEtaBins, muEtaBins);
+  tightEleEta_ = new TH1D("tightEleEta", "Electron Eta", numEleEtaBins, eleEtaBins);
+  tightMuEta_ = new TH1D("tightMuEta", "Muon Eta", numMuEtaBins, muEtaBins);
 
-  tightElePtEta_ = new TH2D(
-      ("tightElePtEta_" + channel_).c_str(), "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
-  tightMuPtEta_ =
-      new TH2D(("tightMuPtEta_" + channel_).c_str(), "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
+  tightElePtEta_ = new TH2D("tightElePtEta", "Electron Pt vs. Eta", numPtBins, ptBins, numEleEtaBins, eleEtaBins);
+  tightMuPtEta_ = new TH2D("tightMuPtEta", "Muon Pt vs. Eta", numPtBins, ptBins, numMuEtaBins, muEtaBins);
 }
 
 void ZplusLFakeRateSelector::Init(TTree *tree) {
