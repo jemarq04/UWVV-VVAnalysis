@@ -6,30 +6,6 @@ BASE_DIR = os.environ["CMSSW_BASE"] + "/src/UWVV/VVAnalysis"
 JSON_DIR = os.path.join(BASE_DIR, "json")
 
 
-def get_channels(analysis: str) -> list:
-    """Determine list of channels for a given analysis.
-
-    Parameters
-    ----------
-    analysis : str
-        The analysis with the desired channels.
-
-    Returns
-    -------
-    list of str
-        The list of channels for a given analysis.
-
-    """
-    channels = []
-    if analysis == "ZZ4l":
-        channels = ["eeee", "eemm", "mmmm"]
-    elif analysis == "ZplusL":
-        channels = ["eee", "eem", "emm", "mmm"]
-    else:
-        raise NotImplementedError(f"no channels found for analysis {analysis}")
-    return channels
-
-
 class CustomHelpFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
     """Inherits properties from two formatter classes for desired help strings."""
 

@@ -3,7 +3,6 @@ import itertools
 from typing import Optional
 
 import ROOT
-from UWVV.VVAnalysis import helpers
 
 
 def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict):
@@ -30,7 +29,7 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
         outfile.cd()
 
         # Skim tree for each channel
-        for channel in helpers.get_channels(args.analysis):
+        for channel in get_channels(args.analysis):
             cutstring = build_cutstring(cutinfo, channel)
             cutstring += f" && ({triggers[args.trigger]})"
 
@@ -94,6 +93,30 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
 
     if args.verbose:
         print(f"Written to {args.outfile}")
+
+
+def get_channels(analysis: str) -> list:
+    """Determine list of channels to skim for a given analysis.
+
+    Parameters
+    ----------
+    analysis : str
+        The analysis with the desired channels.
+
+    Returns
+    -------
+    list of str
+        The list of channels for a given analysis.
+
+    """
+    channels = []
+    if analysis == "ZZ4l":
+        channels = ["eeee", "eemm", "mmmm"]
+    elif analysis == "ZplusL":
+        channels = ["eee", "eem", "emm", "mmm"]
+    else:
+        raise NotImplementedError(f"no channels found for analysis {analysis}")
+    return channels
 
 
 def build_cutstring(cutinfo: dict, channel: str) -> str:
