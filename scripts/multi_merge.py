@@ -95,7 +95,6 @@ def merge(args: argparse.Namespace, sample: str):
 
     # Merge files
     mergetools.merge(merge_args)
-    print("Done")
 
 
 if __name__ == "__main__":
