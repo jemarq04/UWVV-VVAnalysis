@@ -85,7 +85,8 @@ UWVV jobs through CRAB). To help with that, there are two options: [`scripts/far
 
 Both scripts will do the same thing, but with slight differences. The `farmout_skim.py` script will use the UW cluster's `farmoutAnalysisJobs` command
 to submit one job per file through HTCondor. These can be monitored with `condor_q`. However, the `multi_skim.py` script will run skimming locally
-using multiple cores. This will often be faster, but will require keeping a terminal open (or using `tmux`).
+using multiple cores. This will often be faster for smaller files, but will require keeping a terminal open (or using `tmux`). Using HTCondor will
+take some time to spin up each job but can often process more files simultaneously.
 
 Both scripts will read the information from the relevant `ntuples.json` file, depending on the analysis and year given as input. To see what format
 this JSON file needs to be in, look at [`json/README.md`](json/README.md).
