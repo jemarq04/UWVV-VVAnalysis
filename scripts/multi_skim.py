@@ -97,7 +97,7 @@ def main():
             if not args.quiet:
                 list(
                     tqdm.tqdm(
-                        pool.imap(
+                        pool.imap_unordered(
                             call_skim,
                             [(args, sample, infile, output_dir, trigger) for infile in infiles],
                         ),
