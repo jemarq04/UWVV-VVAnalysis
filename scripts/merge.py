@@ -17,7 +17,7 @@ def main():
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument(
-        "--skimmed-json",
+        "--skimmed",
         default=argparse.SUPPRESS,
         help="skimmed ntuple JSON (default: json/<ANALYSIS>/<YEAR>/skimmed.json)",
     )
@@ -35,21 +35,21 @@ def main():
     # Handle defaults
     if "outfile" not in args:
         args.outfile = f"Hists-{args.analysis}{args.year}_{args.sample}.root"
-    if "skimmed_json" not in args:
-        args.skimmed_json = None
+    if "skimmed" not in args:
+        args.skimmed = None
 
     # Error checking
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
         parser.error(f"invalid analysis: {args.analysis}")
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis, args.year)):
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
-    if args.skimmed_json is not None and not os.path.isfile(args.skimmed_json):
-        parser.error(f"invalid skimmed JSON: {args.skimmed_json}")
+    if args.skimmed is not None and not os.path.isfile(args.skimmed):
+        parser.error(f"invalid skimmed JSON: {args.skimmed}")
 
     # Loading infiles, if needed
     if args.infiles is None:
         # Load JSON information
-        if args.skimmed_json is not None:
+        if args.skimmed is not None:
             with open(args.skimmed_dir) as infile:
                 skimmed = json.load(infile)
         else:
