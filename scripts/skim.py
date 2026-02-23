@@ -15,6 +15,7 @@ def main():
     parser.add_argument("-t", "--trigger", default="MonteCarlo", help="trigger set to apply")
     parser.add_argument("-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: output<YEAR>.root)")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
+    parser.add_argument("-f", "--force", action="store_true", help="use output dir even if it already exists")
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument("--json-dir", default=helpers.JSON_DIR, help="directory for JSON files")
 

@@ -16,6 +16,7 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-g", "--save-gen", action="store_true", help="save gen trees")
+    parser.add_argument("-f", "--force", action="store_true", help="use output dir even if it already exists")
     parser.add_argument("-v", "--verbose", action="store_true", help="print more updates during skimming")
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument(
@@ -76,7 +77,8 @@ def main():
 
     # Determine unique directory names (to avoid overwriting)
     args.submission_dir = helpers.get_unique_dirname(args.submission_dir)
-    args.output_dir = helpers.get_unique_dirname(args.output_dir)
+    if not args.force:
+        args.output_dir = helpers.get_unique_dirname(args.output_dir)
 
     # Submit skimming jobs for each sample
     if not args.quiet:
