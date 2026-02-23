@@ -45,7 +45,8 @@ def merge(args: argparse.Namespace):
     # Combine each of the channel files to one file for the sample.
     if args.verbose:
         print(f"\nCombining temporary files to {args.outfile}")
-    status = subprocess.call(["hadd", "-f", args.outfile] + tempfiles)
+    outlog = None if args.verbose else subprocess.DEVNULL
+    status = subprocess.call(["hadd", "-f", args.outfile] + tempfiles, stdout=outlog, stderr=outlog)
     if status == 0:
         for tempfile in tempfiles:
             os.remove(tempfile)
