@@ -13,7 +13,7 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument(
-        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists-<ANALYSIS>_<SAMPLE>.root)"
+        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists-<ANALYSIS><YEAR>_<SAMPLE>.root)"
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
     parser.add_argument(
@@ -34,7 +34,7 @@ def main():
 
     # Handle defaults
     if "outfile" not in args:
-        args.outfile = f"Hists-{args.analysis}_{args.sample}.root"
+        args.outfile = f"Hists-{args.analysis}{args.year}_{args.sample}.root"
     if "skimmed_json" not in args:
         args.skimmed_json = None
 
