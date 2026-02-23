@@ -27,7 +27,8 @@ def main():
         "--sample",
         default=argparse.SUPPRESS,
         required=True,
-        help="name of sample to be processed (e.g. qqZZ or data_MuonEG_Run2022C)",
+        help="name of sample to be processed (e.g. qqZZ or data_MuonEG_Run2022C). "
+        "if no input files are provided, all filepaths for this sample are used as input",
     )
     args = parser.parse_args()
 
