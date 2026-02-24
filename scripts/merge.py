@@ -15,7 +15,7 @@ def main():
     parser.add_argument(
         "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists-<ANALYSIS><YEAR>_<SAMPLE>.root)"
     )
-    parser.add_argument("-v", "--verbose", action="store_true", help="print during skimming")
+    parser.add_argument("-v", "--verbose", action="store_true", help="print during merging")
     parser.add_argument(
         "--skimmed",
         default=argparse.SUPPRESS,
