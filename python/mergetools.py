@@ -51,6 +51,21 @@ def merge(args: argparse.Namespace):
         for tempfile in tempfiles:
             os.remove(tempfile)
 
+    # Add sumweights
+    tree = ROOT.TChain("metaInfo/metaInfo")
+    for infile in args.infiles:
+        tree.Add(infile)
+    oldBatch = ROOT.gROOT.IsBatch()
+    ROOT.gROOT.SetBatch(True)
+    canvas = ROOT.TCanvas("c", "Canvas")
+    with ROOT.TFile.Open(args.outfile, "update") as tempfile:
+        tempfile.Get(args.sample).cd()
+        sumweights = ROOT.TH1D("sumweights", "sumweights", 1, 0, 2000)
+        tree.Draw("summedWeights>>sumweights")
+        sumweights.Write()
+    canvas.Close()
+    ROOT.gROOT.SetBatch(oldBatch)
+
 
 def get_channels(analysis: str) -> list:
     """Determine list of channels to process/merge for a given analysis.
