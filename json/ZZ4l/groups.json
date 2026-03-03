@@ -1,80 +1,86 @@
 {
-  "qqZZ": {
-    "name": "q#bar{q} #rightarrow ZZ",
-    "style": "fill-lightblue",
-    "members": [
-      "qqZZ"
-    ]
+  "groups": {
+    "qqZZ": {
+      "name": "q#bar{q} #rightarrow ZZ",
+      "style": "fill-lightblue",
+      "members": [
+        "qqZZ"
+      ]
+    },
+    "ggZZ": {
+      "name": "gg #rightarrow ZZ",
+      "style": "fill-blue",
+      "members": [
+        "ggZZ4e",
+        "ggZZ4m",
+        "ggZZ4t",
+        "ggZZ2e2mu",
+        "ggZZ2e2tau",
+        "ggZZ2mu2tau"
+      ]
+    },
+    "VVV": {
+      "name": "t#bar{t}Z,VVV",
+      "style": "fill-yellow",
+      "members": [
+        "ZZZ",
+        "WZZ",
+        "WWZ",
+        "ttZ"
+      ]
+    },
+    "HZZ-signal": {
+      "name": "H #rightarrow ZZ",
+      "style": "fill-lightred",
+      "members": [
+        "ggHZZ"
+      ]
+    },
+    "qqZZjj-ewk": {
+      "name": "ZZ + 2 jets EWK",
+      "style": "fill-darkblue",
+      "members": [
+        "zzjj4l-ewk"
+      ]
+    },
+    "dy-jets": {
+      "name": "Drell-Yan",
+      "style": "fill-green",
+      "members": [
+        "DYm10to50-2j",
+        "DYm50-2j",
+        "DY2e-m10to50-2j",
+        "DY2mu-m10to50-2j",
+        "DY2tau-m10to50-2j",
+        "DY2e-m50-2j",
+        "DY2mu-m50-2j",
+        "DY2tau-m50-2j"
+      ]
+    },
+    "top": {
+      "name": "TT",
+      "style": "fill-red",
+      "members": [
+        "tt2l2nu"
+      ]
+    },
+    "wz3lnu": {
+      "name": "WZ",
+      "style": "fill-maroon",
+      "members": [
+        "wz3lnu"
+      ]
+    },
+    "nonprompt": {
+      "name": "Z+X",
+      "style": "fill-green",
+      "members": [
+        "nonprompt"
+      ]
+    }
   },
-  "ggZZ": {
-    "name": "gg #rightarrow ZZ",
-    "style": "fill-blue",
-    "members": [
-      "ggZZ4e",
-      "ggZZ4m",
-      "ggZZ4t",
-      "ggZZ2e2mu",
-      "ggZZ2e2tau",
-      "ggZZ2mu2tau"
-    ]
-  },
-  "VVV": {
-    "name": "t#bar{t}Z,VVV",
-    "style": "fill-yellow",
-    "members": [
-      "ZZZ",
-      "WZZ",
-      "WWZ",
-      "ttZ"
-    ]
-  },
-  "HZZ-signal": {
-    "name": "H #rightarrow ZZ",
-    "style": "fill-lightred",
-    "members": [
-      "ggHZZ"
-    ]
-  },
-  "qqZZjj-ewk": {
-    "name": "ZZ + 2 jets EWK",
-    "style": "fill-darkblue",
-    "members": [
-      "zzjj4l-ewk"
-    ]
-  },
-  "dy-jets": {
-    "name": "Drell-Yan",
-    "style": "fill-green",
-    "members": [
-      "DYm10to50-2j",
-      "DYm50-2j",
-      "DY2e-m10to50-2j",
-      "DY2mu-m10to50-2j",
-      "DY2tau-m10to50-2j",
-      "DY2e-m50-2j",
-      "DY2mu-m50-2j",
-      "DY2tau-m50-2j"
-    ]
-  },
-  "top": {
-    "name": "TT",
-    "style": "fill-red",
-    "members": [
-      "tt2l2nu"
-    ]
-  },
-  "wz3lnu": {
-    "name": "WZ",
-    "style": "fill-maroon",
-    "members": [
-      "wz3lnu"
-    ]
-  },
-  "nonprompt": {
-    "name": "Z+X",
-    "style": "fill-green",
-    "members": [
-      "nonprompt"
-    ]
+  "combined": {
+    "AllEWK": ["qqZZ", "ggZZ"],
+    "AllDY": ["dy-jets"]
   }
 }
