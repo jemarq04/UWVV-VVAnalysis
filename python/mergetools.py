@@ -92,6 +92,7 @@ def get_channels(analysis: str) -> list:
     elif analysis == "ZplusL":
         channels = ["eee", "eem", "emm", "mmm"]
     else:
+        # NOTE: If needed, add more analyses here!
         raise NotImplementedError(f"no channels found for analysis {analysis}")
     return channels
 
@@ -152,6 +153,7 @@ def get_selector(analysis: str, channel: str, sample: str, outfile: str) -> ROOT
                 inputs.Add(ROOT.TNamed("Z1Mass", f"{obj}1_{obj}2_Mass"))
         selector.SetInputList(inputs)
     else:
+        # NOTE: If needed, add more analyses here!
         raise NotImplementedError(f"no selector available for analysis: {analysis}")
 
     return selector
