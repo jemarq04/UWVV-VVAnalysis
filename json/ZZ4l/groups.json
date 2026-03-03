@@ -47,7 +47,13 @@
     "style": "fill-green",
     "members": [
       "DYm10to50-2j",
-      "DYm50-2j"
+      "DYm50-2j",
+      "DY2e-m10to50-2j",
+      "DY2mu-m10to50-2j",
+      "DY2tau-m10to50-2j",
+      "DY2e-m50-2j",
+      "DY2mu-m50-2j",
+      "DY2tau-m50-2j"
     ]
   },
   "top": {
