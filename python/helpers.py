@@ -25,6 +25,9 @@ def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR)
     is merged into by extending lists and overwriting other types. Any
     sub-dictionaries are merged in the same way.
 
+    If the key 'parent' is found in the root dictionary for a file, the
+    value is assumed to be a path and is loaded before the rest of the file's contents.
+
     Parameters
     ----------
     analysis : str
@@ -48,10 +51,26 @@ def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR)
         os.path.join(json_dir, analysis, year, basename),
     ]
     result = {}
-    for filename in filenames:
-        if os.path.exists(filename):
-            with open(filename) as infile:
-                merge_dicts(result, json.load(infile))
+    for filename in [f for f in filenames if os.path.exists(f)]:
+        with open(filename) as infile:
+            # Load JSON information
+            info = json.load(infile)
+
+            # Check if 'parent' key exists
+            if "parent" in info:
+                parent_path = os.path.join(json_dir, info["parent"])
+                # Check if path to parent JSON exists
+                if os.path.exists(parent_path):
+                    with open(parent_path) as parent_infile:
+                        # Merge from parent JSON
+                        merge_dicts(result, json.load(parent_infile))
+
+                # Remove 'parent' key
+                del info["parent"]
+
+            # Merge from JSON information
+            merge_dicts(result, info)
+
     return result
 
 
