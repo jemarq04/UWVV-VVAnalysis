@@ -1,6 +1,7 @@
 import argparse
 import os
 import subprocess
+from typing import Iterator, Optional, Type
 
 import ROOT
 
@@ -157,3 +158,57 @@ def get_selector(analysis: str, channel: str, sample: str, outfile: str) -> ROOT
         raise NotImplementedError(f"no selector available for analysis: {analysis}")
 
     return selector
+
+
+def get_children(tdir: ROOT.TDirectory, type_: Optional[Type[ROOT.TObject]] = None) -> Iterator[ROOT.TObject]:
+    """Return generator for TObjects within a TDirectory.
+
+    Parameters
+    ----------
+    tdir : ROOT.TDirectory
+        The TDirectory to loop through and whose children are returned.
+    type_ : Type[ROOT.TObject] or None
+        A class object to check against the children in the TDirectory. If the object
+        inherits from the class object provided, it is returned. If set to None, all objects
+        are returned regardless of type. (default is None)
+
+    Returns
+    -------
+    Iterator[ROOT.TObject]
+        A generator that returns the children of the provided TDirectory.
+
+    """
+    for key in tdir.GetListOfKeys():
+        item = tdir.Get(key.GetName())
+        if type_ is None or isinstance(item, type_):
+            yield item
+
+
+def preplot_sample(sample: ROOT.TDirectory, analysis: str):
+    """Execute some steps post-merge (pre-plotting) depending on a given analysis.
+
+    Parameters
+    ----------
+    sample : ROOT.TDirectory
+        A TDirectory containing subdirectories of histograms to use/modify.
+    analysis : str
+        The analysis to check for additional pre-plot steps (e.g. ZplusL).
+
+    """
+    if analysis == "ZplusL":
+        # For ZplusL (fake rates), create the ratio plots from
+        #  tight vs. loose histograms and write to the 'inclusive' directory.
+        total_dir = sample.Get("inclusive")
+        total_dir.cd()
+        for hist in get_children(total_dir, ROOT.TH1):
+            if "tight" not in hist.GetName():
+                continue
+            ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
+            if not ratio_hist.GetSumw2():
+                ratio_hist.Sumw2()
+            ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
+            ratio_hist.Write()
+        sample.cd()
+    else:
+        # NOTE: If needed, add more analyses here!
+        pass
