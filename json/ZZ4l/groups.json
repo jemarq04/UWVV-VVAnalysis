@@ -80,6 +80,7 @@
     }
   },
   "combined": {
+    "AllData": [],
     "AllEWK": ["qqZZ", "ggZZ"],
     "AllDY": ["dy-jets"]
   }
