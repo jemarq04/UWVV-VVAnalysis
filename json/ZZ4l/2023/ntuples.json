@@ -83,10 +83,10 @@
   "tt2l2nu_postBPix": [
     "/hdfs/store/user/marquez/ZZ4l2023-ntuples/TT*2L2Nu*/Run3Summer23BPixMiniAOD*/*/*/*/*.root"
   ],
-  "wz3lnu-powheg_preBPix": [
+  "wz3lnu_preBPix": [
     "/hdfs/store/user/marquez/ZZ4l2023-ntuples/WZto3LNu*/Run3Summer23MiniAOD*/*/*/*/*.root"
   ],
-  "wz3lnu-powheg_postBPix": [
+  "wz3lnu_postBPix": [
     "/hdfs/store/user/marquez/ZZ4l2023-ntuples/WZto3LNu*/Run3Summer23BPixMiniAOD*/*/*/*/*.root"
   ],
   "DYm10to50-2j_preBPix": [

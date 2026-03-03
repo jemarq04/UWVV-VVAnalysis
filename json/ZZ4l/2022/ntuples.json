@@ -83,10 +83,10 @@
   "tt2l2nu_postEE": [
     "/hdfs/store/user/marquez/ZZ4l2022-ntuples/TT*2L2Nu*/Run3Summer22EEMiniAOD*/*/*/*/*.root"
   ],
-  "wz3lnu-powheg_preEE": [
+  "wz3lnu_preEE": [
     "/hdfs/store/user/marquez/ZZ4l2022-ntuples/WZto3LNu*/Run3Summer22MiniAOD*/*/*/*/*.root"
   ],
-  "wz3lnu-powheg_postEE": [
+  "wz3lnu_postEE": [
     "/hdfs/store/user/marquez/ZZ4l2022-ntuples/WZto3LNu*/Run3Summer22EEMiniAOD*/*/*/*/*.root"
   ],
   "DYm10to50-2j_preEE": [
