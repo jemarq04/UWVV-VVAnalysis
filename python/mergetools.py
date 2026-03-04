@@ -182,33 +182,3 @@ def get_children(tdir: ROOT.TDirectory, type_: Optional[Type[ROOT.TObject]] = No
         item = tdir.Get(key.GetName())
         if type_ is None or isinstance(item, type_):
             yield item
-
-
-def preplot_sample(sample: ROOT.TDirectory, analysis: str):
-    """Execute some steps post-merge (pre-plotting) depending on a given analysis.
-
-    Parameters
-    ----------
-    sample : ROOT.TDirectory
-        A TDirectory containing subdirectories of histograms to use/modify.
-    analysis : str
-        The analysis to check for additional pre-plot steps (e.g. ZplusL).
-
-    """
-    if analysis == "ZplusL":
-        # For ZplusL (fake rates), create the ratio plots from
-        #  tight vs. loose histograms and write to the 'inclusive' directory.
-        total_dir = sample.Get("inclusive")
-        total_dir.cd()
-        for hist in get_children(total_dir, ROOT.TH1):
-            if "tight" not in hist.GetName():
-                continue
-            ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
-            if not ratio_hist.GetSumw2():
-                ratio_hist.Sumw2()
-            ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
-            ratio_hist.Write()
-        sample.cd()
-    else:
-        # NOTE: If needed, add more analyses here!
-        pass
