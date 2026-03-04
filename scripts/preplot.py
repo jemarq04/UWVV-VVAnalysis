@@ -34,7 +34,7 @@ def main():
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis, args.year)):
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
     if not os.path.isfile(args.infile):
-        parser.error(f"invalid input file: {args.input}")
+        parser.error(f"invalid input file: {args.infile}")
 
     # Load JSON information
     montecarlo = helpers.load_json(args.analysis, args.year, "montecarlo.json")
