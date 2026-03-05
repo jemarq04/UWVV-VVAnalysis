@@ -58,7 +58,8 @@ def main():
 
                 sample_name = in_sample.GetName()
                 sample = outfile.Get(sample_name)
-                print(f"Processing sample {sample_name}")
+                if args.verbose:
+                    print(f"Processing sample {sample_name}")
 
                 # Scale MC histograms with cross-sections and SFs
                 if not args.no_scale and not sample_name.startswith("data_"):
