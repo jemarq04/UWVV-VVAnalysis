@@ -25,6 +25,7 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-v", "--verbose", action="store_true", help="print debug messages")
+    parser.add_argument("--no-scale", action="store_true", help="disable MC scaling")
     parser.add_argument("infile", help="input histogram file")
     args = parser.parse_args()
 
@@ -55,7 +56,7 @@ def main():
             sample_name = sample.GetName()
 
             # Scale MC histograms with cross-sections and SFs
-            if not sample_name.startswith("data_"):
+            if not args.no_scale and not sample_name.startswith("data_"):
                 if args.verbose:
                     print(f"Scaling MC {sample_name}...")
                 # Get base cross-section
