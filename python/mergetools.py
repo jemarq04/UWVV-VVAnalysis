@@ -211,3 +211,50 @@ def copy_tdirectory(dest: ROOT.TDirectory, src: ROOT.TDirectory):
             copy_tdirectory(dest_dir, item)
         else:
             dest_dir.WriteObject(item, item.GetName())
+
+
+def write_summed_hists(infile: ROOT.TDirectory, name: str, members: list):
+    """Create and write summed histograms from input directory and list of directories.
+
+    This function expects the input directory (usually a file) with the following structure.
+    It must contain directories with the names provided in the 'members' variable, and those
+    must contain subdirectories of histograms to be combined. All these histograms will be
+    combined, retaining the subdirectory hierarchy, and will be written out to a new directory
+    with the name provided.
+
+    Parameters
+    ----------
+    infile : ROOT.TDirectory
+        The input directory (or file) to with histograms to read/write.
+    name: str
+        The name of the output directory to be written to the input directory.
+    members: list of str
+        The list of directories within the input directory to find histograms.
+
+    """
+    summed_hists = {}
+
+    # Iterate over each sample to add to summed_hists
+    for sample_name in members:
+        sample = infile.Get(sample_name)
+
+        for subdir in get_children(sample, ROOT.TDirectory):
+            subdir_name = subdir.GetName()
+            summed_hists[subdir_name] = ROOT.TList()
+            for hist in get_children(subdir, ROOT.TH1):
+                hist_name = hist.GetName()
+                summed_hist = summed_hists[subdir_name].FindObject(hist_name)
+                if summed_hist:
+                    summed_hist.Add(hist)
+                else:
+                    summed_hists[subdir_name].Add(hist.Clone())
+
+    # Write combined histograms to file, if we have any
+    if summed_hists:
+        combined_dir = infile.mkdir(name)
+        for key, hists in summed_hists.items():
+            subdir = combined_dir.mkdir(key)
+            subdir.cd()
+            for hist in hists:
+                hist.Write()
+    infile.cd()
