@@ -52,18 +52,24 @@ def merge(args: argparse.Namespace):
         for tempfile in tempfiles:
             os.remove(tempfile)
 
-    # Add sumweights
-    tree = ROOT.TChain("metaInfo/metaInfo")
-    for infile in args.infiles:
-        tree.Add(infile)
-    oldBatch = ROOT.gROOT.IsBatch()
-    ROOT.gROOT.SetBatch(True)
-    canvas = ROOT.TCanvas("c", "Canvas")
+    # Final additions
     with ROOT.TFile.Open(args.outfile, "update") as tempfile:
+        # Get meta tree
+        tree = ROOT.TChain("metaInfo/metaInfo")
+        for infile in args.infiles:
+            tree.Add(infile)
+
+        # Create canvas
+        oldBatch = ROOT.gROOT.IsBatch()
+        ROOT.gROOT.SetBatch(True)
+        canvas = ROOT.TCanvas("c", "Canvas")
+
+        # Create sumweights histogram
         tempfile.Get(args.sample).cd()
         sumweights = ROOT.TH1D("sumweights", "sumweights", 1, 0, 2000)
         tree.Draw("1>>sumweights", "summedWeights")
         sumweights.Write()
+
     canvas.Close()
     ROOT.gROOT.SetBatch(oldBatch)
 
