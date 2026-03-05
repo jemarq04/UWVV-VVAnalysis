@@ -149,7 +149,6 @@ def main():
                             hist.Write()
             outfile.cd()
 
-
             # Combine groups, skipping sumweights
             # (e.g. AllData, AllEWK, AllDY, etc.)
             for combined_group, plot_groups in groups["combined"].items():
