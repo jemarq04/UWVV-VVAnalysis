@@ -110,6 +110,10 @@ def main():
                 # Update histograms
                 sample.Write("", ROOT.TObject.kOverwrite)
 
+            # Combine MC samples into groups, skipping sumweights
+            # (e.g. ggZZ4e, ggZZ4mu, ... into ggZZ, etc.)
+            if args.verbose:
+                print("==========")
             for group_name, group_info in groups["groups"].items():
                 # Initialize dict of combined histograms
                 summed_hists = {}
@@ -161,12 +165,7 @@ def main():
                     # it compared to outfile
                     members = [key.GetName() for key in infile.GetListOfKeys() if key.GetName().startswith("data_")]
                 else:
-                    members = [
-                        sample_name
-                        for group_name in plot_groups
-                        for sample_name in groups["groups"][group_name]["members"]
-                        if outfile.Get(sample_name)
-                    ]
+                    members = [group_name for group_name in plot_groups if outfile.Get(group_name)]
 
                 if members:
                     if args.verbose:
