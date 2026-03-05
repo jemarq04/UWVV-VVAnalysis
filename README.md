@@ -13,6 +13,7 @@ Note that this repository is still in-progress.
    * [Skimming](#skimming)
       + [Making the input files](#making-the-input-files)
    * [Merging](#merging)
+      + [Pre-plotting](#pre-plotting)
    * [Plotting](#plotting)
 
 ## Setup
@@ -100,7 +101,35 @@ created depending on the given analysis and year. This requires the `data.json` 
 
 ### Merging
 
-Work in progress.
+Once ntuples have been skimmed, files from each dataset sample need to be processed and merged into one histogram file. This can be done with
+[`scripts/merge.py`](scripts/merge.py), which will either take a list of input files or will use a `skimmed.json` file from [`json/`](json/) to
+determine the list of input files. To see available options, run `merge.py --help`. Each analysis has a different `TSelector` object that is used to
+process and fill histograms for each sample/channel.
+
+The `merge.py` script would need to be run for each dataset for a full analysis, but this can be tedious. To deal with this, there is the script
+[`scripts/multi_merge.py`](scripts/multi_merge.py). This will use the `skimmed.json` file as input and will combine all histogram output files into a
+single file for ease. When running with the `-v/--verbose` option, a progress bar will be printed.
+
+For example, you can run the following:
+
+```bash
+multi_merge.py -a ZZ4l -y 2024 -j 12
+```
+
+#### Pre-plotting
+
+Before the histograms can be plotted, we need to scale MC to data and combine samples into relevant plot groups. To do this, you can use
+[`scripts/preplot.py`](scripts/preplot.py). This will iterate through the input file and
+
+1. scale MC histograms with their cross-sections, k-factors, and the luminosity and sum of weights,
+2. combine per-channel directories into an `inclusive/` directory,
+3. combine MC samples into MC plot groups (e.g. ggZZ4e, ggZZ4m, ... into ggZZ),
+4. combine data samples and MC plot groups into their relevant combined groups (e.g. AllData, AllEWK, etc.),
+5. create a `DataEWKCorrected/` directory by subtracting `AllEWK/` from `AllData`, if both are present.
+
+Each of these steps are done only if the relevant samples exist. In other words, if no data samples were merged into this file then no attempts will
+be made to create `AllData/` or `DataEWKCorrected/`. These checks are dependent on the relevant `groups.json` file found in [`json/`](json/), which is
+explained in [`json/README.md`](json/README.md).
 
 ### Plotting
 

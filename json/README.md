@@ -10,6 +10,7 @@ json
 |   |   `-- some-files.json
 |   |-- aliases.json
 |   |-- cuts.json
+|   |-- groups.json
 |   `-- montecarlo.json
 `-- data.json
 ```
@@ -34,6 +35,8 @@ This is a work in progress.
       + [Example](#example-5)
    * [`triggers.json`](#triggersjson)
       + [Example](#example-6)
+   * [`groups.json`](#groupsjson)
+      + [Example](#example-7)
 
 ## Setup
 
@@ -69,7 +72,7 @@ Each year is added to the "years" dictionary and should contain the following ke
 - lumi\_unc: The uncertainty on the luminosity measurements for this year. This is used as an input for Combine cards, so if there is a 1.4% error
   then it should be listed as `1.014`.
 
-To merging/plotting combined years (e.g. plotting 2022-2023 for an early Run 3 analysis), you need to define a 'combined' key. This is done by adding
+To merge/plot combined years (e.g. plotting 2022-2023 for an early Run 3 analysis), you need to define a 'combined' key. This is done by adding
 an entry to the "combined" dictionary. This entry will simply be a list of strings, where each string is the year desired in this combined analysis.
 
 #### Example
@@ -287,5 +290,38 @@ repository currently follow these rules.
     "SingleMuon" : "(singleMuonPass) && !(doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
     "Muon" : "(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)",
     "MuonEG" : "crossEMuPass && !(singleMuonPass || doubleMuonPass || tripleMuonPass) && !(singleElectronPass || doubleElectronPass)"
+}
+```
+
+### `groups.json`
+
+The `groups.json` file stores information on the plot groups and their members, plotting styles, and so on. This file is used by
+[`preplot.py`](../scripts/preplot.py) to determine plot group members and how to combine samples/groups.
+
+Each group is added to the "groups" dictionary and should contain the following keys:
+
+- name: The TLatex string to use as the plot group title in legends.
+- style: The plotting style to use.
+- members: A list of samples that are part of this plot group.
+
+To prepare combined plot groups (e.g. AllEWK or AllDY), you need to define a 'combined' key. This is done by adding an entry to the "combined"
+dictionary. This entry will simply be a list of strings, where each string is the group desired in this combined plot group.
+
+#### Example
+
+```json
+{
+  "groups": {
+    "qqZZ": {
+      "name": "q#bar{q} #rightarrow ZZ",
+      "style": "fill-lightblue",
+      "members": [
+        "qqZZ"
+      ]
+    },
+  },
+  "combined": {
+    "AllEWK": ["qqZZ"],
+  }
 }
 ```
