@@ -14,9 +14,11 @@ from UWVV.VVAnalysis import helpers, mergetools
 #   for ZplusL,
 #       scale MC,
 #       combine plot groups together (skip sumweights),
-#
-#       get combined ele/mu plots, <-- maybe done in a script that makes fake rate?
+#       get combined ele/mu plots,
 #       get loose-tight ratios
+#
+# TODO: maybe combine plot group members into a single plot group? easier for
+#       plotting. likely easier for merging into the combined groups as well
 
 
 def main():
