@@ -234,6 +234,11 @@ def write_summed_hists(infile: ROOT.TDirectory, name: str, members: list):
     """
     summed_hists = {}
 
+    # Skip process if there is only one member, and it shares
+    # the same name as the combined group
+    if len(members) == 1 and name == members[0]:
+        return
+
     # Iterate over each sample to add to summed_hists
     for sample_name in members:
         sample = infile.Get(sample_name)
