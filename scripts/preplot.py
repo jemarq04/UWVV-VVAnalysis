@@ -16,9 +16,6 @@ from UWVV.VVAnalysis import helpers, mergetools
 #       combine plot groups together (skip sumweights),
 #       get combined ele/mu plots,
 #       get loose-tight ratios
-#
-# TODO: maybe combine plot group members into a single plot group? easier for
-#       plotting. likely easier for merging into the combined groups as well
 
 
 def main():
@@ -112,7 +109,45 @@ def main():
                 # Update histograms
                 sample.Write("", ROOT.TObject.kOverwrite)
 
-            # TODO: Combine samples into groups
+            for group_name, group_info in groups["groups"].items():
+                # Initialize dict of combined histograms
+                summed_hists = {}
+
+                # Determine list of plot group members
+                members = [member for member in group_info["members"] if outfile.Get(member)]
+
+                if members:
+                    if args.verbose:
+                        print(f"Combining samples into {group_name}")
+
+                    # Iterate over each sample to add to summed_hists
+                    for sample_name in members:
+                        sample = outfile.Get(sample_name)
+
+                        if args.verbose:
+                            print(f"  -> {sample_name}")
+
+                        for subdir in mergetools.get_children(sample, ROOT.TDirectory):
+                            subdir_name = subdir.GetName()
+                            summed_hists[subdir_name] = ROOT.TList()
+                            for hist in mergetools.get_children(subdir, ROOT.TH1):
+                                hist_name = hist.GetName()
+                                summed_hist = summed_hists[subdir_name].FindObject(hist_name)
+                                if summed_hist:
+                                    summed_hist.Add(hist)
+                                else:
+                                    summed_hists[subdir_name].Add(hist.Clone())
+
+                # Write combined histograms to file, if we have any
+                if summed_hists:
+                    combined_dir = outfile.mkdir(group_name)
+                    for key, hists in summed_hists.items():
+                        subdir = combined_dir.mkdir(key)
+                        subdir.cd()
+                        for hist in hists:
+                            hist.Write()
+            outfile.cd()
+
 
             # Combine groups, skipping sumweights
             # (e.g. AllData, AllEWK, AllDY, etc.)
@@ -120,26 +155,30 @@ def main():
                 # Initialize dict of combined histograms
                 summed_hists = {}
 
-                if args.verbose:
-                    print(f"Combining samples into {combined_group}")
-
                 # Determine list of plot group members
                 if combined_group == "AllData":
+                    # Check infile to be marginally faster, less keys present in
+                    # it compared to outfile
                     members = [key.GetName() for key in infile.GetListOfKeys() if key.GetName().startswith("data_")]
                 else:
                     members = [
                         sample_name
                         for group_name in plot_groups
                         for sample_name in groups["groups"][group_name]["members"]
+                        if outfile.Get(sample_name)
                     ]
 
-                # Iterate over each sample to add to summed_hists
-                for sample_name in members:
-                    sample = outfile.FindObject(sample_name)
+                if members:
+                    if args.verbose:
+                        print(f"Combining samples into {combined_group}")
 
-                    if sample:
+                    # Iterate over each sample to add to summed_hists
+                    for sample_name in members:
+                        sample = outfile.Get(sample_name)
+
                         if args.verbose:
-                            print(f" - {sample_name}")
+                            print(f"  -> {sample_name}")
+
                         for subdir in mergetools.get_children(sample, ROOT.TDirectory):
                             subdir_name = subdir.GetName()
                             summed_hists[subdir_name] = ROOT.TList()
