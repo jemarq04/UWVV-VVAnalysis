@@ -61,23 +61,35 @@ def main():
                     if args.verbose:
                         print("  Scaling to data")
 
-                    # Get base cross-section
-                    xsec = montecarlo[sample_name]["cross_section"]
-
-                    # Determine k-factor
-                    kfactor = montecarlo[sample_name]["k_factor"]
-
-                    # Determine luminosity
                     if data["years"][args.year]["eras"]:
+                        for key in data["years"][args.year]["eras"]:
+                            if sample_name.endswith(f"_{key}"):
+                                era = key
+                                break
+                        else:
+                            parser.error(f"could not find era for sample: {sample_name}")
+                        base_sample_name = sample_name.replace(f"_{era}", "")
+
+                        # Get base cross-section
+                        xsec = montecarlo[base_sample_name]["cross_section"]
+
+                        # Determine k-factor
+                        kfactor = montecarlo[base_sample_name]["k_factor"]
+
+                        # Determine luminosity
                         lumi = sum(erainfo["lumi"] for erainfo in data["years"][args.year]["eras"].values())
 
                         # Scale k-factor by the fractional luminosity from the era
                         # (e.g. 2022preEE/2022)
-                        for era, erainfo in data["years"][args.year]["eras"].items():
-                            if sample_name.endswith(f"_{era}"):
-                                kfactor *= erainfo["lumi"] / lumi
-                                break
+                        kfactor *= data["years"][args.year]["eras"][era]["lumi"] / lumi
                     else:
+                        # Get base cross-section
+                        xsec = montecarlo[sample_name]["cross_section"]
+
+                        # Determine k-factor
+                        kfactor = montecarlo[sample_name]["k_factor"]
+
+                        # Determine luminosity
                         lumi = data["years"][args.year]["lumi"]
 
                     # Determine sumweights
