@@ -11,11 +11,6 @@ from UWVV.VVAnalysis import helpers, mergetools
 #       scale MC,
 #       combine plot groups together (skip sumweights),
 #       ...
-#   for ZplusL,
-#       scale MC,
-#       combine plot groups together (skip sumweights),
-#       get combined ele/mu plots,
-#       get loose-tight ratios
 
 
 def main():
