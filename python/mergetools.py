@@ -62,7 +62,7 @@ def merge(args: argparse.Namespace):
     with ROOT.TFile.Open(args.outfile, "update") as tempfile:
         tempfile.Get(args.sample).cd()
         sumweights = ROOT.TH1D("sumweights", "sumweights", 1, 0, 2000)
-        tree.Draw("summedWeights>>sumweights")
+        tree.Draw("1>>sumweights", "summedWeights")
         sumweights.Write()
     canvas.Close()
     ROOT.gROOT.SetBatch(oldBatch)
