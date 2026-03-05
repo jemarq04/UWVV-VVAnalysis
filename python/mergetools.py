@@ -182,3 +182,26 @@ def get_children(tdir: ROOT.TDirectory, type_: Optional[Type[ROOT.TObject]] = No
         item = tdir.Get(key.GetName())
         if type_ is None or isinstance(item, type_):
             yield item
+
+
+def copy_tdirectory(dest: ROOT.TDirectory, src: ROOT.TDirectory):
+    """Recursively copy TDirectory to a new destination.
+
+    Parameters
+    ----------
+    dest : ROOT.TDirectory
+        The TDirectory that 'src' will be copied into.
+    src : ROOT.TDirectory
+        The TDirectory that will be copied recursively.
+
+    """
+    src_name = src.GetName()
+    if not dest.FindObject(src_name):
+        dest.mkdir(src_name)
+    dest_dir = dest.Get(src_name)
+
+    for item in get_children(src):
+        if isinstance(item, ROOT.TDirectory):
+            copy_tdirectory(dest_dir, item)
+        else:
+            dest_dir.WriteObject(item, item.GetName())

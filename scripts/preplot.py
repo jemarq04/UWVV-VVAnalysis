@@ -59,8 +59,11 @@ def main():
             channels = mergetools.get_channels(args.analysis)
 
             # Iterate over each group
-            for sample in mergetools.get_children(infile, ROOT.TDirectory):
-                sample_name = sample.GetName()
+            for in_sample in mergetools.get_children(infile, ROOT.TDirectory):
+                mergetools.copy_tdirectory(outfile, in_sample)
+
+                sample_name = in_sample.GetName()
+                sample = outfile.Get(sample_name)
 
                 # Scale MC histograms with cross-sections and SFs
                 if not args.no_scale and not sample_name.startswith("data_"):
@@ -134,7 +137,7 @@ def main():
 
                 # Iterate over each sample to add to summed_hists
                 for sample_name in members:
-                    sample = infile.FindObject(sample_name)
+                    sample = outfile.FindObject(sample_name)
 
                     if sample:
                         if args.verbose:
