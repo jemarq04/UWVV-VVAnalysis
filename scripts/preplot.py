@@ -116,11 +116,16 @@ def main():
                 print("==========")
             for group_name, group_info in groups["groups"].items():
                 # Determine list of plot group members
-                members = [member for member in group_info["members"] if outfile.Get(member)]
+                members = group_info["members"]
 
                 # Check for sub-era samples (e.g. preEE, postEE, etc.)
                 if data["years"][args.year]["eras"]:
-                    members = [f"{name}_{subera}" for name in members for subera in data["years"][args.year]["eras"]]
+                    members = [
+                        f"{member}_{subera}" for member in members for subera in data["years"][args.year]["eras"]
+                    ]
+
+                # Check that the samples exist in the file
+                members = [member for member in members if outfile.Get(member)]
 
                 if members:
                     if args.verbose:
