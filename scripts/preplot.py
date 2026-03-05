@@ -52,17 +52,18 @@ def main():
         with ROOT.TFile.Open(args.outfile, "recreate") as outfile:
             channels = mergetools.get_channels(args.analysis)
 
-            # Iterate over each group
+            # Iterate over each sample
             for in_sample in mergetools.get_children(infile, ROOT.TDirectory):
                 mergetools.copy_tdirectory(outfile, in_sample)
 
                 sample_name = in_sample.GetName()
                 sample = outfile.Get(sample_name)
+                print(f"Processing sample {sample_name}")
 
                 # Scale MC histograms with cross-sections and SFs
                 if not args.no_scale and not sample_name.startswith("data_"):
                     if args.verbose:
-                        print(f"Scaling MC {sample_name}...")
+                        print("  Scaling to data")
 
                     # Get base cross-section
                     xsec = montecarlo[sample_name]["cross_section"]
@@ -96,7 +97,7 @@ def main():
 
                 # Combine channels
                 if args.verbose:
-                    print(f"Combining channels for {sample_name}...")
+                    print("  Combining channels")
                 total_dir = sample.mkdir("inclusive")
                 total_dir.cd()
                 for hist in mergetools.get_children(sample.Get(channels[0]), ROOT.TH1):
