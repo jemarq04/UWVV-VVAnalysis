@@ -16,6 +16,8 @@ from UWVV.VVAnalysis import helpers, mergetools
 #       combine plot groups together (skip sumweights),
 #       get combined ele/mu plots,
 #       get loose-tight ratios
+#
+# TODO: check for subera samples (preEE, postEE, ...)
 
 
 def main():
