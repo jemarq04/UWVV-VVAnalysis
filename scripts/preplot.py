@@ -159,7 +159,7 @@ def main():
             # Get DataEWKCorrected (AllData-AllEWK)
             if all(outfile.FindObject(name) for name in ["AllData", "AllEWK"]):
                 if args.verbose:
-                    print("Correcting data with EWK MC...")
+                    print("Correcting data with EWK MC")
                 differences = {}
                 for subdir in mergetools.get_children(outfile.Get("AllData"), ROOT.TDirectory):
                     subdir_name = subdir.GetName()
