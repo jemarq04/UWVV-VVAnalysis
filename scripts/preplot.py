@@ -53,9 +53,6 @@ def main():
 
     with ROOT.TFile.Open(args.infile) as infile:
         with ROOT.TFile.Open(args.outfile, "recreate") as outfile:
-            for name in ["analysis", "year"]:
-                outfile.WriteObject(ROOT.TNamed(name, getattr(args, name)), name)
-
             channels = mergetools.get_channels(args.analysis)
 
             # Iterate over each group
@@ -69,6 +66,7 @@ def main():
                 if not args.no_scale and not sample_name.startswith("data_"):
                     if args.verbose:
                         print(f"Scaling MC {sample_name}...")
+
                     # Get base cross-section
                     xsec = montecarlo[sample_name]["cross_section"]
 
