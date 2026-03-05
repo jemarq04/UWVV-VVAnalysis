@@ -85,7 +85,7 @@ def main():
                 # Scale each MC histogram to data by (xsec * lumi)/sumweights
                 for subdir in mergetools.get_children(sample, ROOT.TDirectory):
                     for hist in mergetools.get_children(subdir, ROOT.TH1):
-                        hist.Scale(xsec * 1000 * lumi / sumweights)
+                        hist.Scale(xsec * kfactor * 1000 * lumi / sumweights)
 
             # TODO: Rebin histograms
 
