@@ -16,8 +16,6 @@ from UWVV.VVAnalysis import helpers, mergetools
 #       combine plot groups together (skip sumweights),
 #       get combined ele/mu plots,
 #       get loose-tight ratios
-#
-# TODO: check for subera samples (preEE, postEE, ...)
 
 
 def main():
@@ -122,6 +120,10 @@ def main():
 
                 # Determine list of plot group members
                 members = [member for member in group_info["members"] if outfile.Get(member)]
+
+                # Check for sub-era samples (e.g. preEE, postEE, etc.)
+                if data["years"][args.year]["eras"]:
+                    members = [f"{name}_{subera}" for name in members for subera in data["years"][args.year]["eras"]]
 
                 if members:
                     if args.verbose:
