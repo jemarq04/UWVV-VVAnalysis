@@ -35,34 +35,33 @@ def main():
     # Set configurations based on analysis
     if args.analysis == "ZplusL":
         group_name = "DataEWKCorrected"
-        ele_hist_name = "ratioElePtEta"
-        mu_hist_name = "ratioMuPtEta"
         inputs = {
             "pt": "{obj} pT [GeV]",
             "eta": "{obj} eta",
         }
         desc = "ZplusL fake rates for electrons and muons, made for ZZ4l analysis"
-        corr_desc = "ZplusL {obj} fake rate"
         out_desc = "ZplusL fake rate"
+        objects = {
+            "electron": {"hist_name": "ratioElePtEta", "desc": "ZplusL {obj} fake rate"},
+            "muon": {"hist_name": "ratioMuPtEta", "desc": "ZplusL {obj} fake rate"},
+        }
     else:
         # Not implemented yet!
         parser.error(f"configurations not found for analysis: {args.analysis}")
 
     # Create correction items for each object
     corr_items = {
-        "electron": correctionlib.convert.from_uproot_THx(
-            f"{args.infile}:{group_name}/inclusive/{ele_hist_name}", list(inputs), "clamp"
-        ),
-        "muon": correctionlib.convert.from_uproot_THx(
-            f"{args.infile}:{group_name}/inclusive/{mu_hist_name}", list(inputs), "clamp"
-        ),
+        obj: correctionlib.convert.from_uproot_THx(
+            f"{args.infile}:{group_name}/inclusive/{info['hist_name']}", list(inputs), "clamp"
+        )
+        for obj, info in objects.items()
     }
 
     # Fill in configurations for each correction
     corrections = []
     for obj, corr in corr_items.items():
         corr.name = obj
-        corr.description = corr_desc.format(obj=obj)
+        corr.description = objects[obj]["desc"].format(obj=obj)
         for i, val in enumerate(inputs.values()):
             corr.inputs[i].description = val.format(obj=obj)
         corr.output.name = "fake rate"
