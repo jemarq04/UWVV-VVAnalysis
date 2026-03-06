@@ -89,6 +89,12 @@ to submit one job per file through HTCondor. These can be monitored with `condor
 using multiple cores. This will often be faster for smaller files, but will require keeping a terminal open (or using `tmux`). Using HTCondor will
 take some time to spin up each job but can often process more files simultaneously.
 
+> [!WARNING]
+> While HTCondor jobs are running, do not modify files in the repo! The jobs are actively using the workspace, and any modifications may cause errors
+> as you work or change how some jobs are done compared to others. (For example, python scripts in [`python/`](python/) are directly imported so any
+> changes will immediately be implemented to HTCondor jobs as it is imported.) Try to avoid re-compiling, as that will also affect the `TSelector`
+> objects that are accessed.
+
 Both scripts will read the information from the relevant `ntuples.json` file, depending on the analysis and year given as input. To see what format
 this JSON file needs to be in, look at [`json/README.md`](json/README.md).
 
