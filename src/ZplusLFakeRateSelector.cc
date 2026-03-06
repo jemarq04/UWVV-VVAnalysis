@@ -51,11 +51,12 @@ void ZplusLFakeRateSelector::SlaveBegin(TTree *tree) {
 }
 
 void ZplusLFakeRateSelector::Init(TTree *tree) {
+  // Assign tree
   if (!tree)
     return;
   fChain = tree;
 
-  // Set branches
+  // Set all branch addresses
   fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
 
   fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight, &b_l1Tight);
@@ -75,7 +76,7 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
 }
 
 Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
-  // Load branches
+  // Load variables from branches
   weight_ = 1;
   b_Z1Mass->GetEntry(entry);
 

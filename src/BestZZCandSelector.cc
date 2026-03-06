@@ -1,6 +1,11 @@
 #include "UWVV/VVAnalysis/interface/BestZZCandSelector.h"
 
 void BestZZCandSelector::SlaveBegin(TTree *tree) {
+  // Ensure input list is not empty
+  if (GetInputList() == nullptr)
+    throw std::logic_error("input list is empty");
+
+  // Define entry list for output list
   fEntryList = new TEntryList("bestCandidates",
                               "Entry list of disambiguated combinatoric "
                               "candidates after leptons pass tight ID");
@@ -8,53 +13,34 @@ void BestZZCandSelector::SlaveBegin(TTree *tree) {
 }
 
 void BestZZCandSelector::Init(TTree *tree) {
+  // Assign tree
   if (!tree)
     return;
   fChain = tree;
   nEntries = fChain->GetEntries();
 
-  if (!GetInputList())
-    throw std::invalid_argument("input list is empty");
-
-  for (std::string branchname : {"run",
-                                 "evt",
-                                 "Z1Mass",
-                                 "Z2Mass",
-                                 "l1Pt",
-                                 "l2Pt",
-                                 "l3Pt",
-                                 "l4Pt",
-                                 "l1Tight",
-                                 "l2Tight",
-                                 "l3Tight",
-                                 "l4Tight",
-                                 "l1Iso",
-                                 "l2Iso",
-                                 "l3Iso",
-                                 "l4Iso"}) {
-    if (GetInputList()->FindObject(branchname.c_str()) == nullptr)
-      throw std::invalid_argument("missing input " + branchname);
-  }
-
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("run"))->GetTitle(), &run, &b_run);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("evt"))->GetTitle(), &evt, &b_evt);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("Z1Mass"))->GetTitle(), &Z1Mass, &b_Z1Mass);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("Z2Mass"))->GetTitle(), &Z2Mass, &b_Z2Mass);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l1Pt"))->GetTitle(), &l1Pt, &b_l1Pt);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l2Pt"))->GetTitle(), &l2Pt, &b_l2Pt);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l3Pt"))->GetTitle(), &l3Pt, &b_l3Pt);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l4Pt"))->GetTitle(), &l4Pt, &b_l4Pt);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l1Tight"))->GetTitle(), &l1Tight, &b_l1Tight);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l2Tight"))->GetTitle(), &l2Tight, &b_l2Tight);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l3Tight"))->GetTitle(), &l3Tight, &b_l3Tight);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l4Tight"))->GetTitle(), &l4Tight, &b_l4Tight);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l1Iso"))->GetTitle(), &l1Iso, &b_l1Iso);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l2Iso"))->GetTitle(), &l2Iso, &b_l2Iso);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l3Iso"))->GetTitle(), &l3Iso, &b_l3Iso);
-  fChain->SetBranchAddress(((TNamed *)GetInputList()->FindObject("l4Iso"))->GetTitle(), &l4Iso, &b_l4Iso);
+  // Set all branch addresses
+  fChain->SetBranchAddress(GetInput<TNamed>("run")->GetTitle(), &run, &b_run);
+  fChain->SetBranchAddress(GetInput<TNamed>("evt")->GetTitle(), &evt, &b_evt);
+  fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
+  fChain->SetBranchAddress(GetInput<TNamed>("Z2Mass")->GetTitle(), &Z2Mass, &b_Z2Mass);
+  fChain->SetBranchAddress(GetInput<TNamed>("l1Pt")->GetTitle(), &l1Pt, &b_l1Pt);
+  fChain->SetBranchAddress(GetInput<TNamed>("l2Pt")->GetTitle(), &l2Pt, &b_l2Pt);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt, &b_l3Pt);
+  fChain->SetBranchAddress(GetInput<TNamed>("l4Pt")->GetTitle(), &l4Pt, &b_l4Pt);
+  fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight, &b_l1Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l2Tight")->GetTitle(), &l2Tight, &b_l2Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Tight")->GetTitle(), &l3Tight, &b_l3Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l4Tight")->GetTitle(), &l4Tight, &b_l4Tight);
+  fChain->SetBranchAddress(GetInput<TNamed>("l1Iso")->GetTitle(), &l1Iso, &b_l1Iso);
+  fChain->SetBranchAddress(GetInput<TNamed>("l2Iso")->GetTitle(), &l2Iso, &b_l2Iso);
+  fChain->SetBranchAddress(GetInput<TNamed>("l3Iso")->GetTitle(), &l3Iso, &b_l3Iso);
+  fChain->SetBranchAddress(GetInput<TNamed>("l4Iso")->GetTitle(), &l4Iso, &b_l4Iso);
 }
 
 Bool_t BestZZCandSelector::Process(Long64_t entry) {
+  // Check current run/event.
+  //  If it is new, check vectors for best entry
   b_evt->GetEntry(entry);
   b_run->GetEntry(entry);
   if (run != fCurrentRun || evt != fCurrentEvt)
@@ -62,6 +48,7 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
   fCurrentRun = run;
   fCurrentEvt = evt;
 
+  // Load variables from branches
   b_Z1Mass->GetEntry(entry);
   b_Z2Mass->GetEntry(entry);
   b_l1Pt->GetEntry(entry);
@@ -77,6 +64,7 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
   b_l3Iso->GetEntry(entry);
   b_l4Iso->GetEntry(entry);
 
+  // Determine discriminant and Z2 pt sum
   float discriminant, z2PtSum;
   float discriminant_Z1 = fabs(Z1Mass - 91.1876);
   float discriminant_Z2 = fabs(Z2Mass - 91.1876);
@@ -88,6 +76,7 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
     z2PtSum = l1Pt + l2Pt;
   }
 
+  // Save discriminant and Z2 pt sum to vector
   if (tightZZ()) {
     fTightEntries.push_back(entry);
     fTightDiscriminants.push_back(discriminant);
@@ -98,6 +87,7 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
     fLooseZ2PtSums.push_back(z2PtSum);
   }
 
+  // If this is the last entry, find best one in vectors
   if (entry == nEntries - 1)
     findBestEntry();
 
@@ -105,15 +95,18 @@ Bool_t BestZZCandSelector::Process(Long64_t entry) {
 }
 
 void BestZZCandSelector::SlaveTerminate() {
+  // Clean up
   fEntryList->OptimizeStorage();
   fEntryList = nullptr;
 }
 
 bool BestZZCandSelector::tightZZ() {
+  // Check that all leptons have tight ID and pass isolation
   return l1Tight && l2Tight && l3Tight && l4Tight && l1Iso && l2Iso && l3Iso && l4Iso;
 }
 
 void BestZZCandSelector::findBestEntry() {
+  // Initialize variables
   Long64_t bestTightEntry = -1;
   float bestTightDiscriminant = 1e10;
   float bestTightZ2PtSum = 0.0;
@@ -122,6 +115,7 @@ void BestZZCandSelector::findBestEntry() {
   float bestLooseDiscriminant = 1e10;
   float bestLooseZ2PtSum = 0.0;
 
+  // Iterate through tight entries for best one
   for (size_t i = 0; i < fTightEntries.size(); i++) {
     if (fTightDiscriminants[i] < bestTightDiscriminant ||
         (fTightDiscriminants[i] == bestTightDiscriminant && fTightZ2PtSums[i] > bestTightZ2PtSum)) {
@@ -130,6 +124,7 @@ void BestZZCandSelector::findBestEntry() {
       bestTightZ2PtSum = fTightZ2PtSums[i];
     }
   }
+  // Iterate through loose entries for best one
   for (size_t i = 0; i < fLooseEntries.size(); i++) {
     if (fLooseDiscriminants[i] < bestLooseDiscriminant ||
         (fLooseDiscriminants[i] == bestLooseDiscriminant && fLooseZ2PtSums[i] > bestLooseZ2PtSum)) {
@@ -139,11 +134,14 @@ void BestZZCandSelector::findBestEntry() {
     }
   }
 
+  // Save best entry to output entry list
+  //  Prioritize one passing tight cuts
   if (bestTightEntry >= 0)
     fEntryList->Enter(bestTightEntry);
   else if (bestLooseEntry >= 0)
     fEntryList->Enter(bestLooseEntry);
 
+  // Clear vectors for next event
   fTightEntries.clear();
   fTightDiscriminants.clear();
   fTightZ2PtSums.clear();

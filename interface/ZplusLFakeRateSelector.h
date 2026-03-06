@@ -10,18 +10,25 @@
 
 class ZplusLFakeRateSelector : public SelectorBase {
 public:
+  // See comment on TSelectors in BestZZCandSelector.h
+
+  // Tree values
   float Z1Mass;
   bool l1Tight, l2Tight, l3Tight;
   bool l1Iso, l2Iso, l3Iso;
   float l3Pt, l3Eta, l3MtToMET;
   float type1_pfMETEt, genWeight;
 
+  // Tree branches
   TBranch *b_Z1Mass;
   TBranch *b_l1Tight, *b_l2Tight, *b_l3Tight;
   TBranch *b_l1Iso, *b_l2Iso, *b_l3Iso;
   TBranch *b_l3Pt, *b_l3Eta, *b_l3MtToMET;
   TBranch *b_type1_pfMETEt, *b_genWeight;
 
+  // Main TSelector methods
+  //  These need to be defined for the selector to
+  //  run properly.
   ZplusLFakeRateSelector(TTree *tree = 0) {}
   ~ZplusLFakeRateSelector() override {}
   void SlaveBegin(TTree *tree) override;
@@ -29,10 +36,16 @@ public:
   Bool_t Process(Long64_t entry) override;
   void SlaveTerminate() override;
 
+  // Define the selector within ROOT
   ClassDefOverride(ZplusLFakeRateSelector, 0);
 
 private:
+  // === Member variables ===
+
+  // Output file
   TFile *outfile_;
+
+  // Output histograms
   TH1D *looseElePt_barrel_, *looseElePt_endcap_, *looseEleEta_;
   TH1D *looseMuPt_barrel_, *looseMuPt_endcap_, *looseMuEta_;
   TH2D *looseElePtEta_, *looseMuPtEta_;
