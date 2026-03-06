@@ -32,6 +32,7 @@ def main():
     if not os.path.isfile(args.infile):
         parser.error(f"invalid input file: {args.infile}")
 
+    # Set configurations based on analysis
     if args.analysis == "ZplusL":
         group_name = "DataEWKCorrected"
         ele_hist_name = "ratioElePtEta"
@@ -47,6 +48,7 @@ def main():
         # Not implemented yet!
         parser.error(f"configurations not found for analysis: {args.analysis}")
 
+    # Create correction items for each object
     corr_items = {
         "electron": correctionlib.convert.from_uproot_THx(
             f"{args.infile}:{group_name}/inclusive/{ele_hist_name}", list(inputs), "clamp"
@@ -56,6 +58,7 @@ def main():
         ),
     }
 
+    # Fill in configurations for each correction
     corrections = []
     for obj, corr in corr_items.items():
         corr.name = obj
@@ -66,8 +69,10 @@ def main():
         corr.output.description = out_desc.format(obj=obj)
         corrections.append(corr)
 
+    # Create final correction JSON
     cset = correctionlib.schemav2.CorrectionSet(schema_version=2, corrections=corrections, description=desc)
 
+    # Write final output file
     with open(args.outfile, "w") as outfile:
         json.dump(json.loads(cset.json(exclude_unset=True)), outfile, indent=2)
 
