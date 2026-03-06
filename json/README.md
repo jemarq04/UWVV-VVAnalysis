@@ -54,6 +54,10 @@ for a ZZ4l analysis in 2024. The JSON file will be loaded by checking in the fol
 This hierarchical nature of the JSON files is important to set defaults and update things as the analysis progresses, but keep as much information
 shared as needed for readability and maintaining the information in the long-term. Next we can look into each type of JSON file.
 
+Additionally, each JSON file can hold a "parent" key. If present, the JSON file listed as the value will be loaded first (in the same
+modified-extended method) and then the "parent" key-value pair will be removed from the information loaded in the python script. The provided path can
+be relative to [`json/`](./) or an absolute path. (A relative path is checked first.)
+
 ## JSON File Formats
 
 ### `data.json`
