@@ -302,7 +302,7 @@ def build_farmout_command(paths: list) -> str:
     """
     # Set script to exit on error
     command = "# Set script to exit on error\n"
-    command += "set -e\n"
+    command += "set -e\n\n"
 
     # Create input file list
     command += "# Create input file list\n"
