@@ -59,6 +59,11 @@ def load_json(analysis: str, year: str, basename: str, json_dir: str = JSON_DIR)
             # Check if 'parent' key exists
             if "parent" in info:
                 parent_path = os.path.join(json_dir, info["parent"])
+
+                # If path doesn't exist, consider it an absolute path
+                if not os.path.exists(parent_path):
+                    parent_path = info["parent"]
+
                 # Check if path to parent JSON exists
                 if os.path.exists(parent_path):
                     with open(parent_path) as parent_infile:
