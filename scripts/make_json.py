@@ -69,11 +69,11 @@ def main():
                 for era, era_info in data["years"][args.year]["eras"].items():
                     check_era_path = os.path.join(check_path, era_info["campaign"])
                     if len(glob.glob(check_era_path)) > 0:
-                        result[f"{mc_sample}_{era}"] = [f"{check_era_path}/*/*/*/*.root"]
+                        result[f"{mc_sample}_{era}"] = [f"{check_era_path}/*/*/*.root"]
                     elif args.verbose:
                         print(f"Skipped {mc_sample}_{era}")
             elif len(glob.glob(check_path)) > 0:
-                result[mc_sample] = [f"{check_path}/*/*/*/*.root"]
+                result[mc_sample] = [f"{check_path}/*/*/*.root"]
             elif args.verbose:
                 print(f"Skipped {mc_sample}")
         elif data["years"][args.year]["eras"]:
@@ -95,7 +95,7 @@ def main():
         for stream in streams:
             check_path = os.path.join(args.ntuples, stream)
             for era in os.listdir(check_path):
-                result[f"data_{stream}_{era}"] = [f"{check_path}/{era}/*/*/*/*.root"]
+                result[f"data_{stream}_{era}"] = [f"{check_path}/{era}/*/*/*.root"]
     else:
         for stream in streams:
             check_path = os.path.join(args.skimmed, f"data_{stream}_Run{args.year}*")
