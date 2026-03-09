@@ -304,6 +304,14 @@ def build_farmout_command(paths: list) -> str:
     command = "# Set script to exit on error\n"
     command += "set -e\n\n"
 
+    # Tar JSON files
+    command += "# Tar JSON files\n"
+    command += "if [ ! -f ${{job_dir}}/extra_inputs.tar.gz ]; then\n"
+    command += (
+        "  find json -regex '.*\(cuts\|triggers\|aliases\)\.json' | xargs tar -czf ${{job_dir}}/extra_inputs.tar.gz\n"
+    )
+    command += "fi\n\n"
+
     # Create input file list
     command += "# Create input file list\n"
     command += "if [ ! -f ${{job_dir}}/inputs.txt ]; then\n"
@@ -323,6 +331,7 @@ def build_farmout_command(paths: list) -> str:
     farmout_command.append("--input-file-list=${{job_dir}}/inputs.txt")
     farmout_command.append("--input-files-per-job=1")
     farmout_command.append("--input-dir=root://cmsxrootd.hep.wisc.edu/")
+    farmout_command.append("--extra-inputs=${{job_dir}}/extra_inputs.tar.gz")
     farmout_command.append("{job_name} $CMSSW_BASE ${{job_dir}}/skim.sh")
 
     return command + " \\\n\t\t".join(farmout_command) + "\n"

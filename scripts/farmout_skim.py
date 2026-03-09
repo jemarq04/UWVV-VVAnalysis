@@ -98,10 +98,12 @@ def main():
 
         # Create skim.sh file
         with open(os.path.join(job_dir, "skim.sh"), "w") as outfile:
+            outfile.write("set -e\n")
+            outfile.write("tar -xvzf extra_inputs.tar.gz\n")
             outfile.write(f"skim.py -v -a {args.analysis} -y {args.year} -I $INPUT -o $OUTPUT ")
             if args.save_gen:
                 outfile.write("--save-gen ")
-            outfile.write(f"-t {skimtools.get_trigger(triggers, sample)} --json-dir {helpers.JSON_DIR}\n")
+            outfile.write(f"-t {skimtools.get_trigger(triggers, sample)} --json-dir json/\n")
 
         # Call farmout.sh file and pipe output to file
         if not args.test:
