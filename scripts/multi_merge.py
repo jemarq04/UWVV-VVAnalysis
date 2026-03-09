@@ -16,6 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
+    parser.add_argument("-v", "--verbose", action="store_true", help="print more updates during merging")
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument("-j", "--num-cores", type=int, required=True, help="number of cores to use")
     parser.add_argument(
@@ -65,7 +66,7 @@ def main():
 
     # Combine temporary files
     tempfiles = [f"Hists-{args.analysis}{args.year}_{sample}.root" for sample in args.skimmed]
-    outlog = subprocess.DEVNULL if args.quiet else None
+    outlog = None if args.verbose else subprocess.DEVNULL
     status = subprocess.call(["hadd", "-f", args.outfile] + tempfiles, stdout=outlog, stderr=outlog)
     if status == 0:
         for tempfile in tempfiles:
