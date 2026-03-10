@@ -245,7 +245,8 @@ def write_summed_hists(infile: ROOT.TDirectory, name: str, members: list):
 
         for subdir in get_children(sample, ROOT.TDirectory):
             subdir_name = subdir.GetName()
-            summed_hists[subdir_name] = ROOT.TList()
+            if subdir_name not in summed_hists:
+                summed_hists[subdir_name] = ROOT.TList()
             for hist in get_children(subdir, ROOT.TH1):
                 hist_name = hist.GetName()
                 summed_hist = summed_hists[subdir_name].FindObject(hist_name)
