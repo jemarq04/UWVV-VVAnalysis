@@ -82,7 +82,7 @@ def main():
         trigger = skimtools.get_trigger(list(args.triggers.keys()), sample)
 
         if not args.quiet:
-            print(f"\n{i+1}/{num_samples} Processing {sample} ({trigger})")
+            print(f"\n{i + 1}/{num_samples} Processing {sample} ({trigger})")
 
         # Skip any skim calls if there are no input files
         if not infiles:

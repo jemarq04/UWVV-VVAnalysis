@@ -39,7 +39,7 @@ def main():
     for infile in args.infiles:
         if infile.startswith("root:"):
             status = subprocess.call(
-                f"hdfs dfs -ls {infile[infile.find('/store'):]}".split(),
+                f"hdfs dfs -ls {infile[infile.find('/store') :]}".split(),
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
