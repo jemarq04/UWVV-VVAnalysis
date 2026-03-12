@@ -96,6 +96,7 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   }
 
   // Apply cuts
+  //  In HZZ AN it says: |M_inv(l1,l2)- MZ| < 7 GeV, to reduce the contribution from photon (asymmetric) conversions populating low masses.
   if (Z1Mass > 98.1876 || Z1Mass < 84.1876)
     return true;
   if (type1_pfMETEt > 25)
