@@ -93,6 +93,8 @@ def skim(args: argparse.Namespace, cutinfo: dict, aliases: dict, triggers: dict)
         subdir = outfile.mkdir("metaInfo")
         subdir.cd()
         tree_copy = tree.CopyTree("")
+        if not tree_copy:
+            tree_copy = tree.CloneTree(0)
         tree_copy.Write()
 
     if args.verbose:
