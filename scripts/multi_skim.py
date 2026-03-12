@@ -4,6 +4,7 @@ import argparse
 import configparser
 import datetime
 import glob
+import hashlib
 import json
 import multiprocessing
 import os
@@ -97,18 +98,12 @@ def main():
             if not args.quiet:
                 list(
                     tqdm.tqdm(
-                        pool.imap_unordered(
-                            call_skim,
-                            [(args, sample, infile, output_dir, trigger) for infile in infiles],
-                        ),
+                        pool.imap_unordered(call_skim, [(args, infile, output_dir, trigger) for infile in infiles]),
                         total=len(infiles),
                     )
                 )
             else:
-                pool.map(
-                    call_skim,
-                    [(args, sample, infile, output_dir, trigger) for infile in infiles],
-                )
+                pool.map(call_skim, [(args, infile, output_dir, trigger) for infile in infiles])
 
 
 def call_skim(args: tuple):
@@ -118,7 +113,6 @@ def call_skim(args: tuple):
 
 def skim(
     args: argparse.Namespace,
-    sample: str,
     infile: str,
     output_dir: str,
     trigger: str,
@@ -126,9 +120,9 @@ def skim(
     """Skim file one at a time with the given inputs."""
     # Determine output file path
     # (Temporary file needed for saving in /hdfs/store/...)
-    basename = os.path.basename(infile)
-    temp_file = f"temp_{sample}_{basename}"
-    outfile = os.path.join(output_dir, basename)
+    file_hash = hashlib.md5(infile.encode()).hexdigest()
+    temp_file = f"temp_skim-{file_hash}.root"
+    outfile = os.path.join(output_dir, f"skim-{hashlib.md5(infile.encode()).hexdigest()}.root")
 
     # Initialize arguments to pass to skimmer
     skim_args = argparse.Namespace(
