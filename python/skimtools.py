@@ -306,6 +306,9 @@ def build_farmout_command(paths: list) -> str:
     command = "# Set script to exit on error\n"
     command += "set -e\n\n"
 
+    # Check for resubmit request
+    command += '[ -n $1 ] && resubmit="--resubmit-failed-jobs"\n\n'
+
     # Tar JSON files
     command += "# Tar JSON files\n"
     command += "if [ ! -f ${{job_dir}}/extra_inputs.tar.gz ]; then\n"
