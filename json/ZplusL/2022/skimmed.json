@@ -1,2 +1,155 @@
 {
+  "qqZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/qqZZ_preEE/*.root"
+  ],
+  "qqZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/qqZZ_postEE/*.root"
+  ],
+  "ggZZ4e_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4e_preEE/*.root"
+  ],
+  "ggZZ4e_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4e_postEE/*.root"
+  ],
+  "ggZZ4mu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4mu_preEE/*.root"
+  ],
+  "ggZZ4mu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4mu_postEE/*.root"
+  ],
+  "ggZZ4tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4tau_preEE/*.root"
+  ],
+  "ggZZ4tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ4tau_postEE/*.root"
+  ],
+  "ggZZ2e2mu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2e2mu_preEE/*.root"
+  ],
+  "ggZZ2e2mu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2e2mu_postEE/*.root"
+  ],
+  "ggZZ2e2tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2e2tau_preEE/*.root"
+  ],
+  "ggZZ2e2tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2e2tau_postEE/*.root"
+  ],
+  "ggZZ2mu2tau_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2mu2tau_preEE/*.root"
+  ],
+  "ggZZ2mu2tau_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggZZ2mu2tau_postEE/*.root"
+  ],
+  "ttZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ttZ_preEE/*.root"
+  ],
+  "ttZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ttZ_postEE/*.root"
+  ],
+  "WWZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/WWZ_preEE/*.root"
+  ],
+  "WWZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/WWZ_postEE/*.root"
+  ],
+  "WZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/WZZ_preEE/*.root"
+  ],
+  "WZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/WZZ_postEE/*.root"
+  ],
+  "ZZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ZZZ_preEE/*.root"
+  ],
+  "ZZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ZZZ_postEE/*.root"
+  ],
+  "ggHZZ_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggHZZ_preEE/*.root"
+  ],
+  "ggHZZ_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/ggHZZ_postEE/*.root"
+  ],
+  "qqZZjj-ewk_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/qqZZjj-ewk_preEE/*.root"
+  ],
+  "qqZZjj-ewk_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/qqZZjj-ewk_postEE/*.root"
+  ],
+  "tt2l2nu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/tt2l2nu_preEE/*.root"
+  ],
+  "tt2l2nu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/tt2l2nu_postEE/*.root"
+  ],
+  "wz3lnu_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/wz3lnu_preEE/*.root"
+  ],
+  "wz3lnu_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/wz3lnu_postEE/*.root"
+  ],
+  "DYm10to50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/DYm10to50-2j_preEE/*.root"
+  ],
+  "DYm10to50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/DYm10to50-2j_postEE/*.root"
+  ],
+  "DYm50-2j_preEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/DYm50-2j_preEE/*.root"
+  ],
+  "DYm50-2j_postEE": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/DYm50-2j_postEE/*.root"
+  ],
+  "data_EGamma_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_EGamma_Run2022C-22Sep2023-v1/*.root"
+  ],
+  "data_EGamma_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_EGamma_Run2022D-22Sep2023-v1/*.root"
+  ],
+  "data_EGamma_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_EGamma_Run2022E-22Sep2023-v1/*.root"
+  ],
+  "data_EGamma_Run2022F-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_EGamma_Run2022F-22Sep2023-v1/*.root"
+  ],
+  "data_EGamma_Run2022G-22Sep2023-v2": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_EGamma_Run2022G-22Sep2023-v2/*.root"
+  ],
+  "data_DoubleMuon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_DoubleMuon_Run2022C-22Sep2023-v1/*.root"
+  ],
+  "data_SingleMuon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_SingleMuon_Run2022C-22Sep2023-v1/*.root"
+  ],
+  "data_Muon_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_Muon_Run2022C-22Sep2023-v1/*.root"
+  ],
+  "data_Muon_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_Muon_Run2022D-22Sep2023-v1/*.root"
+  ],
+  "data_Muon_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_Muon_Run2022E-22Sep2023-v1/*.root"
+  ],
+  "data_Muon_Run2022F-22Sep2023-v2": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_Muon_Run2022F-22Sep2023-v2/*.root"
+  ],
+  "data_Muon_Run2022G-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_Muon_Run2022G-22Sep2023-v1/*.root"
+  ],
+  "data_MuonEG_Run2022C-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_MuonEG_Run2022C-22Sep2023-v1/*.root"
+  ],
+  "data_MuonEG_Run2022D-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_MuonEG_Run2022D-22Sep2023-v1/*.root"
+  ],
+  "data_MuonEG_Run2022E-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_MuonEG_Run2022E-22Sep2023-v1/*.root"
+  ],
+  "data_MuonEG_Run2022F-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_MuonEG_Run2022F-22Sep2023-v1/*.root"
+  ],
+  "data_MuonEG_Run2022G-22Sep2023-v1": [
+    "/hdfs/store/user/marquez/ZplusL2022-skimmed-new/data_MuonEG_Run2022G-22Sep2023-v1/*.root"
+  ]
 }
