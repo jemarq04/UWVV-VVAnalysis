@@ -73,7 +73,7 @@ def main():
                     elif args.verbose:
                         print(f"Skipped {mc_sample}_{era}")
             elif len(glob.glob(check_path)) > 0:
-                result[mc_sample] = [f"{check_path}/*/*/*.root"]
+                result[mc_sample] = [f"{check_path}/*/*/*/*.root"]
             elif args.verbose:
                 print(f"Skipped {mc_sample}")
         elif data["years"][args.year]["eras"]:

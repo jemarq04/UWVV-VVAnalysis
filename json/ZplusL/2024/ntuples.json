@@ -1,66 +1,66 @@
 {
   "qqZZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZto4L_*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZto4L_*/*/*/*/*.root"
   ],
   "ggZZ4e": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4E*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4E*/*/*/*/*.root"
   ],
   "ggZZ4mu": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4Mu*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4Mu*/*/*/*/*.root"
   ],
   "ggZZ4tau": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4Tau*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto4Tau*/*/*/*/*.root"
   ],
   "ggZZ2e2mu": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2E2Mu*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2E2Mu*/*/*/*/*.root"
   ],
   "ggZZ2e2tau": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2E2Tau*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2E2Tau*/*/*/*/*.root"
   ],
   "ggZZ2mu2tau": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2Mu2Tau*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGlu*2Zto2Mu2Tau*/*/*/*/*.root"
   ],
   "ttZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/TTLL*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/TTLL*/*/*/*/*.root"
   ],
   "WWZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WWZ*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WWZ*/*/*/*/*.root"
   ],
   "WZZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WZZ*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WZZ*/*/*/*/*.root"
   ],
   "ZZZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZZ*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZZ*/*/*/*/*.root"
   ],
   "ggHZZ": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGluH-Hto2Zto4L*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/GluGluH-Hto2Zto4L*/*/*/*/*.root"
   ],
   "qqZZjj-ewk": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZJJto4L*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/ZZJJto4L*/*/*/*/*.root"
   ],
   "tt2l2nu": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/TT*2L2Nu*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/TT*2L2Nu*/*/*/*/*.root"
   ],
   "wz3lnu": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WZto3LNu*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/WZto3LNu*/*/*/*/*.root"
   ],
   "DY2e-m10to50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-10to50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-10to50*/*/*/*/*.root"
   ],
   "DY2mu-m10to50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-10to50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-10to50*/*/*/*/*.root"
   ],
   "DY2tau-m10to50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-10to50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-10to50*/*/*/*/*.root"
   ],
   "DY2e-m50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2E-2Jets_Bin-MLL-50*/*/*/*/*.root"
   ],
   "DY2mu-m50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Mu-2Jets_Bin-MLL-50*/*/*/*/*.root"
   ],
   "DY2tau-m50-2j": [
-    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-50*/*/*/*.root"
+    "/hdfs/store/user/marquez/ZplusL2024-ntuples/DYto2Tau-2Jets_Bin-MLL-50*/*/*/*/*.root"
   ],
   "data_EGamma0_Run2024C-MINIv6NANOv15-v1": [
     "/hdfs/store/user/marquez/ZplusL2024-ntuples/EGamma0/Run2024C-MINIv6NANOv15-v1/*/*/*.root"
