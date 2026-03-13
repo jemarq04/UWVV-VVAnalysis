@@ -1,2 +1,194 @@
 {
+  "qqZZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/qqZZ_preBPix/*.root"
+  ],
+  "qqZZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/qqZZ_postBPix/*.root"
+  ],
+  "ggZZ4e_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4e_preBPix/*.root"
+  ],
+  "ggZZ4e_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4e_postBPix/*.root"
+  ],
+  "ggZZ4mu_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4mu_preBPix/*.root"
+  ],
+  "ggZZ4mu_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4mu_postBPix/*.root"
+  ],
+  "ggZZ4tau_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4tau_preBPix/*.root"
+  ],
+  "ggZZ4tau_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ4tau_postBPix/*.root"
+  ],
+  "ggZZ2e2mu_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2e2mu_preBPix/*.root"
+  ],
+  "ggZZ2e2mu_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2e2mu_postBPix/*.root"
+  ],
+  "ggZZ2e2tau_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2e2tau_preBPix/*.root"
+  ],
+  "ggZZ2e2tau_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2e2tau_postBPix/*.root"
+  ],
+  "ggZZ2mu2tau_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2mu2tau_preBPix/*.root"
+  ],
+  "ggZZ2mu2tau_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggZZ2mu2tau_postBPix/*.root"
+  ],
+  "ttZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ttZ_preBPix/*.root"
+  ],
+  "ttZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ttZ_postBPix/*.root"
+  ],
+  "WWZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/WWZ_preBPix/*.root"
+  ],
+  "WWZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/WWZ_postBPix/*.root"
+  ],
+  "WZZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/WZZ_preBPix/*.root"
+  ],
+  "WZZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/WZZ_postBPix/*.root"
+  ],
+  "ZZZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ZZZ_preBPix/*.root"
+  ],
+  "ZZZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ZZZ_postBPix/*.root"
+  ],
+  "ggHZZ_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggHZZ_preBPix/*.root"
+  ],
+  "ggHZZ_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/ggHZZ_postBPix/*.root"
+  ],
+  "qqZZjj-ewk_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/qqZZjj-ewk_preBPix/*.root"
+  ],
+  "qqZZjj-ewk_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/qqZZjj-ewk_postBPix/*.root"
+  ],
+  "tt2l2nu_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/tt2l2nu_preBPix/*.root"
+  ],
+  "tt2l2nu_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/tt2l2nu_postBPix/*.root"
+  ],
+  "wz3lnu_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/wz3lnu_preBPix/*.root"
+  ],
+  "wz3lnu_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/wz3lnu_postBPix/*.root"
+  ],
+  "DYm10to50-2j_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/DYm10to50-2j_preBPix/*.root"
+  ],
+  "DYm10to50-2j_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/DYm10to50-2j_postBPix/*.root"
+  ],
+  "DYm50-2j_preBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/DYm50-2j_preBPix/*.root"
+  ],
+  "DYm50-2j_postBPix": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/DYm50-2j_postBPix/*.root"
+  ],
+  "data_EGamma0_Run2023C-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023C-22Sep2023_v1-v1/*.root"
+  ],
+  "data_EGamma0_Run2023C-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023C-22Sep2023_v2-v1/*.root"
+  ],
+  "data_EGamma0_Run2023C-22Sep2023_v3-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023C-22Sep2023_v3-v1/*.root"
+  ],
+  "data_EGamma0_Run2023C-22Sep2023_v4-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023C-22Sep2023_v4-v1/*.root"
+  ],
+  "data_EGamma0_Run2023D-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023D-22Sep2023_v1-v1/*.root"
+  ],
+  "data_EGamma0_Run2023D-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma0_Run2023D-22Sep2023_v2-v1/*.root"
+  ],
+  "data_EGamma1_Run2023C-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023C-22Sep2023_v1-v1/*.root"
+  ],
+  "data_EGamma1_Run2023C-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023C-22Sep2023_v2-v1/*.root"
+  ],
+  "data_EGamma1_Run2023C-22Sep2023_v3-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023C-22Sep2023_v3-v1/*.root"
+  ],
+  "data_EGamma1_Run2023C-22Sep2023_v4-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023C-22Sep2023_v4-v1/*.root"
+  ],
+  "data_EGamma1_Run2023D-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023D-22Sep2023_v1-v1/*.root"
+  ],
+  "data_EGamma1_Run2023D-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_EGamma1_Run2023D-22Sep2023_v2-v1/*.root"
+  ],
+  "data_Muon0_Run2023C-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023C-22Sep2023_v1-v1/*.root"
+  ],
+  "data_Muon0_Run2023C-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023C-22Sep2023_v2-v1/*.root"
+  ],
+  "data_Muon0_Run2023C-22Sep2023_v3-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023C-22Sep2023_v3-v1/*.root"
+  ],
+  "data_Muon0_Run2023C-22Sep2023_v4-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023C-22Sep2023_v4-v1/*.root"
+  ],
+  "data_Muon0_Run2023D-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023D-22Sep2023_v1-v1/*.root"
+  ],
+  "data_Muon0_Run2023D-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon0_Run2023D-22Sep2023_v2-v1/*.root"
+  ],
+  "data_Muon1_Run2023C-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023C-22Sep2023_v1-v1/*.root"
+  ],
+  "data_Muon1_Run2023C-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023C-22Sep2023_v2-v1/*.root"
+  ],
+  "data_Muon1_Run2023C-22Sep2023_v3-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023C-22Sep2023_v3-v1/*.root"
+  ],
+  "data_Muon1_Run2023C-22Sep2023_v4-v2": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023C-22Sep2023_v4-v2/*.root"
+  ],
+  "data_Muon1_Run2023D-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023D-22Sep2023_v1-v1/*.root"
+  ],
+  "data_Muon1_Run2023D-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_Muon1_Run2023D-22Sep2023_v2-v1/*.root"
+  ],
+  "data_MuonEG_Run2023C-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023C-22Sep2023_v1-v1/*.root"
+  ],
+  "data_MuonEG_Run2023C-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023C-22Sep2023_v2-v1/*.root"
+  ],
+  "data_MuonEG_Run2023C-22Sep2023_v3-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023C-22Sep2023_v3-v1/*.root"
+  ],
+  "data_MuonEG_Run2023C-22Sep2023_v4-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023C-22Sep2023_v4-v1/*.root"
+  ],
+  "data_MuonEG_Run2023D-22Sep2023_v1-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023D-22Sep2023_v1-v1/*.root"
+  ],
+  "data_MuonEG_Run2023D-22Sep2023_v2-v1": [
+    "/hdfs/store/user/marquez/ZplusL2023-skimmed-new/data_MuonEG_Run2023D-22Sep2023_v2-v1/*.root"
+  ]
 }
