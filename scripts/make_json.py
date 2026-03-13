@@ -106,6 +106,8 @@ def main():
     with open(args.outfile, "w") as outfile:
         json.dump(result, outfile, indent=2)
         outfile.write("\n")
+        if args.verbose:
+            print(f"Written to {args.outfile}")
 
 
 if __name__ == "__main__":
