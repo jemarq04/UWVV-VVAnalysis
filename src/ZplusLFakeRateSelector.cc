@@ -84,6 +84,8 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   b_l1Iso->GetEntry(entry);
   b_l2Tight->GetEntry(entry);
   b_l2Iso->GetEntry(entry);
+  b_l3Tight->GetEntry(entry);
+  b_l3Iso->GetEntry(entry);
 
   b_l3Pt->GetEntry(entry);
   b_l3Eta->GetEntry(entry);
