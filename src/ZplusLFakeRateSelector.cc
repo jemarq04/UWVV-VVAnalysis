@@ -59,13 +59,8 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
   // Set all branch addresses
   fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
 
-  fChain->SetBranchAddress(GetInput<TNamed>("l1Tight")->GetTitle(), &l1Tight, &b_l1Tight);
-  fChain->SetBranchAddress(GetInput<TNamed>("l2Tight")->GetTitle(), &l2Tight, &b_l2Tight);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Tight")->GetTitle(), &l3Tight, &b_l3Tight);
-  fChain->SetBranchAddress(GetInput<TNamed>("l1Iso")->GetTitle(), &l1Iso, &b_l1Iso);
-  fChain->SetBranchAddress(GetInput<TNamed>("l2Iso")->GetTitle(), &l2Iso, &b_l2Iso);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Iso")->GetTitle(), &l3Iso, &b_l3Iso);
-
   fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt, &b_l3Pt);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Eta")->GetTitle(), &l3Eta, &b_l3Eta);
   fChain->SetBranchAddress(GetInput<TNamed>("l3MtToMET")->GetTitle(), &l3MtToMET, &b_l3MtToMET);
@@ -80,13 +75,8 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   weight_ = 1;
   b_Z1Mass->GetEntry(entry);
 
-  b_l1Tight->GetEntry(entry);
-  b_l1Iso->GetEntry(entry);
-  b_l2Tight->GetEntry(entry);
-  b_l2Iso->GetEntry(entry);
   b_l3Tight->GetEntry(entry);
   b_l3Iso->GetEntry(entry);
-
   b_l3Pt->GetEntry(entry);
   b_l3Eta->GetEntry(entry);
   b_l3MtToMET->GetEntry(entry);
@@ -104,8 +94,6 @@ Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   if (type1_pfMETEt > 25)
     return true;
   if (l3MtToMET > 30)
-    return true;
-  if (!l1Tight || !l1Iso || !l2Tight || !l2Iso)
     return true;
 
   // Set variables

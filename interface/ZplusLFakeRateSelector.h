@@ -14,15 +14,13 @@ public:
 
   // Tree values
   float Z1Mass;
-  bool l1Tight, l2Tight, l3Tight;
-  bool l1Iso, l2Iso, l3Iso;
+  bool l3Tight, l3Iso;
   float l3Pt, l3Eta, l3MtToMET;
   float type1_pfMETEt, genWeight;
 
   // Tree branches
   TBranch *b_Z1Mass;
-  TBranch *b_l1Tight, *b_l2Tight, *b_l3Tight;
-  TBranch *b_l1Iso, *b_l2Iso, *b_l3Iso;
+  TBranch *b_l3Tight, *b_l3Iso;
   TBranch *b_l3Pt, *b_l3Eta, *b_l3MtToMET;
   TBranch *b_type1_pfMETEt, *b_genWeight;
 
