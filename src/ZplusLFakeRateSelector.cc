@@ -62,7 +62,6 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
   fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt, &b_l3Pt);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Eta")->GetTitle(), &l3Eta, &b_l3Eta);
 
-  fChain->SetBranchAddress("type1_pfMETEt", &type1_pfMETEt, &b_type1_pfMETEt);
   if (isMC_)
     fChain->SetBranchAddress("genWeight", &genWeight, &b_genWeight);
 }
