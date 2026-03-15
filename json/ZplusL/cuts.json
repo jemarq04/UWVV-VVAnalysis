@@ -14,23 +14,28 @@
   "Channel": {
     "eee": [
       "nZZLooseElec == 3 && nZZLooseMu == 0",
-      "e1ZZTightID > 0.5 && e1ZZIsoPass > 0.5 && e2ZZTightID > 0.5 && e2ZZIsoPass > 0.5"
+      "e1ZZTightID > 0.5 && e1ZZIsoPass > 0.5 && e2ZZTightID > 0.5 && e2ZZIsoPass > 0.5",
+      "e3MtToMET > 30"
     ],
     "eem": [
       "nZZLooseElec == 2 && nZZLooseMu == 1",
-      "e1ZZTightID > 0.5 && e1ZZIsoPass > 0.5 && e2ZZTightID > 0.5 && e2ZZIsoPass > 0.5"
+      "e1ZZTightID > 0.5 && e1ZZIsoPass > 0.5 && e2ZZTightID > 0.5 && e2ZZIsoPass > 0.5",
+      "mMtToMET > 30"
     ],
     "emm": [
       "nZZLooseElec == 1 && nZZLooseMu == 2",
-      "m1ZZTightID > 0.5 && m1ZZIsoPass > 0.5 && m2ZZTightID > 0.5 && m2ZZIsoPass > 0.5"
+      "m1ZZTightID > 0.5 && m1ZZIsoPass > 0.5 && m2ZZTightID > 0.5 && m2ZZIsoPass > 0.5",
+      "eMtToMET > 30"
     ],
     "mmm": [
       "nZZLooseElec == 0 && nZZLooseMu == 3",
-      "m1ZZTightID > 0.5 && m1ZZIsoPass > 0.5 && m2ZZTightID > 0.5 && m2ZZIsoPass > 0.5"
+      "m1ZZTightID > 0.5 && m1ZZIsoPass > 0.5 && m2ZZTightID > 0.5 && m2ZZIsoPass > 0.5",
+      "m3MtToMET > 30"
     ]
   },
   "Event": [
-    "Z1Mass >= 4 && Z1Mass < 120 && Z1SS < 0.5"
+    "Z1Mass >= 84.1876 && Z1Mass <= 98.1876 && Z1SS < 0.5",
+    "type1_pfMETEt > 25"
   ],
   "LeadingPt": 20,
   "SubleadingPt": 10

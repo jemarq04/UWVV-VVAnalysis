@@ -150,10 +150,6 @@ def get_selector(analysis: str, channel: str, sample: str, outfile: str) -> ROOT
         inputs.Add(ROOT.TNamed("l3Iso", f"{object_names[2]}ZZIsoPass"))
         inputs.Add(ROOT.TNamed("l3Pt", f"{object_names[2]}Pt"))
         inputs.Add(ROOT.TNamed("l3Eta", f"{object_names[2]}Eta"))
-        inputs.Add(ROOT.TNamed("l3MtToMET", f"{object_names[2]}MtToMET"))
-        for obj, count in object_counts.items():
-            if count >= 2:
-                inputs.Add(ROOT.TNamed("Z1Mass", f"{obj}1_{obj}2_Mass"))
         selector.SetInputList(inputs)
     else:
         # NOTE: If needed, add more analyses here!

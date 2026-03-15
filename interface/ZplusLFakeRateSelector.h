@@ -13,16 +13,14 @@ public:
   // See comment on TSelectors in BestZZCandSelector.h
 
   // Tree values
-  float Z1Mass;
   bool l3Tight, l3Iso;
-  float l3Pt, l3Eta, l3MtToMET;
-  float type1_pfMETEt, genWeight;
+  float l3Pt, l3Eta;
+  float genWeight;
 
   // Tree branches
-  TBranch *b_Z1Mass;
   TBranch *b_l3Tight, *b_l3Iso;
-  TBranch *b_l3Pt, *b_l3Eta, *b_l3MtToMET;
-  TBranch *b_type1_pfMETEt, *b_genWeight;
+  TBranch *b_l3Pt, *b_l3Eta;
+  TBranch *b_genWeight;
 
   // Main TSelector methods
   //  These need to be defined for the selector to

@@ -57,13 +57,10 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
   fChain = tree;
 
   // Set all branch addresses
-  fChain->SetBranchAddress(GetInput<TNamed>("Z1Mass")->GetTitle(), &Z1Mass, &b_Z1Mass);
-
   fChain->SetBranchAddress(GetInput<TNamed>("l3Tight")->GetTitle(), &l3Tight, &b_l3Tight);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Iso")->GetTitle(), &l3Iso, &b_l3Iso);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Pt")->GetTitle(), &l3Pt, &b_l3Pt);
   fChain->SetBranchAddress(GetInput<TNamed>("l3Eta")->GetTitle(), &l3Eta, &b_l3Eta);
-  fChain->SetBranchAddress(GetInput<TNamed>("l3MtToMET")->GetTitle(), &l3MtToMET, &b_l3MtToMET);
 
   fChain->SetBranchAddress("type1_pfMETEt", &type1_pfMETEt, &b_type1_pfMETEt);
   if (isMC_)
@@ -73,28 +70,20 @@ void ZplusLFakeRateSelector::Init(TTree *tree) {
 Bool_t ZplusLFakeRateSelector::Process(Long64_t entry) {
   // Load variables from branches
   weight_ = 1;
-  b_Z1Mass->GetEntry(entry);
 
   b_l3Tight->GetEntry(entry);
   b_l3Iso->GetEntry(entry);
   b_l3Pt->GetEntry(entry);
   b_l3Eta->GetEntry(entry);
-  b_l3MtToMET->GetEntry(entry);
 
-  b_type1_pfMETEt->GetEntry(entry);
   if (isMC_) {
     b_genWeight->GetEntry(entry);
     weight_ = genWeight;
   }
 
-  // Apply cuts
-  //  In HZZ AN it says: |M_inv(l1,l2)- MZ| < 7 GeV, to reduce the contribution from photon (asymmetric) conversions populating low masses.
-  if (Z1Mass > 98.1876 || Z1Mass < 84.1876)
-    return true;
-  if (type1_pfMETEt > 25)
-    return true;
-  if (l3MtToMET > 30)
-    return true;
+  // Note on Z1 mass cuts in skimming:
+  //  In HZZ AN it says: |M_inv(l1,l2)- MZ| < 7 GeV, to reduce the contribution
+  //  from photon (asymmetric) conversions populating low masses.
 
   // Set variables
   float l3AbsEta = std::abs(l3Eta);
