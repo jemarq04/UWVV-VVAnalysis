@@ -108,7 +108,8 @@ process and fill histograms for each sample/channel.
 
 The `merge.py` script would need to be run for each dataset for a full analysis, but this can be tedious. To deal with this, there is the script
 [`scripts/multi_merge.py`](scripts/multi_merge.py). This will use the `skimmed.json` file as input and will combine all histogram output files into a
-single file for ease. When running with the `-v/--verbose` option, a progress bar will be printed.
+single file for ease. By default, a progress bar will be printed showing how many samples have been merged. This can be disabled with the `-q/--quiet`
+option.
 
 For example, you can run the following:
 

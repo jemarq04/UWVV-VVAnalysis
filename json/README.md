@@ -7,7 +7,8 @@ This directory stores all the relevant information for skimming, merging, and pl
 json
 |-- <ANALYSIS>
 |   |-- <YEAR>
-|   |   `-- some-files.json
+|   |   |-- ntuples.json
+|   |   `-- skimmed.json
 |   |-- aliases.json
 |   |-- cuts.json
 |   |-- groups.json
