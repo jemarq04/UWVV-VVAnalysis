@@ -44,6 +44,8 @@ def main():
         args.skimmed = None
     if "outfile" not in args:
         args.outfile = f"Hists-{args.analysis}{args.year}.root"
+    if args.quiet:
+        args.verbose = False
 
     # Load JSON information
     if args.skimmed is not None:
