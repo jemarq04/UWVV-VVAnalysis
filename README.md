@@ -12,6 +12,7 @@ Note that this repository is still in-progress.
 - [Usage](#usage)
    * [Skimming](#skimming)
       + [Making the input files](#making-the-input-files)
+      + [Handling failed HTCondor jobs](#handling-failed-htcondor-jobs)
    * [Merging](#merging)
       + [Pre-plotting](#pre-plotting)
    * [Plotting](#plotting)
@@ -98,6 +99,14 @@ If you used CRAB to submit UWVV jobs, you likely have many output files for many
 there is [`scripts/make_json.py`](scripts/make_json.py). By providing the root directory with the ntuples, the relevant `ntuples.json` file will be
 created depending on the given analysis and year. This requires the `data.json` and `montecarlo.json` files, which are explained in
 [`json/README.md`](json/README.md).
+
+#### Handling failed HTCondor jobs
+
+If you used [`scripts/farmout_skim.py`](scripts/farmout_skim.py) to submit skimming jobs through HTCondor, then some jobs may have failed due to
+unexpected hiccups or interruptions. To check for any failed jobs and retry skimming, there are two options:
+[`scripts/farmout_reskim.py`](scripts/farmout_reskim.py) and [`scripts/multi_reskim.py`](scripts/multi_reskim.py). Both scripts will do the same
+thing, but similar to the skimming scripts above the `farmout_reskim.py` script will resubmit failed jobs through HTCondor and the `multi_reskim.py`
+script will run it locally by checking for missing files in the provided output directory.
 
 ### Merging
 
