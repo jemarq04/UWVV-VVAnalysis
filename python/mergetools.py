@@ -286,3 +286,39 @@ def preplot_analysis(analysis: str, outfile: ROOT.TFile):
     else:
         # NOTE: If needed, add more analyses here!
         pass
+
+
+def configure_fakerate(analysis: str) -> argparse.Namespace:
+    """Provide configuration settings for fake rate JSON correction file.
+
+    Parameters
+    ----------
+    analysis : str
+        The analysis to use for determining the appropriate settings (e.g. ZZ4l).
+
+    Returns
+    -------
+    argparse.Namespace
+        The settings for the fake rate JSON correction file. Returned in an
+        argparse.Namespace object as it is just a fancy wrapper for a dict object.
+
+    """
+    result = argparse.Namespace()
+
+    if analysis == "ZplusL":
+        result.group_name = "DataEWKCorrected"
+        result.inputs = {
+            "pt": "{obj} pT [GeV]",
+            "eta": "{obj} eta",
+        }
+        result.desc = "ZplusL fake rates for electrons and muons, made for ZZ4l analysis"
+        result.out_desc = "ZplusL fake rate"
+        result.objects = {
+            "electron": {"hist_name": "ratioElePtEta", "desc": "ZplusL {obj} fake rate"},
+            "muon": {"hist_name": "ratioMuPtEta", "desc": "ZplusL {obj} fake rate"},
+        }
+    else:
+        # NOTE: If needed, add more analyses here!
+        raise NotImplementedError(f"no fake rate configuration found for {analysis}")
+
+    return result

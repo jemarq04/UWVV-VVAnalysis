@@ -6,7 +6,7 @@ import os
 
 import correctionlib.convert
 import correctionlib.schemav2
-from UWVV.VVAnalysis import helpers
+from UWVV.VVAnalysis import helpers, mergetools
 
 
 def main():
@@ -33,43 +33,29 @@ def main():
         parser.error(f"invalid input file: {args.infile}")
 
     # Set configurations based on analysis
-    if args.analysis == "ZplusL":
-        group_name = "DataEWKCorrected"
-        inputs = {
-            "pt": "{obj} pT [GeV]",
-            "eta": "{obj} eta",
-        }
-        desc = "ZplusL fake rates for electrons and muons, made for ZZ4l analysis"
-        out_desc = "ZplusL fake rate"
-        objects = {
-            "electron": {"hist_name": "ratioElePtEta", "desc": "ZplusL {obj} fake rate"},
-            "muon": {"hist_name": "ratioMuPtEta", "desc": "ZplusL {obj} fake rate"},
-        }
-    else:
-        # Not implemented yet!
-        parser.error(f"configurations not found for analysis: {args.analysis}")
+    config = mergetools.configure_fakerate(args.analysis)
 
     # Create correction items for each object
     corr_items = {
         obj: correctionlib.convert.from_uproot_THx(
-            f"{args.infile}:{group_name}/inclusive/{info['hist_name']}", list(inputs), "clamp"
+            f"{args.infile}:{config.group_name}/inclusive/{info['hist_name']}", list(config.inputs), "clamp"
         )
-        for obj, info in objects.items()
+        for obj, info in config.objects.items()
     }
 
     # Fill in configurations for each correction
     corrections = []
     for obj, corr in corr_items.items():
         corr.name = obj
-        corr.description = objects[obj]["desc"].format(obj=obj)
-        for i, val in enumerate(inputs.values()):
+        corr.description = config.objects[obj]["desc"].format(obj=obj)
+        for i, val in enumerate(config.inputs.values()):
             corr.inputs[i].description = val.format(obj=obj)
         corr.output.name = "fake rate"
-        corr.output.description = out_desc.format(obj=obj)
+        corr.output.description = config.out_desc.format(obj=obj)
         corrections.append(corr)
 
     # Create final correction JSON
-    cset = correctionlib.schemav2.CorrectionSet(schema_version=2, corrections=corrections, description=desc)
+    cset = correctionlib.schemav2.CorrectionSet(schema_version=2, corrections=corrections, description=config.desc)
 
     # Write final output file
     with open(args.outfile, "w") as outfile:
