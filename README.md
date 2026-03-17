@@ -5,9 +5,9 @@ This project is meant to take in ntuples produced from [UWVV](https://github.com
 available to skim ntuples, merge files, and plot distributions. The usual analysis workflow for UWVV ntuples is the following:
 
 1. ntuplization: Create basic ntuples from MiniAOD files
-2. skimming: Apply additional cuts and selections on the ntuples to slim them down
-3. merging: Merge all of the skimmed ntuples into one file and create/fill histograms with the events
-4. plotting: Take the merged histogram file and plot the saved histograms (i.e. Data vs. MC comparisons)
+2. **skimming**: Apply additional cuts and selections on the ntuples to slim them down
+3. **merging**: Merge all of the skimmed ntuples into one file and create/fill histograms with the events
+4. **plotting**: Take the merged histogram file and plot the saved histograms (i.e. Data vs. MC comparisons)
 
 This respository aims to make these steps as transparent as possible and easy to maintain in the future. Ideally, only minor changes to the structure
 would be needed for NanoAOD compatibility. All relevant information for skimming, merging, and plotting are stored in JSON files in [`json/`](json/).
