@@ -186,21 +186,8 @@ def main():
                     for hist in hists:
                         hist.Write()
 
-                # Additional step for ZplusL analysis
-                if args.analysis == "ZplusL":
-                    # For ZplusL (fake rates), create the ratio plots from
-                    #  tight vs. loose histograms and write to the 'inclusive' directory.
-                    total_dir = outfile.Get("DataEWKCorrected/inclusive")
-                    total_dir.cd()
-                    for hist in mergetools.get_children(total_dir, ROOT.TH1):
-                        if "tight" not in hist.GetName():
-                            continue
-                        ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
-                        if not ratio_hist.GetSumw2():
-                            ratio_hist.Sumw2()
-                        ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
-                        ratio_hist.Write()
-                    outfile.cd()
+                # Additional step customized per analysis
+                mergetools.preplot_analysis(args.analysis, outfile)
 
     print("Done.")
 

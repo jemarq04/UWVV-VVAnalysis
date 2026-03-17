@@ -256,3 +256,33 @@ def write_summed_hists(infile: ROOT.TDirectory, name: str, members: list):
             for hist in hists:
                 hist.Write()
     infile.cd()
+
+
+def preplot_analysis(analysis: str, outfile: ROOT.TFile):
+    """Process any final tasks to output file to prepare for plotting.
+
+    Parameters
+    ----------
+    analysis : str
+        The analysis to use for pre-plotting (e.g. ZZ4l).
+    outfile : ROOT.TFile
+        The output file (with write permissions) to prepare for plotting.
+
+    """
+    if analysis == "ZplusL":
+        # For ZplusL (fake rates), create the ratio plots from
+        #  tight vs. loose histograms and write to the 'inclusive' directory.
+        total_dir = outfile.Get("DataEWKCorrected/inclusive")
+        total_dir.cd()
+        for hist in get_children(total_dir, ROOT.TH1):
+            if "tight" not in hist.GetName():
+                continue
+            ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
+            if not ratio_hist.GetSumw2():
+                ratio_hist.Sumw2()
+            ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
+            ratio_hist.Write()
+        outfile.cd()
+    else:
+        # NOTE: If needed, add more analyses here!
+        pass
