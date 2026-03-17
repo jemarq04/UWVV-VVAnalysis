@@ -77,11 +77,6 @@ def merge(args: argparse.Namespace):
 def get_channels(analysis: str) -> list:
     """Determine list of channels to process/merge for a given analysis.
 
-    Note that this is not the same function used for skimming. This is split
-    because the channels may differ between skimming and merging. For example,
-    ZZ4l skims [eeee, eemm, mmmm], but when it is processed eemm is split into
-    eemm and mmee, depending on which lepton pair is the primary Z candidate.
-
     Parameters
     ----------
     analysis : str

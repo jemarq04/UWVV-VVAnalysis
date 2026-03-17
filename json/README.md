@@ -233,7 +233,7 @@ The root directory contains six keys:
 - ObjectPair: This is a list of cuts to be applied to every pair of leptons (regardless of charge or flavor).
 - Channel: This is a dictionary containing string to list mappings. Each key is a channel and the value is a list of cuts to be applied to events in
   this channel.
-    - **Note**: All channels must be specified, even if it is an empty list.
+    - **Note**: All channels must be specified, even if it is an empty list! This is so that the skimming scripts know which channels to expect.
 - Event: This is a list of cuts to be applied to every event, regardless of channel.
 - LeadingPt: A float which sets the pt cut on the leading lepton pt. To disable, set to `null`, but note that doing so will disable the subleading
   lepton pt cut below.
