@@ -28,6 +28,7 @@ Note that this repository is still in-progress.
       + [Pre-plotting](#pre-plotting)
    * [Plotting](#plotting)
 - [Adding your own analysis](#adding-your-own-analysis)
+   * [CMSSW tips](#cmssw-tips)
 
 ## Setup
 
@@ -161,4 +162,51 @@ Work in progress.
 
 ## Adding your own analysis
 
-Work in progress.
+This repository was created with ZZ4l analysis in mind, so in most cases that can be used as a template for any analysis that you want to add. The
+first step for defining a new analysis in this framework is to add the relevant files in [`json/`](json/). If you haven't already, read through the
+[README file](json/README.md) in that directory to become familiar with the JSON files you'll need. To start, you can always copy the directory. For
+example, to create a WZ analysis, you can run:
+
+```bash
+cp -r json/ZZ4l json/WZ
+```
+
+Then, you need to edit each of the files appropriately to describe your analysis and its MC samples, triggers, cuts, etc.
+
+To make this framework as easy to maintain as possible, the scripts needed to edit to change functionality per-analysis is kept in as few files as
+possible: [`skimtools.py`](python/skimtools.py) and [`mergetools.py`](python/mergetools.py). To find them easily, look for a comment with the word
+"NOTE" at the beginning. These functions control behavior for each analysis with UWVV such as expected final state channels and which selectors to use
+from within `interface/`. For example, `mergetools.get_channels()` lists all of the channels that will be passed to the merging selector. This needs
+to be modified per-analysis, as it may differ from what is present the ntuple. (For example, the eemm channel in the ZZ4l analysis is considered
+inclusive to eemm and mmee during skimming, but it is split during merging to identify cases when the muons are the primary Z candidate.)
+
+Mandatory functions to update include `mergetools.get_channels()` and `mergetools.get_selector()`. If the new analysis requires any additional
+pre-plotting steps, then be sure to update `mergetools.preplot_analysis()`. If your analysis is used to develop a fake rate, be sure to update
+`mergetools.configure_fakerate()`. The ZplusL analysis can be used as an example for the optional cases listed above.
+
+Finally, you would need to create new `TSelector` objects for the analysis. (Work in progress.)
+
+### CMSSW Tips
+
+The directory structure of a typical CMSSW project is important to understand before making changes. A project is contained in a subdirectory within
+`$CMSSW_BASE/src`, where `$CMSSW_BASE` is the CMSSW environment that you set up. The project must be a *subdirectory* contained within `src/` (e.g.
+`UWVV/VVAnalysis`, not just `VVAnalysis`). This is so that the SCRAM compiler can properly identify your code.
+
+In general, the project can contain the following directories:
+
+1. `interface/` and `/src/`: These contain C++ header and implementation files, respectively. Often, these will contain ROOT classes (e.g.
+   `TSelector`s). For SCRAM to recognize these, they need to be declared in [`src/classes.h`](src/classes.h) and
+[`src/classes_def.xml`](src/classes_def.xml). Any packages that are used by these C++ files need to be declared in
+[`BuildFile.xml`](BuildFile.xml).
+2. `python/`: This contains python scripts that can be used throughout your CMSSW environment. For example, to import
+   [`python/helpers.py`](python/helpers.py) to some python script, you would need to add `from UWVV.VVAnalysis import helpers`. Note that the
+`python/` directory is skipped during the import - when you compile the python scripts are found in that directory and then linked without it.
+3. `scripts/`: This contains any executable scripts (bash, python, etc.) intended to be used anywhere in the CMSSW environment. When you use SCRAM to
+   compile, any scripts with execute permissions in this directory will be copied to `CMSSW_BASE/bin`, which is part of your `$PATH`. This means that
+you can run these commands anywhere without having to specify a relative/absolute path to it. (For example, in this project, you can run
+[`make_json.py`](scripts/make_json.py) from anywhere.) Note that python scripts in this directory can't be easily imported - these should just be
+scripts that you run in your terminal.
+
+There are other important directories (e.g. `test/` and `data/`) as well. Their usage can be found on [this Twiki
+page](https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideBuildFile). Note that this seems to be *very* out of date, but the information regarding
+the directory structure doesn't seem to be inaccurate.
