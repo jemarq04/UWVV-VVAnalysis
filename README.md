@@ -2,7 +2,18 @@
 -----------------
 
 This project is meant to take in ntuples produced from [UWVV](https://github.com/jemarq04/UWVV) and process them for analysis. There are scripts
-available to skim ntuples, merge files, and plot distributions.
+available to skim ntuples, merge files, and plot distributions. The usual analysis workflow for UWVV ntuples is the following:
+
+1. ntuplization: Create basic ntuples from MiniAOD files
+2. skimming: Apply additional cuts and selections on the ntuples to slim them down
+3. merging: Merge all of the skimmed ntuples into one file and create/fill histograms with the events
+4. plotting: Take the merged histogram file and plot the saved histograms (i.e. Data vs. MC comparisons)
+
+This respository aims to make these steps as transparent as possible and easy to maintain in the future. Ideally, only minor changes to the structure
+would be needed for NanoAOD compatibility. All relevant information for skimming, merging, and plotting are stored in JSON files in [`json/`](json/).
+There are a couple exceptions, such as definitions of which selectors to use during skimming/merging, which are defined in the relevant python script
+in [`python/`](python/). This README will provide information on setting up this repository, usage and examples, and some guidance on adding new
+analyses that use UWVV for ntuples.
 
 Note that this repository is still in-progress.
 
@@ -16,10 +27,13 @@ Note that this repository is still in-progress.
    * [Merging](#merging)
       + [Pre-plotting](#pre-plotting)
    * [Plotting](#plotting)
+- [Adding your own analysis](#adding-your-own-analysis)
 
 ## Setup
 
-Eventually, this will be set up automatically by UWVV. Until then, run the following commands.
+This can be set up in the same repository as the UWVV repository, but there may be some slow-down due to bloated directories and `data/`
+directories. If you want to set it up in the same directory as UWVV, simply skip the `cmsrel` command below. Always make sure you run `cmsenv` in the
+`src/` directory of your CMSSW environment!
 
 This project has been tested within `CMSSW_15_0_14`. To create a fresh environment, run the following:
 
@@ -40,7 +54,7 @@ scram build UWVV/VVAnalysis
 Finally, make a copy of `config/template.cfg`:
 
 ```bash
-# Inside UWVV/VVAnalysis
+cd UWVV/VVAnalysis
 cp config/template.cfg config/$USER.cfg
 ```
 
@@ -142,5 +156,9 @@ be made to create `AllData/` or `DataEWKCorrected/`. These checks are dependent 
 explained in [`json/README.md`](json/README.md).
 
 ### Plotting
+
+Work in progress.
+
+## Adding your own analysis
 
 Work in progress.
