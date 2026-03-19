@@ -136,15 +136,25 @@ def get_selector(analysis: str, channel: str, sample: str, outfile: str) -> ROOT
 
     # Build selector depending on analysis
     if analysis == "ZplusL":
+        # Determine third lepton (not part of Z candidate) based on channel
+        l3_map = {
+            "eee": "e3",
+            "eem": "m",
+            "emm": "e",
+            "mmm": "m3",
+        }
+        l3 = l3_map[channel]
+
+        # Build selector
         selector = ROOT.ZplusLFakeRateSelector()
         inputs = ROOT.TList()
         inputs.Add(ROOT.TNamed("name", sample))
         inputs.Add(ROOT.TNamed("channel", channel))
         inputs.Add(ROOT.TNamed("output", outfile))
-        inputs.Add(ROOT.TNamed("l3Tight", f"{object_names[2]}ZZTightID"))
-        inputs.Add(ROOT.TNamed("l3Iso", f"{object_names[2]}ZZIsoPass"))
-        inputs.Add(ROOT.TNamed("l3Pt", f"{object_names[2]}Pt"))
-        inputs.Add(ROOT.TNamed("l3Eta", f"{object_names[2]}Eta"))
+        inputs.Add(ROOT.TNamed("l3Tight", f"{l3}ZZTightID"))
+        inputs.Add(ROOT.TNamed("l3Iso", f"{l3}ZZIsoPass"))
+        inputs.Add(ROOT.TNamed("l3Pt", f"{l3}Pt"))
+        inputs.Add(ROOT.TNamed("l3Eta", f"{l3}Eta"))
         selector.SetInputList(inputs)
     else:
         # NOTE: If needed, add more analyses here!
