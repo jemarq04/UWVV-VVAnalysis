@@ -6,7 +6,7 @@ basedir=$CMSSW_BASE/src/UWVV/VVAnalysis
 if [[ $# -lt 1 ]]; then
   echo "usage: $0 ANALYSIS [YEAR]"
   echo
-  echo "ANALYSIS: name of analysis to merge"
+  echo "ANALYSIS: name of analysis to skim"
   echo "[YEAR]: year of analysis (default: all)"
   exit 1
 elif [[ -z $CMSSW_BASE ]]; then
@@ -32,13 +32,7 @@ for yearpath in ${years[@]}; do
   # Check for valid year
   [[ ! -d $basedir/json/$analysis/$year ]] && continue
 
-  # Set input/outputs
-  outdir=$basedir/histout
-  histfile=$outdir/Hists-${analysis}${year}.root
-  scaledfile=$outdir/ScaledHists-${analysis}${year}.root
-
   echo Running $analysis$year...
-  multi_merge.py -a $analysis -y $year -j 12 -o $histfile
-  [[ -f $histfile ]] && preplot.py -a $analysis -y $year -o $scaledfile $histfile || echo No output file $histfile
+  farmout_skim.py -a $analysis -y $year
   echo $year done.
 done

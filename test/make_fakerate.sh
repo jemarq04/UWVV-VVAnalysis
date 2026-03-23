@@ -28,6 +28,7 @@ fi
 
 for yearpath in ${years[@]}; do
   year=$(basename $yearpath)
+
   # Check for valid year
   [[ ! -d $basedir/json/$analysis/$year ]] && continue
 
