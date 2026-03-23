@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import datetime
 import glob
 import json
 import multiprocessing
@@ -20,7 +21,7 @@ def main():
     parser.add_argument("-q", "--quiet", action="store_true", help="disable all print statements")
     parser.add_argument("-j", "--num-cores", type=int, required=True, help="number of cores to use")
     parser.add_argument(
-        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists-<ANALYSIS><YEAR>.root)"
+        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists<DATE>-<ANALYSIS><YEAR>.root)"
     )
     parser.add_argument(
         "--skimmed",
@@ -40,10 +41,11 @@ def main():
         parser.error(f"invalid skimmed JSON: {args.skimmed}")
 
     # Handle defaults
+    args.date = f"{datetime.date.today():%d%b%Y}"
     if "skimmed" not in args:
         args.skimmed = None
     if "outfile" not in args:
-        args.outfile = f"Hists-{args.analysis}{args.year}.root"
+        args.outfile = f"Hists{args.date}-{args.analysis}{args.year}.root"
     if args.quiet:
         args.verbose = False
 
@@ -67,7 +69,7 @@ def main():
             pool.map(call_merge, [(args, sample) for sample in args.skimmed])
 
     # Combine temporary files
-    tempfiles = [f"Hists-{args.analysis}{args.year}_{sample}.root" for sample in args.skimmed]
+    tempfiles = [f"Hists{args.date}-{args.analysis}{args.year}_{sample}.root" for sample in args.skimmed]
     outlog = None if args.verbose else subprocess.DEVNULL
     status = subprocess.call(["hadd", "-f", args.outfile] + tempfiles, stdout=outlog, stderr=outlog)
     if status == 0:
@@ -93,7 +95,7 @@ def merge(args: argparse.Namespace, sample: str):
         skimmed=None,
         infiles=infiles,
         sample=sample,
-        outfile=f"Hists-{args.analysis}{args.year}_{sample}.root",
+        outfile=f"Hists{args.date}-{args.analysis}{args.year}_{sample}.root",
     )
 
     # Merge files

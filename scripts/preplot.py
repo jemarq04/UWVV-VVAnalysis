@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import datetime
 import os
 
 import ROOT
@@ -20,15 +21,19 @@ def main():
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument("-v", "--verbose", action="store_true", help="print debug messages")
     parser.add_argument(
-        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: ScaledHists-<ANALYSIS><YEAR>.root)"
+        "-o",
+        "--outfile",
+        default=argparse.SUPPRESS,
+        help="output file (default: ScaledHists<DATE>-<ANALYSIS><YEAR>.root)",
     )
     parser.add_argument("--no-scale", action="store_true", help="disable MC scaling")
     parser.add_argument("infile", help="input histogram file")
     args = parser.parse_args()
 
     # Handle defaults
+    date = f"{datetime.date.today():%d%b%Y}"
     if "outfile" not in args:
-        args.outfile = f"ScaledHists-{args.analysis}{args.year}.root"
+        args.outfile = f"ScaledHists{date}-{args.analysis}{args.year}.root"
 
     # Error checking
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):

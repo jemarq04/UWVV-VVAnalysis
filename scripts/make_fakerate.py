@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import datetime
 import json
 import os
 
@@ -15,14 +16,18 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZplusL", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument(
-        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: FakeRates-<ANALYSIS><YEAR>.json)"
+        "-o",
+        "--outfile",
+        default=argparse.SUPPRESS,
+        help="output file (default: FakeRates<DATE>-<ANALYSIS><YEAR>.json)",
     )
     parser.add_argument("infile", help="input histogram file")
     args = parser.parse_args()
 
     # Handle defaults
+    date = f"{datetime.date.today():%d%b%Y}"
     if "outfile" not in args:
-        args.outfile = f"FakeRates-{args.analysis}{args.year}.json"
+        args.outfile = f"FakeRates{date}-{args.analysis}{args.year}.json"
 
     # Error checking
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):

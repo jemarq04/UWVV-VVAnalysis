@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import datetime
 import json
 import os
 
@@ -17,7 +18,10 @@ def main():
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
     parser.add_argument(
-        "-o", "--outfile", default=argparse.SUPPRESS, help="output file (default: Hists-<ANALYSIS><YEAR>_<SAMPLE>.root)"
+        "-o",
+        "--outfile",
+        default=argparse.SUPPRESS,
+        help="output file (default: Hists<DATE>-<ANALYSIS><YEAR>_<SAMPLE>.root)",
     )
     parser.add_argument("-v", "--verbose", action="store_true", help="print during merging")
     parser.add_argument(
@@ -37,8 +41,9 @@ def main():
     args = parser.parse_args()
 
     # Handle defaults
+    date = f"{datetime.date.today():%d%b%Y}"
     if "outfile" not in args:
-        args.outfile = f"Hists-{args.analysis}{args.year}_{args.sample}.root"
+        args.outfile = f"Hists{date}-{args.analysis}{args.year}_{args.sample}.root"
     if "skimmed" not in args:
         args.skimmed = None
 
