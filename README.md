@@ -174,8 +174,15 @@ cp -r json/ZZ4l json/WZ
 Then, you need to edit each of the files appropriately to describe your analysis and its MC samples, triggers, cuts, etc.
 
 To make this framework as easy to maintain as possible, the scripts needed to edit to change functionality per-analysis is kept in as few files as
-possible: [`skimtools.py`](python/skimtools.py) and [`mergetools.py`](python/mergetools.py). To find them easily, look for a comment with the word
-"NOTE" at the beginning. These functions control behavior for each analysis with UWVV such as expected final state channels and which selectors to use
+possible: [`skimtools.py`](python/skimtools.py) and [`mergetools.py`](python/mergetools.py). To find them easily, run the following command. The
+output will show how many functions can add new analyses in each python script in [`python/`](python/).
+
+```bash
+# Run in UWVV/VVAnalysis
+grep -rc "# NOTE: If needed, add more analyses here!" python/*.py
+```
+
+These functions control behavior for each analysis with UWVV such as expected final state channels and which selectors to use
 from within `interface/`. For example, `mergetools.get_channels()` lists all of the channels that will be passed to the merging selector. This needs
 to be modified per-analysis, as it may differ from what is present the ntuple. (For example, the eemm channel in the ZZ4l analysis is considered
 inclusive to eemm and mmee during skimming, but it is split during merging to identify cases when the muons are the primary Z candidate.)
