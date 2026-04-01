@@ -21,4 +21,5 @@ repos:
       - id: ruff-check
         args: ["--fix", "--show-fixes"]
       - id: ruff-format
+        args: ["--check"]
 exclude: data/.*
