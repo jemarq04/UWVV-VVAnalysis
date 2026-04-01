@@ -60,7 +60,7 @@ def merge(args: argparse.Namespace):
             tree.Add(infile)
 
         # Create canvas
-        oldBatch = ROOT.gROOT.IsBatch()
+        old_batch = ROOT.gROOT.IsBatch()
         ROOT.gROOT.SetBatch(True)
         canvas = ROOT.TCanvas("c", "Canvas")
 
@@ -71,7 +71,7 @@ def merge(args: argparse.Namespace):
         sumweights.Write()
 
     canvas.Close()
-    ROOT.gROOT.SetBatch(oldBatch)
+    ROOT.gROOT.SetBatch(old_batch)
 
 
 def get_channels(analysis: str) -> list:
