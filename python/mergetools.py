@@ -277,17 +277,18 @@ def preplot_analysis(analysis: str, outfile: ROOT.TFile):
     if analysis == "ZplusL":
         # For ZplusL (fake rates), create the ratio plots from
         #  tight vs. loose histograms and write to the 'inclusive' directory.
-        total_dir = outfile.Get("DataEWKCorrected/inclusive")
-        total_dir.cd()
-        for hist in get_children(total_dir, ROOT.TH1):
-            if "tight" not in hist.GetName():
-                continue
-            ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
-            if not ratio_hist.GetSumw2():
-                ratio_hist.Sumw2()
-            ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
-            ratio_hist.Write()
-        outfile.cd()
+        for dirname in ["DataEWKCorrected", "AllData", "AllDY"]:
+            total_dir = outfile.Get(f"{dirname}/inclusive")
+            total_dir.cd()
+            for hist in get_children(total_dir, ROOT.TH1):
+                if "tight" not in hist.GetName():
+                    continue
+                ratio_hist = hist.Clone(hist.GetName().replace("tight", "ratio"))
+                if not ratio_hist.GetSumw2():
+                    ratio_hist.Sumw2()
+                ratio_hist.Divide(total_dir.Get(hist.GetName().replace("tight", "loose")))
+                ratio_hist.Write()
+            outfile.cd()
     else:
         # NOTE: If needed, add more analyses here!
         pass
