@@ -9,8 +9,8 @@ available to skim ntuples, merge files, and plot distributions. The usual analys
 3. **merging**: Merge all of the skimmed ntuples into one file and create/fill histograms with the events
 4. **plotting**: Take the merged histogram file and plot the saved histograms (i.e. Data vs. MC comparisons)
 
-This respository aims to make these steps as transparent as possible and easy to maintain in the future. Ideally, only minor changes to the structure
-would be needed for NanoAOD compatibility. All relevant information for skimming, merging, and plotting are stored in JSON files in [`json/`](json/).
+This respository aims to make these steps as transparent as possible and easy to maintain in the future.
+All relevant information for skimming, merging, and plotting are stored in JSON files in [`json/`](json/).
 There are a couple exceptions, such as definitions of which selectors to use during skimming/merging, which are defined in the relevant python script
 in [`python/`](python/). This README will provide information on setting up this repository, usage and examples, and some guidance on adding new
 analyses that use UWVV for ntuples.
