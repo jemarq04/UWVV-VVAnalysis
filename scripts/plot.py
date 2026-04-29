@@ -4,7 +4,7 @@ import argparse
 import configparser
 import os
 
-from UWVV.VVAnalysis import helpers, plotfuncs
+from UWVV.VVAnalysis import helpers, plottools
 
 
 def main():
@@ -12,7 +12,9 @@ def main():
     parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
-    parser.add_argument("-o", "--output", default="output", help="name of output directory within the HTML storage directory")
+    parser.add_argument(
+        "-o", "--output", default="output", help="name of output directory within the HTML storage directory"
+    )
     # parser.add_argument("-v", "--verbose", action="store_true", help="print during plotting")
     parser.add_argument("infile", help="input scaled histogram file with histograms to plot")
     args = parser.parse_args()
@@ -39,14 +41,13 @@ def main():
     if not os.path.isfile(args.infile):
         parser.error(f"invalid input file: {args.infile}")
 
-
     # Make required directories
     paths = [
         os.path.join(args.output, "plots"),
         os.path.join(args.output, "logs"),
         os.path.join(args.output, "channels"),
     ]
-    for channel in plotfuncs.get_channels(args.analysis):
+    for channel in plottools.get_channels(args.analysis):
         paths.append(os.path.join(args.output, "channels", channel, "plots"))
         paths.append(os.path.join(args.output, "channels", channel, "logs"))
     for path in paths:
@@ -66,7 +67,7 @@ def main():
 
     # Plot histograms
     try:
-        plotfuncs.plot(args)
+        plottools.plot(args)
     except NotImplementedError as err:
         parser.error(err)
 
