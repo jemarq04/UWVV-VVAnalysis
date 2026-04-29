@@ -156,9 +156,32 @@ Each of these steps are done only if the relevant samples exist. In other words,
 be made to create `AllData/` or `DataEWKCorrected/`. These checks are dependent on the relevant `groups.json` file found in [`json/`](json/), which is
 explained in [`json/README.md`](json/README.md).
 
+For example, you can run the following:
+
+```bash
+preplot.py -a ZZ4l -y 2022 histout.root
+```
+where `histout.root` is some output histogram file from the merging step.
+
 ### Plotting
 
-Work in progress.
+The final stage of the analysis: plotting! This can be done with [`scripts/plot.py`](scripts/plot.py), which will use an input file created from the
+pre-plotting step and some JSON files for configuration. (Work in progress.)
+
+All plots will be made in a subdirectory of the HTML storage path. The HTML storage path is set in your [config file](config/template.dat) and can use
+environment variables. The output directory (specified by the `-o/--output` option) will be created in the HTML storage for the relevant channel(s)
+and an HTML page will automatically be created for you to navigate easily. On the UW cluster, you should have a directory that provides web access
+(`~/public_html`). You could see these plots by making a symlink with the following command:
+
+```bash
+ln -s $CMSSW_BASE/src/www ~/public_html/plots
+```
+
+As an example for how you can plot your histograms, you can run the following:
+
+```bash
+plot.py -a ZplusL -y 2023 scaled_histout.root
+```
 
 ## Adding your own analysis
 
@@ -174,8 +197,8 @@ cp -r json/ZZ4l json/WZ
 Then, you need to edit each of the files appropriately to describe your analysis and its MC samples, triggers, cuts, etc.
 
 To make this framework as easy to maintain as possible, the scripts needed to edit to change functionality per-analysis is kept in as few files as
-possible: [`skimtools.py`](python/skimtools.py) and [`mergetools.py`](python/mergetools.py). To find them easily, run the following command. The
-output will show how many functions can add new analyses in each python script in [`python/`](python/).
+possible: [`skimtools.py`](python/skimtools.py), [`mergetools.py`](python/mergetools.py), and [`plottools.py`](python/plottools.py). To find them
+easily, run the following command. The output will show how many functions can add new analyses in each python script in [`python/`](python/).
 
 ```bash
 # Run in UWVV/VVAnalysis
@@ -190,6 +213,9 @@ inclusive to eemm and mmee during skimming, but it is split during merging to id
 Mandatory functions to update include `mergetools.get_channels()` and `mergetools.get_selector()`. If the new analysis requires any additional
 pre-plotting steps, then be sure to update `mergetools.preplot_analysis()`. If your analysis is used to develop a fake rate, be sure to update
 `mergetools.configure_fakerate()`. The ZplusL analysis can be used as an example for the optional cases listed above.
+
+When adding plotting functionality, it may be easier to create a file in [`plotfuncs/`](python/plotfuncs) for any code that is used frequently. This
+is not necessary for plotting to work. For an example, check the [ZplusL file](python/plotfuncs/ZplusL.py).
 
 Finally, you would need to create new `TSelector` objects for the analysis. (Work in progress.)
 
