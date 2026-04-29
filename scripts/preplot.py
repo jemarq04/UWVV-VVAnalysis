@@ -102,11 +102,13 @@ def main():
                     sumweights = sumweights_hist.Integral(1, sumweights_hist.GetNbinsX() + 2)
 
                     # Scale each MC histogram to data by (xsec * lumi)/sumweights
+                    #  Since xsecs are stored in pb and lumi in 1/fb, xsec is
+                    #  multipled by 1000 to convert to pb
                     for subdir in mergetools.get_children(sample, ROOT.TDirectory):
                         for hist in mergetools.get_children(subdir, ROOT.TH1):
                             hist.Scale(xsec * kfactor * 1000 * lumi / sumweights)
 
-                # TODO: Rebin histograms
+                # TODO: Rebin histograms?
 
                 # Combine channels
                 if args.verbose:
