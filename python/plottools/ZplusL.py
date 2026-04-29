@@ -40,7 +40,7 @@ def get_pt_ratios(tdir: ROOT.TDirectory, obj: str, limits: list[float]) -> tuple
         The directory containing the tight/loose histograms.
     obj : str
         The lepton used for the histograms (either 'Ele' or 'Mu').
-    limits : list[float]
+    limits : list of float
         List of two floats for the y-axis minimum and maximum, respectively.
 
     Returns
@@ -133,7 +133,7 @@ def get_eta_ratio(tdir: ROOT.TDirectory, obj: str, limits: list[float]) -> ROOT.
         The directory containing the tight/loose histograms.
     obj : str
         The lepton used for the histograms (either 'Ele' or 'Mu').
-    limits : list[float]
+    limits : list of float
         List of two floats for the y-axis minimum and maximum, respectively.
 
     Returns
