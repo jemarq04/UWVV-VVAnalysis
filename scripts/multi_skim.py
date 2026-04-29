@@ -58,7 +58,7 @@ def main():
         args.ntuples = None
     if "output_dir" not in args:
         args.output_dir = (
-            f"/hdfs/store/user/{settings['farmout']['cern_username']}/{args.analysis}{args.year}AnalysisJobs_{date}"
+            f"/hdfs/store/user/{settings['UWVV']['cern_username']}/{args.analysis}{args.year}AnalysisJobs_{date}"
         )
 
     # Load JSON information

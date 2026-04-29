@@ -60,7 +60,7 @@ def main():
         args.submission_dir = f"/nfs_scratch/{os.getlogin()}/{date}_{args.analysis}{args.year}AnalysisJobs"
     if "output_dir" not in args:
         args.output_dir = (
-            f"/hdfs/store/user/{settings['farmout']['cern_username']}/{args.analysis}{args.year}AnalysisJobs_{date}"
+            f"/hdfs/store/user/{settings['UWVV']['cern_username']}/{args.analysis}{args.year}AnalysisJobs_{date}"
         )
     if "ntuples" not in args:
         args.ntuples = None
