@@ -9,7 +9,7 @@ extend-select = [
   "PL",   # Pylint codes
   "I",    # sort imports
   "PERF", # performance checks
-  "D",    # docstring formatting
+# "D",    # docstring formatting
 ]
 ignore = [
   "PLR",  # design-related Pylint codes

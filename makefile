@@ -10,6 +10,9 @@ lint:
 ruff-check:
 	$(RUFF) check
 
+ruff-check-docstring:
+	$(RUFF) check --select D --ignore D100,D203,D213
+
 format: clang-format ruff-format
 
 clang-format:
