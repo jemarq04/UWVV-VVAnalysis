@@ -96,7 +96,8 @@ def draw_pt_ratios(obj: str, barrel: dict, endcap: dict, lumi_text: str, filenam
     lumi_text : str
         The luminosity text to display in the CMS label.
     filename : str
-        The name of the output file that will be written from the ROOT.TPad.
+        The base name of the output file that will be written from the ROOT.TPad.
+        Both a PNG and PDF are written.
 
     """
     for i, graph in enumerate(barrel.values()):
@@ -119,7 +120,8 @@ def draw_pt_ratios(obj: str, barrel: dict, endcap: dict, lumi_text: str, filenam
 
     draw_CMS_label(lumi_text=lumi_text)
 
-    ROOT.gPad.SaveAs(filename)
+    ROOT.gPad.SaveAs(f"{filename}.png")
+    ROOT.gPad.SaveAs(f"{filename}.pdf")
 
 
 def get_eta_ratio(tdir: ROOT.TDirectory, obj: str, limits: list[float]) -> ROOT.TGraphAsymmErrors:
@@ -173,7 +175,8 @@ def draw_eta_ratio(obj: str, graphs: dict, lumi_text: str, filename: str):
     lumi_text : str
         The luminosity text to display in the CMS label.
     filename : str
-        The name of the output file that will be written from the ROOT.TPad.
+        The base name of the output file that will be written from the ROOT.TPad.
+        Both a PNG and PDF are written.
 
     """
     for i, graph in enumerate(graphs.values()):
@@ -192,7 +195,8 @@ def draw_eta_ratio(obj: str, graphs: dict, lumi_text: str, filename: str):
 
     draw_CMS_label(lumi_text=lumi_text)
 
-    ROOT.gPad.SaveAs(filename)
+    ROOT.gPad.SaveAs(f"{filename}.png")
+    ROOT.gPad.SaveAs(f"{filename}.pdf")
 
 
 def get_pt_eta_ratio(tdir: ROOT.TDirectory, obj: str) -> ROOT.TH2:
@@ -234,7 +238,8 @@ def draw_pt_eta_ratio(obj: str, hist: ROOT.TH2, lumi_text: str, filename: str):
     lumi_text : str
         The luminosity text to display in the CMS label.
     filename : str
-        The name of the output file that will be written from the ROOT.TPad.
+        The base name of the output file that will be written from the ROOT.TPad.
+        Both a PNG and PDF are written.
 
     """
     hist.Draw("COLZ TEXT")
@@ -244,4 +249,5 @@ def draw_pt_eta_ratio(obj: str, hist: ROOT.TH2, lumi_text: str, filename: str):
 
     draw_CMS_label(lumi_text=lumi_text)
 
-    ROOT.gPad.SaveAs(filename)
+    ROOT.gPad.SaveAs(f"{filename}.png")
+    ROOT.gPad.SaveAs(f"{filename}.pdf")

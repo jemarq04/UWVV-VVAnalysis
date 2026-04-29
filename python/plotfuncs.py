@@ -73,14 +73,14 @@ def plot_ZplusL(args: argparse.Namespace):
                 {"uncorrected": ratioPt_barrel_uncorr, "corrected": ratioPt_barrel},
                 {"uncorrected": ratioPt_endcap_uncorr, "corrected": ratioPt_endcap},
                 args.lumi_text,
-                f"{args.output}/ratio{obj}Pt_Data.png",
+                f"{args.output}/ratio{obj}Pt_Data",
             )
             ZplusL.draw_pt_ratios(
                 obj,
                 {"Data-EWK": ratioPt_barrel, "DYJets MC": ratioPt_barrel_dymc},
                 {"Data-EWK": ratioPt_endcap, "DYJets MC": ratioPt_endcap_dymc},
                 args.lumi_text,
-                f"{args.output}/ratio{obj}Pt_DataMC.png",
+                f"{args.output}/ratio{obj}Pt_DataMC",
             )
 
             # Plot 1D eta ratios
@@ -95,13 +95,13 @@ def plot_ZplusL(args: argparse.Namespace):
                 obj,
                 {"Data": ratioEta_uncorr, "Data-EWK": ratioEta},
                 args.lumi_text,
-                f"{args.output}/ratio{obj}Eta_Data.png",
+                f"{args.output}/ratio{obj}Eta_Data",
             )
             ZplusL.draw_eta_ratio(
                 obj,
                 {"Data-EWK": ratioEta, "DYJets MC": ratioEta_dymc},
                 args.lumi_text,
-                f"{args.output}/ratio{obj}Eta_DataMC.png",
+                f"{args.output}/ratio{obj}Eta_DataMC",
             )
 
             # Plot 2D pt vs. eta ratio
@@ -111,7 +111,7 @@ def plot_ZplusL(args: argparse.Namespace):
                 obj,
                 ratioPtEta,
                 args.lumi_text,
-                f"{args.output}/ratio{obj}PtEta.png",
+                f"{args.output}/ratio{obj}PtEta",
             )
 
     canvas.Close()
