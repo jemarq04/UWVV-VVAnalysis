@@ -27,15 +27,32 @@ def main():
     if not args.force and os.path.isdir(args.output):
         parser.error(f"output directory already exists: {args.output}")
 
+    # Make required directories
+    paths = [
+        args.output,
+        os.path.join(args.output, "plots"),
+        os.path.join(args.output, "logs"),
+        os.path.join(args.output, "channels"),
+    ]
+    for channel in plotfuncs.get_channels(args.analysis):
+        paths.append(os.path.join(args.output, "channels", channel))
+        paths.append(os.path.join(args.output, "channels", channel, "plots"))
+        paths.append(os.path.join(args.output, "channels", channel, "logs"))
+    for path in paths:
+        if not os.path.isdir(path):
+            os.mkdir(path)
+
     # Load JSON information
     data = helpers.load_json(args.analysis, args.year, "data.json")
+    hist_order = helpers.load_json(args.analysis, args.year, "hist_order.json")
 
-    # Save lumi information
+    # Save information
     if data["years"][args.year]["eras"]:
         lumi = sum(erainfo["lumi"] for erainfo in data["years"][args.year]["eras"].values())
     else:
         lumi = data["years"][args.year]["lumi"]
     args.lumi_text = f"{lumi:.2f} fb^{{-1}}"
+    args.hist_order = hist_order["order"] if "order" in hist_order else []
 
     # Plot histograms
     try:
