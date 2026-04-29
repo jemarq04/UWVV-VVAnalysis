@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import configparser
 import os
 
 from UWVV.VVAnalysis import helpers, plotfuncs
@@ -11,11 +12,24 @@ def main():
     parser = argparse.ArgumentParser(description=main.__doc__, formatter_class=helpers.CustomHelpFormatter)
     parser.add_argument("-a", "--analysis", default="ZZ4l", help="name of analysis")
     parser.add_argument("-y", "--year", default="2022", help="year for analysis")
-    parser.add_argument("-o", "--output", default="output", help="name of output directory with plots")
-    parser.add_argument("-f", "--force", action="store_true", help="use output dir even if it already exists")
+    parser.add_argument("-o", "--output", default="output", help="name of output directory within the HTML storage directory")
     # parser.add_argument("-v", "--verbose", action="store_true", help="print during plotting")
     parser.add_argument("infile", help="input scaled histogram file with histograms to plot")
     args = parser.parse_args()
+
+    # Error checking
+    config_path = os.path.join(helpers.BASE_DIR, "config", f"{os.getlogin()}.cfg")
+    if not os.path.isfile(config_path):
+        parser.error(f"cannot find config file: {config_path}")
+    with open(config_path) as infile:
+        config_text = os.path.expandvars(infile.read())
+
+    # Read user configuration file
+    settings = configparser.ConfigParser()
+    settings.read_string(config_text)
+
+    # Set output directory
+    args.output = os.path.join(settings["UWVV"]["html_storage"], f"{args.analysis}{args.year}", args.output)
 
     # Error checking
     if not os.path.isdir(os.path.join(helpers.JSON_DIR, args.analysis)):
@@ -24,23 +38,19 @@ def main():
         parser.error(f"invalid year for analysis {args.analysis}: {args.year}")
     if not os.path.isfile(args.infile):
         parser.error(f"invalid input file: {args.infile}")
-    if not args.force and os.path.isdir(args.output):
-        parser.error(f"output directory already exists: {args.output}")
+
 
     # Make required directories
     paths = [
-        args.output,
         os.path.join(args.output, "plots"),
         os.path.join(args.output, "logs"),
         os.path.join(args.output, "channels"),
     ]
     for channel in plotfuncs.get_channels(args.analysis):
-        paths.append(os.path.join(args.output, "channels", channel))
         paths.append(os.path.join(args.output, "channels", channel, "plots"))
         paths.append(os.path.join(args.output, "channels", channel, "logs"))
     for path in paths:
-        if not os.path.isdir(path):
-            os.mkdir(path)
+        os.makedirs(path, exist_ok=True)
 
     # Load JSON information
     data = helpers.load_json(args.analysis, args.year, "data.json")
