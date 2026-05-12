@@ -136,7 +136,7 @@ def plot_ZplusL(args: argparse.Namespace):
         plot.py to see full list.
 
     """
-    from UWVV.VVAnalysis.plotfuncs import ZplusL
+    from UWVV.VVAnalysis.plotfuncs import ZplusL  # noqa PLC0415
 
     # Create canvas
     ROOT.gROOT.SetBatch(True)
