@@ -28,9 +28,7 @@ public:
   Int_t Version() const override { return 2; }
   void Begin(TTree *tree) override {};
   Bool_t Notify() override { return true; }
-  Int_t GetEntry(Long64_t entry, Int_t getall = 0) override {
-    return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0;
-  }
+  Int_t GetEntry(Long64_t entry, Int_t getall = 0) override { return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0; }
   void SetOption(const char *option) override { fOption = option; }
   void SetObject(TObject *obj) override { fObject = obj; }
   void SetInputList(TList *input) override { fInput = input; }

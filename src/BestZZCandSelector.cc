@@ -117,8 +117,7 @@ void BestZZCandSelector::findBestEntry() {
 
   // Iterate through tight entries for best one
   for (size_t i = 0; i < fTightEntries.size(); i++) {
-    if (fTightDiscriminants[i] < bestTightDiscriminant ||
-        (fTightDiscriminants[i] == bestTightDiscriminant && fTightZ2PtSums[i] > bestTightZ2PtSum)) {
+    if (fTightDiscriminants[i] < bestTightDiscriminant || (fTightDiscriminants[i] == bestTightDiscriminant && fTightZ2PtSums[i] > bestTightZ2PtSum)) {
       bestTightEntry = fTightEntries[i];
       bestTightDiscriminant = fTightDiscriminants[i];
       bestTightZ2PtSum = fTightZ2PtSums[i];
@@ -126,8 +125,7 @@ void BestZZCandSelector::findBestEntry() {
   }
   // Iterate through loose entries for best one
   for (size_t i = 0; i < fLooseEntries.size(); i++) {
-    if (fLooseDiscriminants[i] < bestLooseDiscriminant ||
-        (fLooseDiscriminants[i] == bestLooseDiscriminant && fLooseZ2PtSums[i] > bestLooseZ2PtSum)) {
+    if (fLooseDiscriminants[i] < bestLooseDiscriminant || (fLooseDiscriminants[i] == bestLooseDiscriminant && fLooseZ2PtSums[i] > bestLooseZ2PtSum)) {
       bestLooseEntry = fLooseEntries[i];
       bestLooseDiscriminant = fLooseDiscriminants[i];
       bestLooseZ2PtSum = fLooseZ2PtSums[i];
