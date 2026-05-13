@@ -305,7 +305,7 @@ def build_farmout_command(paths: list) -> str:
     command += "# Farmout command\n"
     farmout_command = []
     farmout_command.append("farmoutAnalysisJobs --fwklite --input-basenames-not-unique --assume-input-files-exist")
-    farmout_command.append("--opsys {opsys}")
+    farmout_command.append("--use-singularity {use_singularity}")
     farmout_command.append("--submit-dir=${{job_dir}}/submit")
     farmout_command.append("--output-dir={output_dir}/{job_name}")
     farmout_command.append("--input-file-list=${{job_dir}}/inputs.txt")

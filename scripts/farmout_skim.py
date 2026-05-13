@@ -34,7 +34,7 @@ def main():
         default=argparse.SUPPRESS,
         help="output directory (default: /hdfs/store/user/<CERN_USERNAME>/<ANALYSIS><YEAR>AnalysisJobs_<DATE>/)",
     )
-    parser.add_argument("--opsys", default="rhel9", help="operating system for jobs to run")
+    parser.add_argument("--use-singularity", default="rhel9", help="operating system for jobs to run")
     parser.add_argument("--test", action="store_true", help="create submission directory but do not execute")
     args = parser.parse_args()
 
